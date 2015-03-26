@@ -16,7 +16,7 @@ public enum Screen {
 	NOTES,
 	HELP;
 	
-	private SpriteBatch batch = new SpriteBatch();
+	private SpriteBatch batch;
 	
 	public SpriteBatch getBatch() {
 		return batch;
@@ -26,9 +26,8 @@ public enum Screen {
 		this.batch = batch;
 	}
 	
-	public void changeScreen() {
-
-		batch.begin();
+	public void changeScreen(SpriteBatch batch) {
+		this.batch = batch;
 		
 		BitmapFont font = new BitmapFont();
 		font.setColor(0, 0, 0, 1);
@@ -87,7 +86,5 @@ public enum Screen {
 			break;
 		
 		}
-
-		batch.end();
 	}
 }

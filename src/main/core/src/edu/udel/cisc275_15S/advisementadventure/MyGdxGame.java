@@ -5,13 +5,16 @@ import java.util.Stack;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends ApplicationAdapter {
+	SpriteBatch batch;
 	Screen currentScreen;
 	Stack<Screen> stack;
 
 	@Override
 	public void create() {
+		batch = new SpriteBatch();
 		currentScreen = Screen.HOME;
 		stack = new Stack<Screen>();
 	}
@@ -27,7 +30,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		}
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		currentScreen.changeScreen();
+		batch.begin();
+		currentScreen.changeScreen(batch);
+		batch.end();
 	}
 
 	public void homeScreenClick() {
