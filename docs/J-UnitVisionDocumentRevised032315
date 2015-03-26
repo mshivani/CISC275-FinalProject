@@ -1,0 +1,31 @@
+Jeremy Ake, Nora Alalou, Jake Fiumara, Catherine Morse, Shivani Murali, Steven Sklodowski
+
+J-Unit Vision Document - Revised 3/23/15
+
+I. Revision History
+  A. March 12, 2015 - Initial vision
+  B. March 23, 2015 - Revision 1
+II. Introduction
+  A. UD Office of Teaching and Assessment Learning
+  B. to make a game that teaches incoming students about advisement resources they have access to
+III. Positioning
+  A. Problem Statement or Opportunity
+    1. To acclimate new students to UD
+  B. Key Stakeholders
+    1. new students
+    2. those who receive the diagnostic information
+  C. Key Goals for the Users of the Product
+    1. To learn of the advisement resources available
+    2. To be engaged
+IV. Product Overview
+  A. Solution Envisioned
+    1. a game that takes the user through a story of a generic experience a UD student could have
+    2. computer/phone interface
+    3. have different scenarios tell the user that they need to do something and have the user click on the appropriate app (i.e. texting, email, etc.) that they could fulfill that in
+      a) i.e. a professor tells the user to drop a class via email and the student logs into UDSIS and drops the class
+    4. continue different scenarios until all requirements have been fulfilled
+  B. One epic storyboard, as many smaller user stories/story boards as you can come up with: see other attachments
+V. Summary of Key Features
+  A. computer/phone interface
+  B. scenarios that present the user different questions regarding the information we want the user to learn
+  C. answers to all questions the user takes are documented
