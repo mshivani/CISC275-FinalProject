@@ -1,0 +1,24 @@
+Jeremy Ake, Nora Alalou, Catherine Morse, Shivani Murali, Steven Sklodowski
+
+J-Unit Supplemental Specifications
+
+I. Functionality Issues
+  A. the user can access help if needed
+  B. the user is able to access features that allow them to complete required tasks
+II. Usability Issues
+  A. it is clear for the user what they are required to do next
+  B. UD help app
+  C. will the user receive all required information by the end of the game
+  D. the flow of the game works as desired (i.e. clicking on the texting app does not open the email app)
+III. Reliability Issues
+  A. the game does not crash
+  B. the game does not glitch
+  C. it provides all diagnostic information
+IV. Performance Issues
+  A. the game runs quickly and smoothly without interruption
+  B. can be completed in 15 minutes or less
+V. Supportability Issues
+  A. the information that is presented in the game needs to be easily modified
+  B. the diagnostics are delivered in an accessible way to the client
+VI. Other Issues
+  A. the game works cross-platform (i.e. Android, iOS, html, etc.)
