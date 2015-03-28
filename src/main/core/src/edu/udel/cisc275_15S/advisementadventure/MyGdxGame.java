@@ -7,9 +7,11 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
 
+	SpriteBatch batch;
 	Screen currentScreen;
 	Stack<Screen> stack;
 	HomeScreen welcome;
@@ -23,6 +25,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 
 	@Override
 	public void create() {
+		batch = new SpriteBatch();
 		//currentScreen = Screen.HOME;
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
