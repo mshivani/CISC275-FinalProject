@@ -20,12 +20,6 @@ public class HomeScreen extends ScreenAdapter{
 	Texture btnEmail;
 	Texture btnHelp;
 	
-	
-	
-	
-	
-	
-	
 	public HomeScreen(MyGdxGame g){
 		this.game = g;
 		batch = new SpriteBatch();

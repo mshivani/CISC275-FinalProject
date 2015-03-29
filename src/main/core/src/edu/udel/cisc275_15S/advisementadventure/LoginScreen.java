@@ -15,15 +15,12 @@ public class LoginScreen extends ScreenAdapter {
 	public LoginScreen(MyGdxGame g) {
 		this.game = g;
 		batch = new SpriteBatch();
-		font = new BitmapFont();
-		
+		font = new BitmapFont();	
 	}
-
 
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
