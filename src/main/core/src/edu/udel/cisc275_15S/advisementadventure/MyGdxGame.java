@@ -21,6 +21,10 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	NotesScreen notes;
 	TextScreen text;
 	WebScreen web;
+	UDSIS_Screen udsis;
+	ScheduleScreen schedule;
+	AddDropScreen addDrop;
+	RsvpScreen rsvp;
 
 
 	@Override
@@ -34,7 +38,11 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		notes = new NotesScreen(this);
 		text = new TextScreen(this);
 		web = new WebScreen(this);
-		this.setScreen(welcome);
+		udsis = new UDSIS_Screen(this);
+		schedule = new ScheduleScreen(this);
+		addDrop = new AddDropScreen(this);
+		rsvp = new RsvpScreen(this);
+		this.setScreen(login);
 	}
 
 

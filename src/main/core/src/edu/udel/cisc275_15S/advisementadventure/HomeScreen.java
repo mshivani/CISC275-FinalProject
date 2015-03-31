@@ -68,6 +68,7 @@ public class HomeScreen extends ScreenAdapter{
 			} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
 					&& clickY <= 180) {
 				game.setScreen(game.web);
+				
 			} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
 					&& clickY <= 180) {
 				game.setScreen(game.text);
