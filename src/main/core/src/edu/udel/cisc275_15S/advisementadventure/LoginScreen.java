@@ -53,7 +53,7 @@ public class LoginScreen extends ScreenAdapter{
 
 		font.draw(batch, "login", 200, 200);
 		if(Gdx.input.justTouched()){
-			game.setScreen(new HomeScreen(game));
+			this.show();
 		}
 		batch.end();
 
