@@ -87,7 +87,7 @@ public class AddDropScreen extends ScreenAdapter {
 			public void input(String text) {
 		
 				if (clickY >= height/4.528f && clickY <= height/3.664f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("UNIV 101") == false){
 						currentList.add("UNIV 101");
 					}
 					if(text.contentEquals("drop") && currentList.contains("UNIV 101")){
@@ -95,7 +95,7 @@ public class AddDropScreen extends ScreenAdapter {
 					}
 				}
 				if (clickY >= height/3.664f && clickY <= height/2.981f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("ECON 101") == false){
 						currentList.add("ECON 101");
 					}
 					if(text.contentEquals("drop") && currentList.contains("ECON 101")){
@@ -103,7 +103,7 @@ public class AddDropScreen extends ScreenAdapter {
 					}
 				}
 				if (clickY >= height/2.981f && clickY <= height/2.513f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("HIST 104") == false){
 						currentList.add("HIST 104");
 					}
 					if(text.contentEquals("drop") && currentList.contains("HIST 104")){
@@ -112,7 +112,7 @@ public class AddDropScreen extends ScreenAdapter {
 				}
 				
 				if (clickY >= height/2.513f && clickY <= height/2.172f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("CISC 108") == false){
 						currentList.add("CISC 108");
 					}
 					if(text.contentEquals("drop") && currentList.contains("CISC 108")){
@@ -121,7 +121,7 @@ public class AddDropScreen extends ScreenAdapter {
 				}
 				
 				if (clickY >= height/2.172f && clickY <= height/1.912f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("PHYS 207") == false){
 						currentList.add("PHYS 207");
 					}
 					if(text.contentEquals("drop") && currentList.contains("PHYS 207")){
@@ -129,7 +129,7 @@ public class AddDropScreen extends ScreenAdapter {
 					}
 				}
 				if (clickY >= height/1.912f && clickY <= height/1.720f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("ENGL 110") == false){
 						currentList.add("ENGL 110");
 					}
 					if(text.contentEquals("drop") && currentList.contains("ENGL 110")){
@@ -138,7 +138,7 @@ public class AddDropScreen extends ScreenAdapter {
 				}
 				
 				if (clickY >= height/1.720f && clickY <= height/1.534f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("CHEM 103") == false){
 						currentList.add("CHEM 103");
 					}
 					if(text.contentEquals("drop") && currentList.contains("CHEM 103")){
@@ -146,7 +146,7 @@ public class AddDropScreen extends ScreenAdapter {
 					}
 				}
 				if (clickY >= height/1.534f && clickY <= height/1.416f) {
-					if (text.contentEquals("add")){
+					if (text.contentEquals("add") && currentList.contains("MUSC 100") == false){
 						currentList.add("MUSC 100");
 					}
 					if(text.contentEquals("drop") && currentList.contains("MUSC 100")){
