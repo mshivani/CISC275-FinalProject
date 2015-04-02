@@ -1,83 +1,88 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
 
 	SpriteBatch batch;
+	ArrayList<Note> notes;
 	Screen currentScreen;
 	Stack<Screen> stack;
 	HomeScreen welcome;
 	LoginScreen login;
 	EmailScreen email;
 	HelpScreen help;
-	NotesScreen notes;
+	NotesScreen notescrn;
 	TextScreen text;
 	WebScreen web;
 	UDSIS_Screen udsis;
 	ScheduleScreen schedule;
 	AddDropScreen addDrop;
 	RsvpScreen rsvp;
+	NoteMenu notemenu;
 
 
 	@Override
 	public void create() {
+		notes = new ArrayList<Note>();
 		batch = new SpriteBatch();
 		//currentScreen = Screen.HOME;
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
 		email = new EmailScreen(this);
 		help = new HelpScreen(this);
-		notes = new NotesScreen(this);
+		//notes = new NotesScreen(this, null);
 		text = new TextScreen(this);
 		web = new WebScreen(this);
 		udsis = new UDSIS_Screen(this);
 		schedule = new ScheduleScreen(this);
 		addDrop = new AddDropScreen(this);
 		rsvp = new RsvpScreen(this);
+		notemenu = new NoteMenu(this);
 		this.setScreen(login);
+
 	}
-
-
 	@Override
 	public void render() {
 		super.render();
-//		if(Gdx.input.isTouched()){
-//		homeScreenClick();
-//		}
+		//		if(Gdx.input.isTouched()){
+		//		homeScreenClick();
+		//		}
 	}
 
 
-//	public void homeScreenClick() {
-//	//	stack.add(currentScreen);
-//		//System.out.println("X: " + Gdx.input.getX() + ", Y: "+ Gdx.input.getY());
-//		int clickX = Gdx.input.getX();
-//		int clickY = Gdx.input.getY();
-//		if (clickX >= 70 && clickX <= 150 && clickY >= 50 && clickY <= 180) {
-//			setScreen(notes);
-//		} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
-//				&& clickY <= 180) {
-//			setScreen(web);
-//		} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
-//				&& clickY <= 180) {
-//			setScreen(text);
-//		} else if (clickX >= 370 && clickX <= 450 && clickY >= 50
-//				&& clickY <= 180) {
-//			setScreen(email);
-//			welcome.hide();
-//		} else if (clickX >= 470 && clickX <= 550 && clickY >= 50
-//				&& clickY <= 180) {
-//			setScreen(help);
-//		}
-//
-//	}
+	//	public void homeScreenClick() {
+	//	//	stack.add(currentScreen);
+	//		//System.out.println("X: " + Gdx.input.getX() + ", Y: "+ Gdx.input.getY());
+	//		int clickX = Gdx.input.getX();
+	//		int clickY = Gdx.input.getY();
+	//		if (clickX >= 70 && clickX <= 150 && clickY >= 50 && clickY <= 180) {
+	//			setScreen(notes);
+	//		} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
+	//				&& clickY <= 180) {
+	//			setScreen(web);
+	//		} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
+	//				&& clickY <= 180) {
+	//			setScreen(text);
+	//		} else if (clickX >= 370 && clickX <= 450 && clickY >= 50
+	//				&& clickY <= 180) {
+	//			setScreen(email);
+	//			welcome.hide();
+	//		} else if (clickX >= 470 && clickX <= 550 && clickY >= 50
+	//				&& clickY <= 180) {
+	//			setScreen(help);
+	//		}
+	//
+	//	}
 }
 //
 //	public void otherScreenClick() {

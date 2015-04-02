@@ -3,6 +3,7 @@ package edu.udel.cisc275_15S.advisementadventure;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,7 +20,8 @@ public class HomeScreen extends ScreenAdapter{
 	Texture btnText;
 	Texture btnEmail;
 	Texture btnHelp;
-	
+	boolean input;
+
 	public HomeScreen(MyGdxGame g){
 		this.game = g;
 		batch = new SpriteBatch();
@@ -31,6 +33,7 @@ public class HomeScreen extends ScreenAdapter{
 		btnText = new Texture("btn_text.png");
 		btnEmail = new Texture("btn_email.png");
 		btnHelp = new Texture("btn_help.png");
+		input = false;
 	}
 	@Override
 	public void render(float delta){
@@ -53,35 +56,36 @@ public class HomeScreen extends ScreenAdapter{
 		font.draw(batch, "Texts", 295, 325);
 		font.draw(batch, "Email", 395, 325);
 		font.draw(batch, "Help", 495, 325);
-		
+
 
 		batch.end();
 	}
-	
+
 	public void homeScreenClick() {
 		//	stack.add(currentScreen);
-			//System.out.println("X: " + Gdx.input.getX() + ", Y: "+ Gdx.input.getY());
-			int clickX = Gdx.input.getX();
-			int clickY = Gdx.input.getY();
-			if (clickX >= 70 && clickX <= 150 && clickY >= 50 && clickY <= 180) {
-				game.setScreen(game.notes);
-			} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
-					&& clickY <= 180) {
-				game.setScreen(game.web);
-				
-			} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
-					&& clickY <= 180) {
-				game.setScreen(game.text);
-				
-			} else if (clickX >= 370 && clickX <= 450 && clickY >= 50
-					&& clickY <= 180) {
-				game.setScreen(new EmailScreen(game));
-			//	dispose();
-			} else if (clickX >= 470 && clickX <= 550 && clickY >= 50
-					&& clickY <= 180) {
-				game.setScreen(game.help);
-			}
+		//System.out.println("X: " + Gdx.input.getX() + ", Y: "+ Gdx.input.getY());
+		int clickX = Gdx.input.getX();
+		int clickY = Gdx.input.getY();
+		if (clickX >= 70 && clickX <= 150 && clickY >= 50 && clickY <= 180) {
+			game.setScreen(game.notemenu);
+		} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
+				&& clickY <= 180) {
+			game.setScreen(game.web);
 
+		} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
+				&& clickY <= 180) {
+			game.setScreen(game.text);
+
+		} else if (clickX >= 370 && clickX <= 450 && clickY >= 50
+				&& clickY <= 180) {
+			game.setScreen(game.email);
+			//	dispose();
+		} else if (clickX >= 470 && clickX <= 550 && clickY >= 50
+				&& clickY <= 180) {
+			game.setScreen(game.help);
 		}
 
+	}
+
 }
+
