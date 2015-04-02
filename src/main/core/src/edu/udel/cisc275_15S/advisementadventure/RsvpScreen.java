@@ -68,8 +68,8 @@ public class RsvpScreen extends ScreenAdapter {
 	public void RsvpScreenClick() {
 		int clickX = Gdx.input.getX();
 		int clickY = Gdx.input.getY();
-		System.out.println("Width: "+ width  + " height: " + height);
-		System.out.println("x: " + clickX + " y: " + clickY);
+		//System.out.println("Width: "+ width  + " height: " + height);
+		//System.out.println("x: " + clickX + " y: " + clickY);
 		
 		if (clickX >= 0 && clickX <= 100 && clickY >= 0 && clickY <= 100 && Gdx.input.justTouched()) {
 			game.setScreen(game.web);

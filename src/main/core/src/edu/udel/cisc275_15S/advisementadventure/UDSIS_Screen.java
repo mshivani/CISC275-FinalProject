@@ -14,7 +14,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 	Texture btnBack;
 	Texture udsisWelcome;
 	Texture udsisAddDrop;
-	Texture udsisSech;
+	Texture udsisSch;
 	BitmapFont font;
 	float width = Gdx.graphics.getWidth();
 	float height = Gdx.graphics.getHeight();
@@ -27,7 +27,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		btnBack = new Texture("btn_back.png");
 		udsisWelcome = new Texture("udsisWelcome.png");
 		udsisAddDrop = new Texture("udsisAddDrop.png");
-		udsisSech = new Texture("udsisSech.png");
+		udsisSch = new Texture("udsisSch.png");
 	}
 	@Override
 	public void render(float delta){
@@ -39,7 +39,7 @@ public class UDSIS_Screen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	batch.draw(btnBack, 25, 425);
     	batch.draw(udsisWelcome, width/4, height/1.2f, width/2, height/5);
-    	batch.draw(udsisSech, width/3, height/2, width/3, height/6);
+    	batch.draw(udsisSch, width/3, height/2, width/3, height/6);
     	batch.draw(udsisAddDrop, width/3, height/3.2f, width/3, height/6);
     	batch.end();
     	
