@@ -26,7 +26,7 @@ public class LoginScreen extends ScreenAdapter{
 
 			@Override
 			public void input(String text) {
-				if (text.isEmpty() || text.equals("ID")){
+				if (text.isEmpty()){
 					game.setScreen(game.login);
 				}
 				else {
@@ -41,7 +41,7 @@ public class LoginScreen extends ScreenAdapter{
 
 			}
 
-		}, "Enter Student ID Number", "ID", null);
+		}, "Enter Student ID Number", null, "ID");
 	}
 
 	@Override
@@ -52,41 +52,12 @@ public class LoginScreen extends ScreenAdapter{
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		font.draw(batch, "login", 200, 200);
-		if(Gdx.input.justTouched()){
-			this.show();
-		}
+
 		batch.end();
+		if(Gdx.input.justTouched()){
+			game.setScreen(new LoginScreen(game));
 
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
+		}
 	}
 
 
