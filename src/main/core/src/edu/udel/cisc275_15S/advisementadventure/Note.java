@@ -4,6 +4,10 @@ public class Note {
 	String name;
 	String text;
 	
+	public Note(){
+		text = "";
+	}
+	
 	public void setName(String n){
 		this.name = n;
 	}

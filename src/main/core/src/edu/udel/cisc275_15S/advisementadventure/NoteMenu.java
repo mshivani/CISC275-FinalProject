@@ -44,11 +44,14 @@ public class NoteMenu extends ScreenAdapter {
 		//game.notes.add("number one");
 		//game.notes.add("number two");
 		//notes.add(x);
+		
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		newNote = new TextButton("Create New Note", uiskin);
 		newNote.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new NotesScreen(game, ""));
+				System.out.println("bug");
+				System.out.println(game.getScreen());
+				game.setScreen(new NotesScreen(game, new Note()));
 				return true;
 			}
 		});
@@ -65,13 +68,13 @@ public class NoteMenu extends ScreenAdapter {
 		t.row();
 		//int heightcounter;
 		//int widthcounter;
-		for (int i =0; i <game.notes.size(); i++){
+		for (int i =0; i <game.notesList.size(); i++){
 			final int index = i;
-			TextButton x = new TextButton(game.notes.get(i).getName(), uiskin);
+			TextButton x = new TextButton(game.notesList.get(i).getName(), uiskin);
 			
 			x.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-					game.setScreen(new NotesScreen(game, game.notes.get(index).getText()));
+					game.setScreen(new NotesScreen(game, game.notesList.get(index)));
 					System.out.println("pressed extras");
 					return true;
 				}
@@ -94,7 +97,11 @@ public class NoteMenu extends ScreenAdapter {
 	public void render(float delta){
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		s.act();
+		//s.act();
 		s.draw();
+	}
+	@Override
+	public void hide(){
+		s.dispose();
 	}
 }

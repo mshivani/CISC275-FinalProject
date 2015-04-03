@@ -29,7 +29,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	SpriteBatch batch;
 	Texture btnBack;
 	BitmapFont font;
-	String notes;
+	Note notes;
 	TextArea ta;
 	Skin uiskin;
 	Stage s;
@@ -39,11 +39,14 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	int code;
 	int untitledCount;
 	//boolean alreadyCreated;
-	Note newNote;
+	Note temp;
 
-	public NotesScreen(MyGdxGame g, String x) {
-		newNote = new Note();
-		notes = x;
+	public NotesScreen(MyGdxGame g, Note note) {
+		//notes = note;
+		temp = new Note();
+		temp.setText(note.getText());
+		temp.setName(note.getName());
+		notes = note;
 		this.game = g;
 		s = new Stage();
 		m = new InputMultiplexer();
@@ -61,18 +64,18 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 			}
 		});
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
-		ta = new TextArea(notes, uiskin);
+		ta = new TextArea(notes.getText(), uiskin);
 		ta.setHeight(Gdx.graphics.getHeight()- backButton.getHeight()*2);
 		ta.setWidth(Gdx.graphics.getWidth());
-		
+
 		ta.setTextFieldListener(new TextFieldListener(){
 
 
 			@Override
 			public void keyTyped(TextField textField, char c) {
-				if(code == Keys.BACKSPACE && notes.length()!=0){
+				if(code == Keys.BACKSPACE && temp.getText().length()!=0){
 
-					notes = notes.substring(0, notes.length()-1);
+					temp.setText(temp.getText().substring(0, (temp.getText()).length()-1));
 					System.out.println(1);
 					System.out.println(notes);
 					System.out.println(ta.getLines());
@@ -82,11 +85,11 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 					System.out.println(2);
 					System.out.println(notes);
 					System.out.println(ta.getLines());
-					notes = notes+ "\n";
+					temp.setText(temp.getText() + "\n");
 				}
 
 				else{
-					notes = notes+c;
+					temp.setText(temp.getText() + c);
 
 				}
 
@@ -99,13 +102,17 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				newNote.setText(ta.getText());
-				game.notes.add(newNote);
+				if(notes.getText().equals("")){
+					//notes = temp;
+					game.notesList.add(temp);
+				}
+				notes.setText(ta.getText());
+
 				game.setScreen(new NoteMenu(game));
 			}
 
 		});
-		ta.setText(notes);
+		ta.setText(notes.getText());
 		ta.setY(create.getHeight()+1);
 		create.setY(0);
 		create.setX(Gdx.graphics.getWidth()-create.getWidth());
@@ -130,19 +137,26 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 		s.draw();
 	}
 	@Override
+	public void hide(){
+		batch.dispose();
+		font.dispose();
+		s.dispose();
+		
+	}
+	@Override
 	public void show(){
-		if(notes.equals("")){
+		if(notes.getText().equals("")){
 			Gdx.input.getTextInput(new TextInputListener(){
 
 				@Override
 				public void input(String text) {
-					newNote.setName(text);
+					temp.setName(text);
 
 				}
 
 				@Override
 				public void canceled() {
-					newNote.setName("Untitled " + untitledCount);
+					temp.setName("Untitled " + untitledCount);
 					untitledCount++;
 
 				}

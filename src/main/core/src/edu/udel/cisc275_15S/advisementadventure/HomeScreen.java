@@ -67,7 +67,7 @@ public class HomeScreen extends ScreenAdapter{
 		int clickX = Gdx.input.getX();
 		int clickY = Gdx.input.getY();
 		if (clickX >= 70 && clickX <= 150 && clickY >= 50 && clickY <= 180) {
-			game.setScreen(game.notemenu);
+			game.setScreen(new NoteMenu(game));
 		} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
 				&& clickY <= 180) {
 			game.setScreen(game.web);

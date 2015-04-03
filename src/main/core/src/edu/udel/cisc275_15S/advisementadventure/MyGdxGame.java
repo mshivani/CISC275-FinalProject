@@ -14,7 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MyGdxGame extends Game implements ApplicationListener{
 
 	SpriteBatch batch;
-	ArrayList<Note> notes;
+	ArrayList<Note> notesList;
 	Screen currentScreen;
 	Stack<Screen> stack;
 	HomeScreen welcome;
@@ -33,7 +33,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 
 	@Override
 	public void create() {
-		notes = new ArrayList<Note>();
+		notesList= new ArrayList<Note>();
 		batch = new SpriteBatch();
 		//currentScreen = Screen.HOME;
 		welcome = new HomeScreen(this);
