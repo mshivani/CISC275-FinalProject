@@ -3,12 +3,8 @@ package edu.udel.cisc275_15S.advisementadventure;
 import java.util.ArrayList;
 import java.util.Stack;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.TextInputListener;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
@@ -20,6 +16,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	HomeScreen welcome;
 	LoginScreen login;
 	EmailScreen email;
+	Email2Screen email2;
 	HelpScreen help;
 	NotesScreen notescrn;
 	TextScreen text;
@@ -39,6 +36,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
 		email = new EmailScreen(this);
+		email2 = new Email2Screen(this);
 		help = new HelpScreen(this);
 		//notes = new NotesScreen(this, null);
 		text = new TextScreen(this);
