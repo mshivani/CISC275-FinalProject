@@ -39,7 +39,7 @@ public class AddDropScreen extends ScreenAdapter {
 		dropAddList.add("MUSC 100");
 		dropAddList.add("CHEM 103");
 		dropAddList.add("ENGL 110");
-		dropAddList.add("PHYS 207");
+		dropAddList.add("EGGG 101");
 		dropAddList.add("CISC 108");
 		dropAddList.add("HIST 104");
 		dropAddList.add("ECON 101");
@@ -120,11 +120,11 @@ public class AddDropScreen extends ScreenAdapter {
 				}
 				
 				if (clickY >= height/2.172f && clickY <= height/1.912f) {
-					if (text.contentEquals("add") && currentList.contains("PHYS 207") == false){
-						currentList.add("PHYS 207");
+					if (text.contentEquals("add") && currentList.contains("EGGG 101") == false){
+						currentList.add("EGGG 101");
 					}
-					if(text.contentEquals("drop") && currentList.contains("PHYS 207")){
-						currentList.remove("PHYS 207");
+					if(text.contentEquals("drop") && currentList.contains("EGGG 101")){
+						currentList.remove("EGGG 101");
 					}
 				}
 				if (clickY >= height/1.912f && clickY <= height/1.720f) {
