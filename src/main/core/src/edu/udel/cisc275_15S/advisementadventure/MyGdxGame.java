@@ -26,6 +26,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	AddDropScreen addDrop;
 	RsvpScreen rsvp;
 	NoteMenu notemenu;
+	ArrayList<Task> taskList;
 
 
 	@Override
