@@ -18,6 +18,7 @@ public class HomeScreen extends ScreenAdapter{
 	Texture btnText;
 	Texture btnEmail;
 	Texture btnHelp;
+	Texture blueHen;
 	boolean input;
 
 	public HomeScreen(MyGdxGame g){
@@ -31,6 +32,7 @@ public class HomeScreen extends ScreenAdapter{
 		btnText = new Texture("btn_text.png");
 		btnEmail = new Texture("btn_email.png");
 		btnHelp = new Texture("btn_help.png");
+		blueHen = new Texture("blueHen.png");
 		input = false;
 	}
 	@Override
@@ -42,6 +44,7 @@ public class HomeScreen extends ScreenAdapter{
 		GL20 gl = Gdx.gl;
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.draw(blueHen, 150, 25, 340, 275);
 		batch.draw(btnBack, 25, 425);
 		batch.draw(btnNotes, 75, 350);
 		batch.draw(btnWeb, 175, 350);

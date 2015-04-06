@@ -152,7 +152,6 @@ public class AddDropScreen extends ScreenAdapter {
 						currentList.remove("MUSC 100");
 					}
 				}
-				
 			}
 			@Override
 			public void canceled() {

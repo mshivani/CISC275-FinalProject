@@ -48,7 +48,6 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		rsvp = new RsvpScreen(this);
 		notemenu = new NoteMenu(this);
 		this.setScreen(login);
-
 	}
 	@Override
 	public void render() {
