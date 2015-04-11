@@ -1,14 +1,18 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
-
+	ArrayList<Question> questionList;
 	SpriteBatch batch;
 	ArrayList<Note> notesList;
 	Screen currentScreen;
@@ -27,10 +31,15 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	RsvpScreen rsvp;
 	NoteMenu notemenu;
 	ArrayList<Task> taskList;
+	FileHandle questions;
 
+
+	
 
 	@Override
 	public void create() {
+		//parseQuestions();
+		questionList = new ArrayList<Question>();
 		notesList= new ArrayList<Note>();
 		batch = new SpriteBatch();
 		//currentScreen = Screen.HOME;
@@ -40,13 +49,13 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		email2 = new Email2Screen(this);
 		help = new HelpScreen(this);
 		//notes = new NotesScreen(this, null);
-		text = new TextScreen(this);
+		//text = new TextScreen(this);
 		web = new WebScreen(this);
 		udsis = new UDSIS_Screen(this);
 		schedule = new ScheduleScreen(this);
 		addDrop = new AddDropScreen(this);
 		rsvp = new RsvpScreen(this);
-		notemenu = new NoteMenu(this);
+		//notemenu = new NoteMenu(this);
 		this.setScreen(login);
 	}
 	@Override

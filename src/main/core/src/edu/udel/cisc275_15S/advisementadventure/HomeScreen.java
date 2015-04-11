@@ -1,5 +1,7 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -75,7 +77,9 @@ public class HomeScreen extends ScreenAdapter{
 
 		} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
 				&& clickY <= 180) {
-			game.setScreen(game.text);
+			//Random x = new Random();
+			System.out.println(game.questionList.size());
+			game.setScreen(new TextScreen(game, game.questionList.get(1)));
 
 		} else if (clickX >= 370 && clickX <= 450 && clickY >= 50
 				&& clickY <= 180) {

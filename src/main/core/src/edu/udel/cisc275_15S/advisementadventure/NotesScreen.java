@@ -95,13 +95,13 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 
 
 		});
-		TextButton create = new TextButton("Create", uiskin);
+		TextButton create = new TextButton("Save", uiskin);
 		create.addListener(new ChangeListener(){
 
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				if(notes.getText().equals("")){
-					//notes = temp;
+					notes = temp;
 					game.notesList.add(temp);
 				}
 				notes.setText(ta.getText());
@@ -162,6 +162,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 			}, "Enter Name for new note", null, "Name");
 		}
 		Gdx.input.setInputProcessor(m);
+		Gdx.input.setOnscreenKeyboardVisible(true);
 	}
 
 	@Override
