@@ -1,26 +1,36 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Task {
 	TaskType type;
 	String display;
+	int tasknum;
+	Texture completedPic;
+	Texture uncompletedPic;
 	boolean completed;
 	
-	public Task(TaskType type) {
-		this.type = type;
+	public Task(int num, String comPic, String uncomPic) {
+		tasknum = num;
 		this.display = "";
 		this.completed = false;
+		completedPic = new Texture(comPic);
+		uncompletedPic = new Texture(uncomPic);
 	}
 	
-	public void helpDisplayer(TaskType type) {
-		switch(type) {
-			case RSVP:
-				display = "Go the web app to RSVP for your event.";
-				break;
-				
-			case DROPADD:
-				display = "Head to the web app and drop or add a class on UDSIS.";
-				break;
-		}
+	public Texture getCompletedPic(){
+		return completedPic;
 	}
-
+	
+	public Texture getUncompletedPic(){
+		return uncompletedPic;
+	}
+	
+	public boolean isCompleted(){
+		return completed;
+	}
+	
+	public void setCompleted(){
+		completed = true;
+	}
 }

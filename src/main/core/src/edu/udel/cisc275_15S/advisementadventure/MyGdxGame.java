@@ -42,6 +42,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		questionList = new ArrayList<Question>();
 		notesList= new ArrayList<Note>();
 		batch = new SpriteBatch();
+		taskList = new ArrayList<Task>();
 		//currentScreen = Screen.HOME;
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
@@ -56,6 +57,26 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		addDrop = new AddDropScreen(this);
 		rsvp = new RsvpScreen(this);
 		//notemenu = new NoteMenu(this);
+		Task t1 = new Task(1, "btn_notes.png", "btn_text.png");
+		Task t2 = new Task(2, "btn_web.png", "btn_help.png");
+		Task t3 = new Task(1, "btn_notes.png", "btn_text.png");
+		Task t4 = new Task(2, "btn_web.png", "btn_help.png");
+		Task t5 = new Task(1, "btn_notes.png", "btn_text.png");
+		Task t6 = new Task(2, "btn_web.png", "btn_help.png");
+		Task t7 = new Task(1, "btn_notes.png", "btn_text.png");
+		Task t8 = new Task(2, "btn_web.png", "btn_help.png");
+		Task t9 = new Task(1, "btn_notes.png", "btn_text.png");
+		Task t10 = new Task(2, "btn_web.png", "btn_help.png");
+		taskList.add(t1);
+		taskList.add(t2);
+		taskList.add(t3);
+		taskList.add(t4);
+		taskList.add(t5);
+		taskList.add(t6);
+		taskList.add(t7);
+		taskList.add(t8);
+		taskList.add(t9);
+		taskList.add(t10);
 		this.setScreen(login);
 	}
 	@Override
