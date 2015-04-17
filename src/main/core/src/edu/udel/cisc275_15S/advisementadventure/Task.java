@@ -9,13 +9,15 @@ public class Task {
 	Texture completedPic;
 	Texture uncompletedPic;
 	boolean completed;
+	String description;
 	
-	public Task(int num, String comPic, String uncomPic) {
+	public Task(int num, String comPic, String uncomPic, String des) {
 		tasknum = num;
 		this.display = "";
 		this.completed = false;
 		completedPic = new Texture(comPic);
 		uncompletedPic = new Texture(uncomPic);
+		description = des;
 	}
 	
 	public Texture getCompletedPic(){
@@ -32,5 +34,9 @@ public class Task {
 	
 	public void setCompleted(){
 		completed = true;
+	}
+	
+	public String getDescription(){
+		return description;
 	}
 }

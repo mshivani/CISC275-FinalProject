@@ -1,5 +1,7 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -23,6 +25,8 @@ public class EmailScreen extends ScreenAdapter {
 
 	float screenWidth = Gdx.graphics.getWidth();
 	float screenHeight = Gdx.graphics.getHeight();
+	
+	ArrayList<Task> tasklist;
 
 	public EmailScreen(MyGdxGame g) {
 		this.game = g;
@@ -36,6 +40,7 @@ public class EmailScreen extends ScreenAdapter {
 
 		shapeRenderer = new ShapeRenderer();
 		projectionMatrixSet = false;
+		this.tasklist = g.taskList;
 	}
 
 	@Override
@@ -77,7 +82,17 @@ public class EmailScreen extends ScreenAdapter {
 		if (clickX >= 0 && clickX <= 100 && clickY >= 0 && clickY <= 100) {
 			game.setScreen(game.welcome);
 		} else if (clickX >= 1 && clickX <= screenWidth - 1 && clickY >= screenHeight - 400 && clickY <= screenHeight - 300) {
-			game.setScreen(game.email2);
+			if(!tasklist.get(0).isCompleted()){
+				tasklist.get(0).setCompleted();
+				game.setScreen(game.help);
+			}else {
+				game.setScreen(game.email2);
+			}
+		} else if(clickX>=0 && clickX<=screenWidth && clickY >= 0 && clickY <= 100){
+			if(!tasklist.get(4).isCompleted()){
+				tasklist.get(4).setCompleted();
+				game.setScreen(game.help);
+			}
 		}
 	}
 
