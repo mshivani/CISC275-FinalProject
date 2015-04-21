@@ -43,10 +43,22 @@ public class TextScreen extends ScreenAdapter{
 	Image textR;
 
 	public TextScreen(MyGdxGame g, Question q) {
+		//width = Gdx.graphics.getWidth();
+		//height= Gdx.graphics.getHeight();
+		this.currentQuestion = q;
+		this.game = g;
+
+
+
+
+
+
+	}
+	@Override
+	public void show(){
 		width = Gdx.graphics.getWidth();
 		height= Gdx.graphics.getHeight();
-		currentQuestion = q;
-		this.game = g;
+		
 		s= new Stage();
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		batch = new SpriteBatch();
@@ -55,20 +67,16 @@ public class TextScreen extends ScreenAdapter{
 		createBackButton();
 		createChatBubble();
 		createResponses();
+		createWrong();
 		//createReply();
+		Gdx.input.setInputProcessor(s);
+	}
+	public void createWrong(){
 		wrong = new Label("Please try again later", uiskin);
 		wrong.setX(width/2 - wrong.getWidth()/2);
 		wrong.setY(r1.getHeight() + r2.getHeight()+10);
 		wrong.setColor(Color.BLACK);
-		s.addActor(r1);
-		s.addActor(r2);
-		s.addActor(r3);
-		s.addActor(r4);
-		s.addActor(btnB);
-		s.addActor(roommate);
-
 	}
-	
 	public void createResponses(){
 		final ArrayList<String> resp = currentQuestion.getResponses();	
 		r1 = new TextButton(resp.get(0), uiskin);
@@ -131,7 +139,10 @@ public class TextScreen extends ScreenAdapter{
 				return true;
 			}
 		});
-
+		s.addActor(r1);
+		s.addActor(r2);
+		s.addActor(r3);
+		s.addActor(r4);
 	}
 	public void createChatBubble(){
 		textComp = new Texture("chatBubble_computer.png");
@@ -152,10 +163,7 @@ public class TextScreen extends ScreenAdapter{
 		s.addActor(textC);
 		s.addActor(message);
 	}
-	@Override
-	public void show(){
-		Gdx.input.setInputProcessor(s);
-	}
+
 	public void createReply(String x){
 		textReply = new Texture("chatBubble_reply.png");
 		textR = new Image(textReply);
@@ -170,13 +178,15 @@ public class TextScreen extends ScreenAdapter{
 		correctAnswer.setY(textR.getY()+5);
 		correctAnswer.setWidth(textR.getWidth()-50);
 		correctAnswer.setHeight(textR.getHeight());
-		
+
 		s.addActor(textR);
 		s.addActor(correctAnswer);
 	}
 	private void createBackButton(){
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
+		btnB.setX(0);
+		btnB.setY(height-btnB.getHeight());
 		System.out.println(btnB.getHeight());
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -185,8 +195,8 @@ public class TextScreen extends ScreenAdapter{
 				return true;
 			}
 		});
-		btnB.setX(0);
-		btnB.setY(height-btnB.getHeight());
+		
+		s.addActor(btnB);
 	}
 	public void createLabel(){
 		roommate = new Label("Roommate", uiskin);
@@ -194,6 +204,7 @@ public class TextScreen extends ScreenAdapter{
 		roommate.setY(height- roommate.getHeight());
 		roommate.setFontScale(2);
 		roommate.setColor(Color.BLACK);
+		s.addActor(roommate);
 	}
 
 	@Override
@@ -206,6 +217,19 @@ public class TextScreen extends ScreenAdapter{
 		s.act();
 		batch.end();
 	}
-	
+	@Override
+	public void resize(int width, int height){
+		System.out.println("resize");
+		//width = Gdx.graphics.getWidth();
+		//height= Gdx.graphics.getHeight();
+		this.show();
+		//createBackButton();
+		//super.resize(width, height);
+		//game.setScreen(new TextScreen(this.game, this.currentQuestion));
+	}
+ @Override
+ public void dispose(){
+	 
+ }
 
 }
