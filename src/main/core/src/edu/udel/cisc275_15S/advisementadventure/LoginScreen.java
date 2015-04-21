@@ -9,6 +9,7 @@ import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -25,12 +26,14 @@ public class LoginScreen extends ScreenAdapter {
 	SpriteBatch batch;
 	Label welcome;
 	BitmapFont font;
+	Texture bg;
 	TextField tf;
 	Skin uiskin;
 	Stage s;
 	float height;
 	float width;
 	TextButton enter;
+	
 	public void parseQuestions(){
 		FileHandle quest = Gdx.files.internal("Questions.txt");
 		//game.questionList = new ArrayList<Question>();
@@ -64,6 +67,7 @@ public class LoginScreen extends ScreenAdapter {
 		createEnter();
 		createWelcome();
 		batch = new SpriteBatch();
+		bg = new Texture("loginscreen2.png");
 		//font = new BitmapFont();	
 		s = new Stage();
 		s.addActor(tf);
@@ -118,6 +122,7 @@ public class LoginScreen extends ScreenAdapter {
 		batch.begin();
 		gl.glClearColor(1, 0, 0, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.draw(bg, 0, 0, width, height);
 		batch.end();
 		s.draw();
 	}
