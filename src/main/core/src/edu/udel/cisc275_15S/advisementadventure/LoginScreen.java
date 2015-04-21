@@ -89,8 +89,8 @@ public class LoginScreen extends ScreenAdapter {
 				if((tf.getText().equals(""))){
 				}
 				else{
-					FileHandle students = Gdx.files.local("list of students.txt");
-					students.writeString(tf.getText(), false);
+					//FileHandle students = Gdx.files.local("list of students.txt");
+					//students.writeString(tf.getText(), false);
 
 					System.out.println("tf text " + tf.getText());
 
