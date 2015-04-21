@@ -14,28 +14,34 @@ public class HomeScreen extends ScreenAdapter{
 	MyGdxGame game;
 	SpriteBatch batch;
 	BitmapFont font;
+	Texture bg;
 	Texture btnBack;
 	Texture btnNotes;
 	Texture btnWeb;
 	Texture btnText;
 	Texture btnEmail;
 	Texture btnHelp;
-	Texture blueHen;
+	// Texture blueHen;
 	boolean input;
+	float height;
+	float width;
 
 	public HomeScreen(MyGdxGame g){
 		this.game = g;
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(0, 0, 0, 1);
-		btnBack = new Texture("btn_back.png");
+		bg = new Texture("homescreen.png");
+		// btnBack = new Texture("btn_back.png");
 		btnNotes = new Texture("btn_notes.png");
 		btnWeb = new Texture("btn_web.png");
 		btnText = new Texture("btn_text.png");
 		btnEmail = new Texture("btn_email.png");
 		btnHelp = new Texture("btn_help.png");
-		blueHen = new Texture("blueHen.png");
+		// blueHen = new Texture("blueHen.png");
 		input = false;
+		height = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
 	}
 	@Override
 	public void render(float delta){
@@ -46,8 +52,9 @@ public class HomeScreen extends ScreenAdapter{
 		GL20 gl = Gdx.gl;
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.draw(blueHen, 150, 25, 340, 275);
-		batch.draw(btnBack, 25, 425);
+		// batch.draw(blueHen, 150, 25, 340, 275);
+		batch.draw(bg, 0, 0, width, height);
+		// batch.draw(btnBack, 25, 425);
 		batch.draw(btnNotes, 75, 350);
 		batch.draw(btnWeb, 175, 350);
 		batch.draw(btnText, 275, 350);
