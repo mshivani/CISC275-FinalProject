@@ -133,9 +133,7 @@ public class HelpScreen extends ScreenAdapter{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
        
         
-        //width = Gdx.graphics.getWidth();
-		//height = Gdx.graphics.getHeight();
-		batch.draw(btnBack, (float)(width/25), (float) (height*.9f));
+        
         
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted() && changePic[i]){
@@ -217,9 +215,7 @@ public class HelpScreen extends ScreenAdapter{
 		
 		
     	batch.end();
-    	if(Gdx.input.isTouched()){
-			helpScreenClick();
-		}
+    
 	}
 	
 	public void starExplosion(float x, float y, int index){
@@ -280,12 +276,5 @@ public class HelpScreen extends ScreenAdapter{
 //	}
 	
 	
-	public void helpScreenClick() {
-		int clickX = Gdx.input.getX();
-		int clickY = Gdx.input.getY();
-		if (clickX >= width/25 && clickX <= (width/25 + btnBack.getWidth()) 
-				&& clickY <= height-(height*.9) && clickY >= height-(height*.9)-btnBack.getHeight()) {
-			game.setScreen(game.welcome);
-		}
-	}
+	
 }

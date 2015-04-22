@@ -94,7 +94,7 @@ public class HomeScreen extends ScreenAdapter{
 			//	dispose();
 		} else if (clickX >= 470 && clickX <= 550 && clickY >= 50
 				&& clickY <= 180) {
-			game.setScreen(game.help);
+			game.setScreen(game.helpFromMain);
 		}
 
 	}

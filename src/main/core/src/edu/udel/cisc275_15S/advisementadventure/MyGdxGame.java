@@ -22,6 +22,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	EmailScreen email;
 	Email2Screen email2;
 	HelpScreen help;
+	HelpScreenFromMain helpFromMain;
 	NotesScreen notescrn;
 	TextScreen text;
 	WebScreen web;
@@ -49,6 +50,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		email = new EmailScreen(this);
 		email2 = new Email2Screen(this);
 		help = new HelpScreen(this);
+		helpFromMain = new HelpScreenFromMain(this);
 		//notes = new NotesScreen(this, null);
 		//text = new TextScreen(this);
 		web = new WebScreen(this);
@@ -58,13 +60,13 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		rsvp = new RsvpScreen(this);
 		//notemenu = new NoteMenu(this);
 		Task t1 = new Task(1, "btn_notes.png", "btn_help.png", "Open your first email in the email app.");
-		Task t2 = new Task(2, "btn_notes.png", "btn_help.png", "Do something else.");
-		Task t3 = new Task(1, "btn_notes.png", "btn_help.png", "Finish the game!");
-		Task t4 = new Task(2, "btn_notes.png", "btn_help.png", "Something else goes here.");
-		Task t5 = new Task(1, "btn_notes.png", "btn_help.png", "Find the hidden secret.");
-		Task t6 = new Task(2, "btn_notes.png", "btn_help.png", "Type a program.");
-		Task t7 = new Task(1, "btn_notes.png", "btn_help.png", "Come up with something better to say.");
-		Task t8 = new Task(2, "btn_notes.png", "btn_help.png", "Beat the game again.");
+		Task t2 = new Task(2, "btn_notes.png", "btn_help.png", "Declare your major.");
+		Task t3 = new Task(1, "btn_notes.png", "btn_help.png", "Introduce yourself to your roommate.");
+		Task t4 = new Task(2, "btn_notes.png", "btn_help.png", "Register for classes.");
+		Task t5 = new Task(1, "btn_notes.png", "btn_help.png", "Look at your degree audit.");
+		Task t6 = new Task(2, "btn_notes.png", "btn_help.png", "Drop a class.");
+		Task t7 = new Task(1, "btn_notes.png", "btn_help.png", "Sign up for a slot at the writing center.");
+		Task t8 = new Task(2, "btn_notes.png", "btn_help.png", "Sign up to get a flu shot.");
 		Task t9 = new Task(1, "btn_notes.png", "btn_help.png", "Close out of the game.");
 		Task t10 = new Task(2, "btn_notes.png", "btn_help.png", "Nothing for the last one.");
 		taskList.add(t1);
