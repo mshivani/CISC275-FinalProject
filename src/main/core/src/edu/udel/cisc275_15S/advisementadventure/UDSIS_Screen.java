@@ -51,8 +51,8 @@ public class UDSIS_Screen extends ScreenAdapter {
 	public void udsisScreenClick() {
 		int clickX = Gdx.input.getX();
 		int clickY = Gdx.input.getY();
-		System.out.println("Width: "+ width  + " height: " + height);
-		System.out.println("x: " + clickX + "y: " + clickY);
+//		System.out.println("Width: "+ width  + " height: " + height);
+//		System.out.println("x: " + clickX + "y: " + clickY);
 		if (clickX >= 0 && clickX <= 80 && clickY >= 0 && clickY <= 80 && Gdx.input.justTouched()) {
 			game.setScreen(game.web);
 		}

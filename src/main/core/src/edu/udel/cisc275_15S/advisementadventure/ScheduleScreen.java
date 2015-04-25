@@ -56,8 +56,8 @@ public class ScheduleScreen extends ScreenAdapter{
 	public void SechScreenClick() {
 		int clickX = Gdx.input.getX();
 		int clickY = Gdx.input.getY();
-		System.out.println("x: " + clickX + "\n");
-		System.out.println("x: " + clickY + "\n");
+//		System.out.println("x: " + clickX + "\n");
+//		System.out.println("x: " + clickY + "\n");
 		if (clickX >= 0 && clickX <= 100 && clickY >= 0 && clickY <= 100 && Gdx.input.justTouched()) {
 			game.setScreen(game.udsis);
 		}
