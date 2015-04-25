@@ -126,6 +126,7 @@ public class LoginScreen extends ScreenAdapter {
 		batch.end();
 		s.draw();
 	}
+	
 	@Override
 	public void hide(){
 		batch.dispose();

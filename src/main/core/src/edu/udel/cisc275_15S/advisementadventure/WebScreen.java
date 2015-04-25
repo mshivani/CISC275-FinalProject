@@ -33,7 +33,7 @@ public class WebScreen extends ScreenAdapter{
 			webScreenClick();
 		}
 		batch.begin();
-		Gdx.gl.glClearColor(0, 1, 0, 1);
+		Gdx.gl.glClearColor(1, 1.18f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	batch.draw(btnBack, 25, 425);
     	batch.draw(btnUDSIS, width/8, height/4,  width/2.6f, height/1.6f);
@@ -60,3 +60,4 @@ public class WebScreen extends ScreenAdapter{
 	}
 	
 }
+
