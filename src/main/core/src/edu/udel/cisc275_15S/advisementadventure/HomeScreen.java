@@ -4,71 +4,215 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class HomeScreen extends ScreenAdapter{
 
 	MyGdxGame game;
+	Skin uiskin;
+	Stage s;
 	SpriteBatch batch;
 	BitmapFont font;
-	Texture bg;
 	Texture btnBack;
+	Image btnB;
 	Texture btnNotes;
+	Image btnN;
+	Label notesL;
 	Texture btnWeb;
+	Image btnW;
+	Label webL;
 	Texture btnText;
+	Image btnT;
+	Label textL;
 	Texture btnEmail;
+	Image btnE;
+	Label emailL;
 	Texture btnHelp;
-	// Texture blueHen;
-	boolean input;
+	Image btnH;
+	Label helpL;
 	float height;
 	float width;
+	Texture bg;
 
 	public HomeScreen(MyGdxGame g){
 		this.game = g;
+		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+		//
+		//batch = new SpriteBatch();
+		//font = new BitmapFont();
+		//font.setColor(0, 0, 0, 1);
+		//bg = new Texture("homescreen.png");
+		// btnBack = new Texture("btn_back.png");
+		//btnNotes = new Texture("btn_notes.png");
+		//btnWeb = new Texture("btn_web.png");
+		//btnText = new Texture("btn_text.png");
+		//btnEmail = new Texture("btn_email.png");
+		//btnHelp = new Texture("btn_help.png");
+		// blueHen = new Texture("blueHen.png");
+		//input = false;
+		//		height = Gdx.graphics.getHeight();
+		//		width = Gdx.graphics.getWidth();
+	}
+	@Override
+	public void show(){
+		s=new Stage();
+		
+		bg = new Texture("homescreen.png");
+		Image bgI = new Image(bg);
+		s.addActor(bgI);
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		font.setColor(0, 0, 0, 1);
-		bg = new Texture("homescreen.png");
-		// btnBack = new Texture("btn_back.png");
-		btnNotes = new Texture("btn_notes.png");
-		btnWeb = new Texture("btn_web.png");
-		btnText = new Texture("btn_text.png");
-		btnEmail = new Texture("btn_email.png");
-		btnHelp = new Texture("btn_help.png");
-		// blueHen = new Texture("blueHen.png");
-		input = false;
-		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
+		bgI.setBounds(0, 0, width, height);
+		font.setColor(0, 0, 0, 1);
+		//	createBackButton();
+		createNotesButton();
+		createWebButton();
+		createTextButton();
+		createEmailButton();
+		createHelpButton();
+		Gdx.input.setInputProcessor(s);
+	}
+	public void createHelpButton(){
+		helpL = new Label("Help", uiskin);
+		btnHelp = new Texture("btn_help.png");
+		btnH = new Image(btnHelp);
+		btnH.setX(btnE.getX()+btnE.getWidth()+30);
+		btnH.setY(btnT.getY());
+		btnH.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.help);
+				return true;
+			}
+		});
+		helpL.setX(btnH.getX()+(btnH.getWidth()/4));
+		helpL.setY(btnH.getY()- helpL.getHeight());
+		helpL.setColor(Color.BLACK);
+		s.addActor(helpL);
+		s.addActor(btnH);
+	}
+	public void createEmailButton(){
+		emailL = new Label("Email", uiskin);
+		btnEmail = new Texture("btn_email.png");
+		btnE = new Image(btnEmail);
+		btnE.setX(btnT.getX()+btnT.getWidth()+30);
+		btnE.setY(btnT.getY());
+		btnE.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(new EmailScreen(game));
+				return true;
+			}
+		});
+		emailL.setX(btnE.getX()+(btnE.getWidth()/4));
+		float temp1  = emailL.getHeight();
+		emailL.setY(btnE.getY()-temp1);
+		emailL.setColor(Color.BLACK);
+		s.addActor(btnE);
+		s.addActor(emailL);
+	}
+	public void createTextButton(){
+		textL = new Label("Text", uiskin);
+		btnText = new Texture("btn_text.png");
+		btnT = new Image(btnText);
+		btnT.setX(btnW.getX()+ btnW.getWidth()+30);
+		btnT.setY(btnW.getY());
+		btnT.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(new TextScreen(game, game.questionList.get(0)));
+				return true;
+			}
+		});
+		float temp1  = textL.getHeight();
+		textL.setX(btnT.getX() + btnT.getWidth()/4);
+		textL.setY(btnT.getY() - temp1);
+		textL.setColor(Color.BLACK);
+		s.addActor(btnT);
+		s.addActor(textL);
+	}
+	public void createWebButton(){
+		webL = new Label("Web", uiskin);
+		btnWeb = new Texture("btn_web.png");
+		btnW = new Image(btnWeb);
+		btnW.setX(btnN.getX() + btnN.getWidth()+30);
+		btnW.setY((float) (height/1.5));
+		btnW.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.web);
+				System.out.println("web");
+				return true;
+			}
+		});
+		float temp1  = webL.getHeight();
+		webL.setX(btnW.getX() + btnW.getWidth()/4);
+		webL.setY(btnW.getY() - temp1);
+		webL.setColor(Color.BLACK);
+		s.addActor(btnW);
+		s.addActor(webL);
+	}
+	public void createNotesButton(){
+		notesL = new Label("Notes", uiskin);
+		btnNotes = new Texture("btn_notes.png");
+		btnN = new Image(btnNotes);
+		btnN.setX((float) (width/7.5));
+		btnN.setY((float) (height/1.5));
+		btnN.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(new NoteMenu(game));
+				return true;
+			}
+		});
+		float temp1  = notesL.getHeight();
+		notesL.setX(btnN.getX() + btnN.getWidth()/4);
+		notesL.setY(btnN.getY() - temp1);
+		notesL.setColor(Color.BLACK);
+		s.addActor(btnN);
+		s.addActor(notesL);
 	}
 	@Override
 	public void render(float delta){
-		if(Gdx.input.isTouched()){
-			homeScreenClick();
-		}
-		batch.begin();
+		//if(Gdx.input.isTouched()){
+		//	homeScreenClick();
+		//}
 		GL20 gl = Gdx.gl;
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		// batch.draw(blueHen, 150, 25, 340, 275);
-		batch.draw(bg, 0, 0, width, height);
-		// batch.draw(btnBack, 25, 425);
-		batch.draw(btnNotes, 75, 350);
-		batch.draw(btnWeb, 175, 350);
-		batch.draw(btnText, 275, 350);
-		batch.draw(btnEmail, 375, 350);
-		batch.draw(btnHelp, 475, 350);
+		//batch.begin();
+		s.draw();
+		s.act();
 		
-		font.draw(batch, "Notes", 95, 325);
-		font.draw(batch, "Web", 195, 325);
-		font.draw(batch, "Texts", 295, 325);
-		font.draw(batch, "Email", 395, 325);
-		font.draw(batch, "Help", 495, 325);
+		//		// batch.draw(blueHen, 150, 25, 340, 275);
+		//		batch.draw(bg, 0, 0, width, height);
+		//		// batch.draw(btnBack, 25, 425);
+		//		batch.draw(btnNotes, 75, 350);
+		//		batch.draw(btnWeb, 175, 350);
+		//		batch.draw(btnText, 275, 350);
+		//		batch.draw(btnEmail, 375, 350);
+		//		batch.draw(btnHelp, 475, 350);
+		//		
+		//		font.draw(batch, "Notes", 95, 325);
+		//		font.draw(batch, "Web", 195, 325);
+		//		font.draw(batch, "Texts", 295, 325);
+		//		font.draw(batch, "Email", 395, 325);
+		//		font.draw(batch, "Help", 495, 325);
 
 
-		batch.end();
+		//batch.end();
+	}
+	@Override 
+	public void resize(int x, int y){
+		this.show();
 	}
 
 	public void homeScreenClick() {
