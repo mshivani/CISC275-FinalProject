@@ -29,6 +29,7 @@ public class TextScreen extends ScreenAdapter{
 	Label roommate;
 	Label wrong;
 	Question currentQuestion;
+	final ArrayList<String> resp;
 	//Texture dropAddText;
 	Texture textReply;
 	//Texture textOptions;
@@ -47,18 +48,13 @@ public class TextScreen extends ScreenAdapter{
 		//height= Gdx.graphics.getHeight();
 		this.currentQuestion = q;
 		this.game = g;
-
-
-
-
-
-
+		resp = q.getResponses();
 	}
 	@Override
 	public void show(){
 		width = Gdx.graphics.getWidth();
 		height= Gdx.graphics.getHeight();
-		
+
 		s= new Stage();
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		batch = new SpriteBatch();
@@ -78,7 +74,7 @@ public class TextScreen extends ScreenAdapter{
 		wrong.setColor(Color.BLACK);
 	}
 	public void createResponses(){
-		final ArrayList<String> resp = currentQuestion.getResponses();	
+		//final ArrayList<String> resp = currentQuestion.getResponses();	
 		r1 = new TextButton(resp.get(0), uiskin);
 		r2 = new TextButton(resp.get(1), uiskin);
 		r3 = new TextButton(resp.get(2), uiskin);
@@ -195,7 +191,7 @@ public class TextScreen extends ScreenAdapter{
 				return true;
 			}
 		});
-		
+
 		s.addActor(btnB);
 	}
 	public void createLabel(){
@@ -227,9 +223,10 @@ public class TextScreen extends ScreenAdapter{
 		//super.resize(width, height);
 		//game.setScreen(new TextScreen(this.game, this.currentQuestion));
 	}
- @Override
- public void dispose(){
-	 
- }
+	@Override
+	public void dispose(){
+		s.dispose();
+		batch.dispose();
+	}
 
 }
