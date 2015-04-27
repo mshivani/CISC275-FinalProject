@@ -45,7 +45,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
 		email = new EmailListScreen(this);
-		email2 = new EmailFullScreen(this);
+		email2 = new EmailFullScreen(this, null);
 		help = new HelpScreen(this);
 		helpFromMain = new HelpScreenFromMain(this);
 		//notes = new NotesScreen(this, null);

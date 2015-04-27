@@ -111,7 +111,7 @@ public class HomeScreen extends ScreenAdapter{
 		btnE.setY(btnT.getY());
 		btnE.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new EmailScreen(game));
+				game.setScreen(new EmailListScreen(game));
 				return true;
 			}
 		});

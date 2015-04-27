@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -139,8 +140,8 @@ public class EmailListScreen extends ScreenAdapter {
 
 	public void parseEmails() {
 		try {
-			FileReader fileReader = new FileReader("Emails.txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			FileHandle fileReader = Gdx.files.internal("Emails.txt");
+			BufferedReader bufferedReader = new BufferedReader(fileReader.reader());
 			String line = bufferedReader.readLine();
 			ArrayList<String> lines = new ArrayList<String>();
 			int amountOfEmails = Integer.parseInt(line);
@@ -154,7 +155,7 @@ public class EmailListScreen extends ScreenAdapter {
 				emailList.add(e);
 				lines.clear();
 			}
-			fileReader.close();
+			//fileReader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
