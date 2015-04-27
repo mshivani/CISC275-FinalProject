@@ -1,17 +1,16 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
+	public static final int btnBackMargin = 10;
+	
 	ArrayList<Question> questionList;
 	SpriteBatch batch;
 	ArrayList<Note> notesList;
@@ -19,8 +18,8 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	Stack<Screen> stack;
 	HomeScreen welcome;
 	LoginScreen login;
-	EmailScreen email;
-	Email2Screen email2;
+	EmailListScreen email;
+	EmailFullScreen email2;
 	HelpScreen help;
 	HelpScreenFromMain helpFromMain;
 	NotesScreen notescrn;
@@ -33,9 +32,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	NoteMenu notemenu;
 	ArrayList<Task> taskList;
 	FileHandle questions;
-
-
-	
+	Email emailChosen;	
 
 	@Override
 	public void create() {
@@ -47,8 +44,8 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		//currentScreen = Screen.HOME;
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
-		email = new EmailScreen(this);
-		email2 = new Email2Screen(this);
+		email = new EmailListScreen(this);
+		email2 = new EmailFullScreen(this);
 		help = new HelpScreen(this);
 		helpFromMain = new HelpScreenFromMain(this);
 		//notes = new NotesScreen(this, null);
@@ -87,6 +84,11 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		//		if(Gdx.input.isTouched()){
 		//		homeScreenClick();
 		//		}
+	}
+	
+	public void setScreenHelp(com.badlogic.gdx.Screen screen, Email email) {
+		email2.setCurrentEmail(email);
+		setScreen(screen);
 	}
 
 
