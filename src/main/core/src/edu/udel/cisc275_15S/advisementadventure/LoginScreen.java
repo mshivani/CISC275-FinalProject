@@ -1,11 +1,8 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
@@ -33,25 +30,27 @@ public class LoginScreen extends ScreenAdapter {
 	float height;
 	float width;
 	TextButton enter;
-	
-	public void parseQuestions(){
+
+	public void parseQuestions() {
 		FileHandle quest = Gdx.files.internal("Questions.txt");
-		//game.questionList = new ArrayList<Question>();
-		//System.out.println(quest.exists());
+		// game.questionList = new ArrayList<Question>();
+		// System.out.println(quest.exists());
 		BufferedReader reader = new BufferedReader(quest.reader());
-		String line;	
+		String line;
 		try {
 			line = reader.readLine();
 			int count = Integer.parseInt(line);
-			for (int i = 0; i <count; i++){
-				Question x= new Question(line = reader.readLine(), line = reader.readLine(), line =reader.readLine(),line=reader.readLine(),line=reader.readLine(), line=reader.readLine());
-				System.out.println(x);
+			for (int i = 0; i < count; i++) {
+				Question x = new Question(line = reader.readLine(),
+						line = reader.readLine(), line = reader.readLine(),
+						line = reader.readLine(), line = reader.readLine(),
+						line = reader.readLine());
+//				System.out.println(x);
 				game.questionList.add(x);
 
 			}
 			reader.close();
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -68,52 +67,65 @@ public class LoginScreen extends ScreenAdapter {
 		createWelcome();
 		batch = new SpriteBatch();
 		bg = new Texture("loginscreen2.png");
-		//font = new BitmapFont();	
+		// font = new BitmapFont();
 		s = new Stage();
 		s.addActor(tf);
 		s.addActor(enter);
 		s.addActor(welcome);
 	}
 
-	public void createTextField(){
+	public void createTextField() {
 		tf = new TextField("", uiskin);
-		tf.setPosition(width/2-tf.getWidth()/2, height/2);
+		tf.setPosition(width / 2 - tf.getWidth() / 2, height / 2);
 		tf.setMessageText("Enter Student ID");
 	}
-	public void createEnter(){
-		enter = new TextButton("Enter", uiskin);
-		enter.setPosition(tf.getX()+tf.getWidth(), tf.getY());
-		enter.setHeight(tf.getHeight());
-		enter.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				if((tf.getText().equals(""))){
-				}
-				else{
-					//FileHandle students = Gdx.files.local("list of students.txt");
-					//students.writeString(tf.getText(), false);
 
-					System.out.println("tf text " + tf.getText());
+	public void createEnter() {
+		enter = new TextButton("Enter", uiskin);
+		enter.setPosition(tf.getX() + tf.getWidth(), tf.getY());
+		enter.setHeight(tf.getHeight());
+		enter.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) {
+				/*
+				 * if and else statement below can be added when we want to force
+				 * the user to enter an 9 digit number into the text field
+				 */
+/*				if (tf.getText().matches("\\d\\d\\d\\d\\d\\d\\d\\d\\d")) {
+*/ 
+					// FileHandle students =
+					// Gdx.files.local("list of students.txt");
+					// students.writeString(tf.getText(), false);
+
+//					System.out.println("tf text " + tf.getText());
 
 					game.setScreen(new HomeScreen(game));
+/*				} else {
+					Label enterAgain = new Label("Please enter a valid 9 digit student ID number.", uiskin);
+					enterAgain.setAlignment(Align.center);
+					enterAgain.setX(width / 2 - enterAgain.getWidth() / 2);
+					enterAgain.setY(height / 2 - enterAgain.getHeight() - 10);
+					s.addActor(enterAgain);
 				}
-
+*/
 
 				return true;
 			}
 		});
 	}
-	public void createWelcome(){
+
+	public void createWelcome() {
 		welcome = new Label("Welcome to \n Advisement Adventure", uiskin);
 		welcome.setFontScale(3);
 		welcome.setAlignment(Align.center);
-		welcome.setX(width/2-welcome.getWidth()/2);
-		welcome.setY(height/2+height/4);
+		welcome.setX(width / 2 - welcome.getWidth() / 2);
+		welcome.setY(height / 2 + height / 4);
 	}
+
 	@Override
 	public void show() {
 		parseQuestions();
 		Gdx.input.setInputProcessor(s);
-		
+
 	}
 
 	@Override
@@ -126,9 +138,9 @@ public class LoginScreen extends ScreenAdapter {
 		batch.end();
 		s.draw();
 	}
-	
+
 	@Override
-	public void hide(){
+	public void hide() {
 		batch.dispose();
 		s.dispose();
 	}
