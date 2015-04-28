@@ -44,7 +44,7 @@ public class ScheduleScreen extends ScreenAdapter{
       	float tempWidth = width/2.5f;
         float tempHeight = height/1.3f - 50;
       	for(int i = 0; i < game.addDrop.currentList.size(); i++){
-             font.draw(batch,  game.addDrop.currentList.get(i), tempWidth, tempHeight);
+             font.draw(batch,  (CharSequence) game.addDrop.currentList.get(i), tempWidth, tempHeight);
              tempHeight -= 30;
         } 
       	if(game.addDrop.currentList.isEmpty()){

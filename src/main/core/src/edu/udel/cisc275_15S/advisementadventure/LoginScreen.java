@@ -133,5 +133,4 @@ public class LoginScreen extends ScreenAdapter {
 		s.dispose();
 	}
 
-
 }
