@@ -26,7 +26,7 @@ public class AddDropScreen extends ScreenAdapter {
 	Texture registration;
 	SelectBox sb;
 	SelectBox sb2;
-	Skin uiskin;
+	Skin uiskin;  
 	Stage s;
 	float height;
 	float width;
