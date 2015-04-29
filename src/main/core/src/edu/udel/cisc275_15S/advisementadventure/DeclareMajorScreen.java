@@ -36,11 +36,12 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	
 	Stage s;
 	
+	Texture btnBack;
 	Image btnB;
 	
 	
 	public DeclareMajorScreen(MyGdxGame g){
-		this.game = game;
+		this.game = g;
 		majorChoices = new Array();
 		majorChoices.add("Undeclared");
 		majorChoices.add("Agricultural and Natural Resources");
@@ -64,7 +65,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	}
 	
 	private void createBackButton() {
-		Texture btnBack = new Texture("btn_back.png");
+		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
 		btnB.setX(MyGdxGame.btnBackMargin);
 		btnB.setY(height - btnB.getHeight() - MyGdxGame.btnBackMargin);
@@ -124,9 +125,9 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		
 		s = new Stage();
 		Gdx.input.setInputProcessor(s);
+		s.addActor(btnB);
 		s.addActor(sb);
 		s.addActor(add);
-		s.addActor(btnB);
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		
 	}
