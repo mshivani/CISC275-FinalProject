@@ -76,7 +76,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		});
 		btnClassSch.setBounds(width/2.7f, height/1.8f,  width/3.6f, height/5.5f);
 		s.addActor(btnClassSch);
-		
+		     
 		
 		addDrop = new Texture("RegistrationDropAddButton.png");
 		btnAddDrop = new Image(addDrop);

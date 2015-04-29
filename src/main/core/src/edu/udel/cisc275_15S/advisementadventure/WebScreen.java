@@ -26,7 +26,7 @@ public class WebScreen extends ScreenAdapter{
 	Texture rsvp;
 	Image btnRSVP;
 	BitmapFont font;
-	Stage s;
+	Stage s;   
 	float width;
 	float height;
 	TextureRegion temp1 = new TextureRegion();
