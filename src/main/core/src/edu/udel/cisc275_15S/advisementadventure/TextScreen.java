@@ -63,7 +63,7 @@ public class TextScreen extends ScreenAdapter{
 		createBackButton();
 		createChatBubble();
 		createResponses();
-		createWrong();
+		//createWrong();
 		//createReply();
 		Gdx.input.setInputProcessor(s);
 	}
@@ -75,70 +75,88 @@ public class TextScreen extends ScreenAdapter{
 	}
 	public void createResponses(){
 		//final ArrayList<String> resp = currentQuestion.getResponses();	
-		r1 = new TextButton(resp.get(0), uiskin);
-		r2 = new TextButton(resp.get(1), uiskin);
-		r3 = new TextButton(resp.get(2), uiskin);
-		r4 = new TextButton("I don't know", uiskin);
-		r1.setX(0);
-		r1.setWidth(width/2);
-		r1.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				if(currentQuestion.getCorrectResponse().response.equals(resp.get(0))){
-					System.out.println("Correct");
-					createReply(currentQuestion.getCorrectResponse().response);
+		System.out.println("resp is " + resp);
+		if(!(resp.get(0).equals("empty"))){
+			r1 = new TextButton(resp.get(0), uiskin);
+			r1.setX(0);
+			r1.setWidth(width/2);
+			r1.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					if(currentQuestion.getCorrectResponse().response.equals(resp.get(0))){
+						System.out.println("Correct");
+						createReply(currentQuestion.getCorrectResponse().response);
+					}
+					else{
+						createWrong();
+						s.addActor(wrong);
+						//game.setScreen(new HomeScreen(game));
+					}
+					return true;
 				}
-				else{
+			});
+			s.addActor(r1);
+		}
+		if(!(resp.get(0).equals("empty"))){
+			r2 = new TextButton(resp.get(1), uiskin);
+			r2.setX(width -r1.getWidth());
+			r2.setWidth(width/2);
+			r2.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					if(currentQuestion.getCorrectResponse().response.equals(resp.get(1))){
+						System.out.println("Correct");
+						createReply(currentQuestion.getCorrectResponse().response);
+					}
+					else{
+						createWrong();
+						s.addActor(wrong);
+						//game.setScreen(new HomeScreen(game));
+					}
+					return true;
+				}
+			});
+			s.addActor(r2);
+		}
+		if(!(resp.get(2).equals("empty"))){
+			r3 = new TextButton(resp.get(2), uiskin);
+			r3.setY(r1.getHeight());
+			r3.setX(0);
+			r3.setWidth(width/2);
+			r3.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					if(currentQuestion.getCorrectResponse().response.equals(resp.get(2))){
+						System.out.println("Correct");
+						createReply(currentQuestion.getCorrectResponse().response);
+					}
+					else{
+						createWrong();
+						s.addActor(wrong);
+						//game.setScreen(new HomeScreen(game));
+					}
+					return true;
+				}
+			});
+			s.addActor(r3);
+		}
+		
+		if(!(resp.get(0).equals("empty") &&resp.get(1).equals("empty")&&resp.get(2).equals("empty"))){
+			r4 = new TextButton("I don't know", uiskin);
+			
+			
+			
+			r4.setX(width-r3.getWidth());
+			r4.setY(r2.getHeight());
+			r4.setWidth(width/2);
+			r4.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					createWrong();
 					s.addActor(wrong);
 					//game.setScreen(new HomeScreen(game));
+					return true;
 				}
-				return true;
-			}
-		});
-		r2.setX(width -r1.getWidth());
-		r2.setWidth(width/2);
-		r2.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				if(currentQuestion.getCorrectResponse().response.equals(resp.get(1))){
-					System.out.println("Correct");
-					createReply(currentQuestion.getCorrectResponse().response);
-				}
-				else{
-					s.addActor(wrong);
-					//game.setScreen(new HomeScreen(game));
-				}
-				return true;
-			}
-		});
-		r3.setY(r1.getHeight());
-		r3.setX(0);
-		r3.setWidth(width/2);
-		r3.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				if(currentQuestion.getCorrectResponse().response.equals(resp.get(2))){
-					System.out.println("Correct");
-					createReply(currentQuestion.getCorrectResponse().response);
-				}
-				else{
-					s.addActor(wrong);
-					//game.setScreen(new HomeScreen(game));
-				}
-				return true;
-			}
-		});
-		r4.setX(width-r3.getWidth());
-		r4.setY(r2.getHeight());
-		r4.setWidth(width/2);
-		r4.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				s.addActor(wrong);
-				//game.setScreen(new HomeScreen(game));
-				return true;
-			}
-		});
-		s.addActor(r1);
-		s.addActor(r2);
-		s.addActor(r3);
-		s.addActor(r4);
+			});
+			s.addActor(r4);
+		}
+
 	}
 	public void createChatBubble(){
 		textComp = new Texture("chatBubble_computer.png");

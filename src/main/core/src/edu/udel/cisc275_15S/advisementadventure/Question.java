@@ -34,13 +34,13 @@ public class Question {
 		x.add(this.response1.response);
 		for(int i =0;i<3;i++){
 			int temp = rand.nextInt(4);
-			if(temp==0 && !(x.contains(response2.response)))
+			if(temp==0)
 				x.add(this.response2.response);
-			else if(temp==1 && !(x.contains(response3.response)))
+			else if(temp==1)
 				x.add(this.response3.response);
-			else if(temp==2 && !(x.contains(response4.response)))
+			else if(temp==2)
 				x.add(this.response4.response);
-			else if(temp==3 && !(x.contains(response5.response)))
+			else if(temp==3)
 				x.add(this.response5.response);
 		}
 		Collections.shuffle(x);
