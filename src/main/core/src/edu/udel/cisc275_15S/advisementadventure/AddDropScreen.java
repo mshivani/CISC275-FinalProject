@@ -171,7 +171,6 @@ public class AddDropScreen extends ScreenAdapter {
 		batch.dispose();
 		s.dispose();
 	}
-
 }
 
 
