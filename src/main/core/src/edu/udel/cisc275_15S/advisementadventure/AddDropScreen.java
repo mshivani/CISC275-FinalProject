@@ -152,7 +152,7 @@ public class AddDropScreen extends ScreenAdapter {
 		
 	}
 	
-
+ 
 	@Override
 	public void render(float delta) {
 		GL20 gl = Gdx.gl;
