@@ -29,6 +29,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	ScheduleScreen schedule;
 	AddDropScreen addDrop;
 	RsvpScreen rsvp;
+	DeclareMajorScreen major;
 	NoteMenu notemenu;
 	ArrayList<Task> taskList;
 	FileHandle questions;
@@ -48,6 +49,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		email2 = new EmailFullScreen(this, null);
 		help = new HelpScreen(this);
 		helpFromMain = new HelpScreenFromMain(this);
+		major = new DeclareMajorScreen(this);
 		//notes = new NotesScreen(this, null);
 		//text = new TextScreen(this);
 		web = new WebScreen(this);

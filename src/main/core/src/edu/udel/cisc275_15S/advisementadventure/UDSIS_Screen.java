@@ -74,7 +74,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 				return true;
 			}
 		});
-		btnClassSch.setBounds(width/2.7f, height/1.8f,  width/3.6f, height/5.5f);
+		btnClassSch.setBounds(width/3.2f, height/1.8f,  width/3.2f, height/5.5f);
 		s.addActor(btnClassSch);
 		     
 		
@@ -86,8 +86,21 @@ public class UDSIS_Screen extends ScreenAdapter {
 				return true;
 			}
 		});
-		btnAddDrop.setBounds(width/2.7f, height/1.8f - btnClassSch.getHeight(),  width/3f, height/5.5f);
+		btnAddDrop.setBounds(width/3.2f, height/1.8f - btnClassSch.getHeight(),  width/2.2f, height/5.5f);
 		s.addActor(btnAddDrop);
+		
+		
+		major = new Texture("declareMajorButton.png");
+		btnMajor = new Image(major);
+		btnMajor.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.major);
+				return true;
+			}
+		});
+		btnMajor.setBounds(width/3.2f, height/1.8f - btnClassSch.getHeight() - btnAddDrop.getHeight(),  width/3f, height/5.5f);
+		s.addActor(btnMajor);
+		
 		
 		Gdx.input.setInputProcessor(s);
 	}

@@ -136,6 +136,7 @@ public class AddDropScreen extends ScreenAdapter {
 		createBackButton();
 		createDropDown();
 		createDropDown2();
+		
 		createAdd();
 		createDrop();
 		batch = new SpriteBatch();
