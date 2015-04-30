@@ -118,17 +118,26 @@ public class EmailListScreen extends ScreenAdapter {
 			email.setStyle(labelStyle);
 			email.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent ev, float x, float y, int pointer, int button) {
-//					if (!taskList.get(0).isCompleted()) {
-//						taskList.get(0).setCompleted();
-//						game.setScreen(game.help);
-//					} else {
-						game.setScreenHelp(game.email2, em);
-//					}
-//
-//					if (!taskList.get(4).isCompleted()) {
-//						taskList.get(4).setCompleted();
-//						game.setScreen(game.help);
-//					}
+					game.setScreenHelp(game.email2, em);
+					if(game.currentTask==3 &&em.subject.equals("Degree Audit")){
+						game.currentTask=4;
+					}
+					if(game.currentTask==0&&em.subject.equals("Add Courses"))
+						game.currentTask=1;
+					if(game.currentTask==-1&&em.subject.equals("Add your Major")){
+
+						System.out.println("hit it");
+						game.currentTask=0;
+					}
+
+					//System.out.println(game.textCount);
+					//game.currText++;
+					//					}
+					//
+					//					if (!taskList.get(4).isCompleted()) {
+					//						taskList.get(4).setCompleted();
+					//						game.setScreen(game.help);
+					//					}
 					return true;
 				}
 			});
@@ -151,7 +160,7 @@ public class EmailListScreen extends ScreenAdapter {
 					lines.add(line);
 				}
 				Email e = new Email(i, lines.get(0), lines.get(1), lines.get(2),
-									lines.get(3), wrapString(lines.get(4), 100), lines.get(5), lines.get(6));
+						lines.get(3), wrapString(lines.get(4), 100), lines.get(5), lines.get(6));
 				emailList.add(e);
 				lines.clear();
 			}
@@ -161,23 +170,23 @@ public class EmailListScreen extends ScreenAdapter {
 		}
 
 	}
-	
+
 	public static String wrapString(String string, int charWrap) {
-	    int lastBreak = 0;
-	    int nextBreak = charWrap;
-	    if (string.length() > charWrap) {
-	        String setString = "";
-	            while (string.charAt(nextBreak) != ' ' && nextBreak > lastBreak) {
-	                nextBreak--;
-	            }
-	            if (nextBreak == lastBreak) {
-	                nextBreak = lastBreak + charWrap;
-	            }
-	            setString += string.substring(lastBreak, nextBreak).trim() + "...";
-	            return setString;
-	    } else {
-	        return string;
-	    }
+		int lastBreak = 0;
+		int nextBreak = charWrap;
+		if (string.length() > charWrap) {
+			String setString = "";
+			while (string.charAt(nextBreak) != ' ' && nextBreak > lastBreak) {
+				nextBreak--;
+			}
+			if (nextBreak == lastBreak) {
+				nextBreak = lastBreak + charWrap;
+			}
+			setString += string.substring(lastBreak, nextBreak).trim() + "...";
+			return setString;
+		} else {
+			return string;
+		}
 	}
 
 }

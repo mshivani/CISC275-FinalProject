@@ -79,6 +79,8 @@ public class AddDropScreen extends ScreenAdapter {
 		add.setPosition(sb.getX()+sb.getWidth(), sb.getY());
 		add.setHeight(sb.getHeight());
 		add.addListener(new ClickListener(){
+			private int classCount;
+
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb.getSelected() != null && sb.getSelected() != ""){
 					currentList.add(sb.getSelected());
@@ -86,6 +88,9 @@ public class AddDropScreen extends ScreenAdapter {
 					dropItems.add(sb.getSelected());
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
+					classCount++;
+					if(classCount>5 && game.currentTask==2)
+						game.currentTask=3;
 				}
 				return true;
 			}
@@ -97,6 +102,8 @@ public class AddDropScreen extends ScreenAdapter {
 		drop.setPosition(sb2.getX()+sb2.getWidth(), sb2.getY());
 		drop.setHeight(sb2.getHeight());
 		drop.addListener(new ClickListener(){
+			private int classCount;
+
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb2.getSelected() != null && sb2.getSelected() != ""){
 					currentList.remove(sb2.getSelected());
@@ -104,6 +111,7 @@ public class AddDropScreen extends ScreenAdapter {
 					newItems.add(sb2.getSelected());
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
+					classCount--;
 				}
 				return true;
 			}

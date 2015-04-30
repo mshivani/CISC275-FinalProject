@@ -31,21 +31,31 @@ public class Question {
 	public ArrayList<String> getResponses(){
 		ArrayList<String> x = new ArrayList<String>();
 		Random rand = new Random();
-		x.add(this.response1.response);
-		for(int i =0;i<3;i++){
-			int temp = rand.nextInt(4);
-			if(temp==0)
-				x.add(this.response2.response);
-			else if(temp==1)
-				x.add(this.response3.response);
-			else if(temp==2)
-				x.add(this.response4.response);
-			else if(temp==3)
-				x.add(this.response5.response);
+		System.out.println(response1.response);
+		if(!this.response1.response.equals("empty")){
+			System.out.println("if statement hit");
+			x.add(this.response1.response);
+			for(int i =0;i<3;i++){
+				int temp = rand.nextInt(4);
+				if(temp==0 && !x.contains(response2.response))
+					x.add(this.response2.response);
+				else if(temp==1 && !x.contains(response3.response))
+					x.add(this.response3.response);
+				else if(temp==2 && !x.contains(response4.response))
+					x.add(this.response4.response);
+				else if(temp==3 && !x.contains(response5.response))
+					x.add(this.response5.response);
+			}
+			Collections.shuffle(x);
 		}
-		Collections.shuffle(x);
-		
+		else{
+			System.out.println("else statement hit");
+			for(int i=0;i<5;i++){
+				x.add("empty");
+			}
+		}
 		return x;
+
 
 	}
 	public Response getResponse5() {
@@ -71,8 +81,8 @@ public class Question {
 	public void setResponse3(Response response3) {
 		this.response3 = response3;
 	}
-
 	public Response getResponse2() {
+
 		return response2;
 	}
 

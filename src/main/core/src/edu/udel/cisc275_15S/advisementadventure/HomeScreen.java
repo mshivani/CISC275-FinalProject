@@ -130,7 +130,8 @@ public class HomeScreen extends ScreenAdapter{
 		btnT.setY(btnW.getY());
 		btnT.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new TextScreen(game, game.questionList.get(0)));
+				if(game.currText >= 0)
+					game.setScreen(new TextScreen(game, game.questionList.get(game.currText)));
 				return true;
 			}
 		});
@@ -149,7 +150,8 @@ public class HomeScreen extends ScreenAdapter{
 		btnW.setY((float) (height/1.5));
 		btnW.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(game.web);
+				if(game.currentTask>=0)
+					game.setScreen(game.web);
 				System.out.println("web");
 				return true;
 			}

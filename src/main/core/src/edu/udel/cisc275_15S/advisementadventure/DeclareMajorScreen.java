@@ -92,6 +92,11 @@ public class DeclareMajorScreen extends ScreenAdapter {
 					majorDeclaredL.setX(sb.getX());
 					majorDeclaredL.setY(sb.getY() - sb.getHeight());
 					sb.clearItems();
+					System.out.println(game.currentTask);
+					if(game.currentTask==0){
+						game.currText=0;
+						game.currentTask=1;
+					}
 				}
 				return true;
 			}

@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
 	public static final int btnBackMargin = 10;
-	
+
 	ArrayList<Question> questionList;
 	SpriteBatch batch;
 	ArrayList<Note> notesList;
@@ -34,10 +34,15 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	NoteMenu notemenu;
 	ArrayList<Task> taskList;
 	FileHandle questions;
-	Email emailChosen;	
+	Email emailChosen;
+
+	int currentTask;
+	int currText;	
 
 	@Override
 	public void create() {
+		currentTask=-1;
+		currText=-1;
 		//parseQuestions();
 		questionList = new ArrayList<Question>();
 		notesList= new ArrayList<Note>();
@@ -89,7 +94,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		//		homeScreenClick();
 		//		}
 	}
-	
+
 	public void setScreenHelp(com.badlogic.gdx.Screen screen, Email email) {
 		email2.setCurrentEmail(email);
 		setScreen(screen);

@@ -51,7 +51,7 @@ public class LoginScreen extends ScreenAdapter {
 					//line =reader.readLine();
 					//line = reader.readLine();
 					//line = reader.readLine();
-					System.out.println(";sdlkfja;kdsljf" + x);
+					System.out.println(x);
 					game.questionList.add(x);
 				}
 				else {

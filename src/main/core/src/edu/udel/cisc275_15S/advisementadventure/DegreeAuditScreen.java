@@ -40,7 +40,11 @@ public class DegreeAuditScreen extends ScreenAdapter {
 	
 	@Override
 	public void show() {
-
+		if(game.currentTask==4){
+			game.currText=1;
+			game.currentTask=5;
+			System.out.println("hit it audit");
+		}
 		bg = new Texture("univReq.png");
 		//activeCourses = new Texture("activeCourses.png");
 

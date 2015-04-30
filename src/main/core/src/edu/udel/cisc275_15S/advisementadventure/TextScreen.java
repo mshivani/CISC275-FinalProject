@@ -66,6 +66,14 @@ public class TextScreen extends ScreenAdapter{
 		//createWrong();
 		//createReply();
 		Gdx.input.setInputProcessor(s);
+		determineTasks();
+		
+	}
+	public void determineTasks(){
+		if(game.currentTask==1)
+			game.currentTask=2;
+		if(game.currentTask==5)
+			game.currentTask=6;
 	}
 	public void createWrong(){
 		wrong = new Label("Please try again later", uiskin);
@@ -84,6 +92,7 @@ public class TextScreen extends ScreenAdapter{
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(0))){
 						System.out.println("Correct");
+						determineTasks();
 						createReply(currentQuestion.getCorrectResponse().response);
 					}
 					else{
@@ -96,7 +105,7 @@ public class TextScreen extends ScreenAdapter{
 			});
 			s.addActor(r1);
 		}
-		if(!(resp.get(0).equals("empty"))){
+		if(!(resp.get(1).equals("empty"))){
 			r2 = new TextButton(resp.get(1), uiskin);
 			r2.setX(width -r1.getWidth());
 			r2.setWidth(width/2);
@@ -105,6 +114,7 @@ public class TextScreen extends ScreenAdapter{
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(1))){
 						System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
+						determineTasks();
 					}
 					else{
 						createWrong();
@@ -126,6 +136,7 @@ public class TextScreen extends ScreenAdapter{
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(2))){
 						System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
+						determineTasks();
 					}
 					else{
 						createWrong();
@@ -166,9 +177,10 @@ public class TextScreen extends ScreenAdapter{
 
 		textC.setX(0);
 		System.out.println(textC.getHeight());
-		textC.setY(height - btnB.getHeight() - textC.getHeight()/2);
+		
 		textC.setWidth((float) (width/2.5));
-		textC.setHeight(height/6);
+		textC.setHeight(height/3);
+		textC.setY(height - btnB.getHeight() - textC.getHeight());
 		message.setWrap(true);
 		message.setBounds(50, textC.getY()+textC.getHeight(), textC.getWidth()-50, textC.getHeight());
 		//message.setX(30);
