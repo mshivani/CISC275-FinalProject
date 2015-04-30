@@ -30,6 +30,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	AddDropScreen addDrop;
 	RsvpScreen rsvp;
 	DeclareMajorScreen major;
+	DegreeAuditScreen degreeAudit;
 	NoteMenu notemenu;
 	ArrayList<Task> taskList;
 	FileHandle questions;
@@ -50,6 +51,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		help = new HelpScreen(this);
 		helpFromMain = new HelpScreenFromMain(this);
 		major = new DeclareMajorScreen(this);
+		degreeAudit = new DegreeAuditScreen(this);
 		//notes = new NotesScreen(this, null);
 		//text = new TextScreen(this);
 		web = new WebScreen(this);
