@@ -18,24 +18,15 @@ import com.badlogic.gdx.utils.Array;
 public class DeclareMajorScreen extends ScreenAdapter {
 	MyGdxGame game;
 	SpriteBatch batch;
-	
 	Skin uiskin;
-	
 	Texture banner;
-	
 	TextButton add;
-	
 	SelectBox sb;
-	
 	float height;
 	float width;
-	
 	Array majorChoices;
-	
 	String yourMajor;
-	
 	Stage s;
-	
 	Texture btnBack;
 	Image btnB;
 	
