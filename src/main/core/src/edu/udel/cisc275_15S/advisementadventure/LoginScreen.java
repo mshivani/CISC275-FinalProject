@@ -66,7 +66,7 @@ public class LoginScreen extends ScreenAdapter {
 		createEnter();
 		createWelcome();
 		batch = new SpriteBatch();
-		bg = new Texture("loginscreen2.png");
+		bg = new Texture("login-bg.png");
 		// font = new BitmapFont();
 		s = new Stage();
 		s.addActor(tf);
