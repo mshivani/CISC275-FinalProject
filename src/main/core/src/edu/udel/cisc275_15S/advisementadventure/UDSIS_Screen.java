@@ -22,6 +22,9 @@ public class UDSIS_Screen extends ScreenAdapter {
 	Image btnBack;
 	
 	Texture udBanner;
+	Texture academicsHeader;
+	Texture academicsBar;
+	Texture advisorBox;
 	
 	Texture ClassSch;
 	Image btnClassSch;
@@ -31,6 +34,9 @@ public class UDSIS_Screen extends ScreenAdapter {
 	
 	Texture major;
 	Image btnMajor;
+	
+	Texture audit;
+	Image btnAudit;
 	
 	BitmapFont font;
 	Stage s;
@@ -51,7 +57,10 @@ public class UDSIS_Screen extends ScreenAdapter {
 		
 		s = new Stage();
 		
-		udBanner = new Texture("UDsisBanner.png");
+		udBanner = new Texture("udSisLogo.png");
+		academicsHeader = new Texture("academics-header.png");
+		academicsBar = new Texture("academics-bar.png");
+		advisorBox = new Texture("advisor-box.png");
 		
 		back = new Texture("btn_back.png");
 		btnBack = new Image(back);
@@ -66,7 +75,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		s.addActor(btnBack);
 		
 		
-		ClassSch = new Texture("classSchButton.png");
+		ClassSch = new Texture("schedule-btn.png");
 		btnClassSch = new Image(ClassSch);
 		btnClassSch.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -74,11 +83,11 @@ public class UDSIS_Screen extends ScreenAdapter {
 				return true;
 			}
 		});
-		btnClassSch.setBounds(width/3.2f, height/1.8f,  width/3.2f, height/5.5f);
+		btnClassSch.setBounds(10, height - (udBanner.getHeight()+academicsBar.getHeight()+50),  btnClassSch.getWidth(), btnClassSch.getHeight());
 		s.addActor(btnClassSch);
 		     
 		
-		addDrop = new Texture("RegistrationDropAddButton.png");
+		addDrop = new Texture("reg-btn.png");
 		btnAddDrop = new Image(addDrop);
 		btnAddDrop.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -86,11 +95,11 @@ public class UDSIS_Screen extends ScreenAdapter {
 				return true;
 			}
 		});
-		btnAddDrop.setBounds(width/3.2f, height/1.8f - btnClassSch.getHeight(),  width/2.2f, height/5.5f);
+		btnAddDrop.setBounds(10, height - (udBanner.getHeight()+academicsBar.getHeight()+50) - btnClassSch.getHeight(),  btnAddDrop.getWidth(), btnAddDrop.getHeight());
 		s.addActor(btnAddDrop);
 		
 		
-		major = new Texture("declareMajorButton.png");
+		major = new Texture("decmajor-btn.png");
 		btnMajor = new Image(major);
 		btnMajor.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -98,9 +107,19 @@ public class UDSIS_Screen extends ScreenAdapter {
 				return true;
 			}
 		});
-		btnMajor.setBounds(width/3.2f, height/1.8f - btnClassSch.getHeight() - btnAddDrop.getHeight(),  width/3f, height/5.5f);
+		btnMajor.setBounds(10, height - (udBanner.getHeight()+academicsBar.getHeight()+50) - btnClassSch.getHeight() - btnAddDrop.getHeight(),  btnMajor.getWidth(), btnMajor.getHeight());
 		s.addActor(btnMajor);
 		
+		audit = new Texture("audit-btn.png");
+		btnAudit = new Image(audit);
+		btnAudit.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				// game.setScreen(game.audit);
+				return true;
+			}
+		});
+		btnAudit.setBounds(10, height - (udBanner.getHeight()+academicsBar.getHeight()+50) - btnClassSch.getHeight() - btnAddDrop.getHeight() - btnMajor.getHeight(),  btnAudit.getWidth(), btnAudit.getHeight());
+		s.addActor(btnAudit);
 		
 		Gdx.input.setInputProcessor(s);
 	}
@@ -111,7 +130,10 @@ public class UDSIS_Screen extends ScreenAdapter {
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(udBanner, 0, height-height/5.5f, width, height/5.5f);
+		batch.draw(udBanner, btnBack.getWidth() + 15, height-height/9.5f);
+		batch.draw(academicsHeader, 0, height-height/5.5f);
+		batch.draw(academicsBar, academicsHeader.getWidth(), height-height/5.5f, width, academicsBar.getHeight());
+		batch.draw(advisorBox, width/1.90f, height-height/1.75f);
 		batch.end();
 		s.act();
 		s.draw();
