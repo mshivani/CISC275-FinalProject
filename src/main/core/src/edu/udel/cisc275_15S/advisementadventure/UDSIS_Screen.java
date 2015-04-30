@@ -114,7 +114,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		btnAudit = new Image(audit);
 		btnAudit.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				// game.setScreen(game.audit);
+				game.setScreen(game.degreeAudit);
 				return true;
 			}
 		});
