@@ -68,7 +68,7 @@ public class HomeScreen extends ScreenAdapter{
 	public void show(){
 		s=new Stage();
 		
-		bg = new Texture("homescreen.png");
+		bg = new Texture("homescreen-bg.png");
 		Image bgI = new Image(bg);
 		s.addActor(bgI);
 		batch = new SpriteBatch();
@@ -86,8 +86,8 @@ public class HomeScreen extends ScreenAdapter{
 		Gdx.input.setInputProcessor(s);
 	}
 	public void createHelpButton(){
-		helpL = new Label("Help", uiskin);
-		btnHelp = new Texture("btn_help.png");
+		helpL = new Label("Trophies", uiskin);
+		btnHelp = new Texture("trophy-widget.png");
 		btnH = new Image(btnHelp);
 		btnH.setX(btnE.getX()+btnE.getWidth()+30);
 		btnH.setY(btnT.getY());
@@ -97,7 +97,7 @@ public class HomeScreen extends ScreenAdapter{
 				return true;
 			}
 		});
-		helpL.setX(btnH.getX()+(btnH.getWidth()/4));
+		helpL.setX(btnH.getX()+(btnH.getWidth()/4)-10);
 		helpL.setY(btnH.getY()- helpL.getHeight());
 		helpL.setColor(Color.BLACK);
 		s.addActor(helpL);
@@ -105,7 +105,7 @@ public class HomeScreen extends ScreenAdapter{
 	}
 	public void createEmailButton(){
 		emailL = new Label("Email", uiskin);
-		btnEmail = new Texture("btn_email.png");
+		btnEmail = new Texture("email-widget.png");
 		btnE = new Image(btnEmail);
 		btnE.setX(btnT.getX()+btnT.getWidth()+30);
 		btnE.setY(btnT.getY());
@@ -124,7 +124,7 @@ public class HomeScreen extends ScreenAdapter{
 	}
 	public void createTextButton(){
 		textL = new Label("Text", uiskin);
-		btnText = new Texture("btn_text.png");
+		btnText = new Texture("text-widget.png");
 		btnT = new Image(btnText);
 		btnT.setX(btnW.getX()+ btnW.getWidth()+30);
 		btnT.setY(btnW.getY());
@@ -143,7 +143,7 @@ public class HomeScreen extends ScreenAdapter{
 	}
 	public void createWebButton(){
 		webL = new Label("Web", uiskin);
-		btnWeb = new Texture("btn_web.png");
+		btnWeb = new Texture("web-widget.png");
 		btnW = new Image(btnWeb);
 		btnW.setX(btnN.getX() + btnN.getWidth()+30);
 		btnW.setY((float) (height/1.5));
@@ -163,9 +163,9 @@ public class HomeScreen extends ScreenAdapter{
 	}
 	public void createNotesButton(){
 		notesL = new Label("Notes", uiskin);
-		btnNotes = new Texture("btn_notes.png");
+		btnNotes = new Texture("notes-widget.png");
 		btnN = new Image(btnNotes);
-		btnN.setX((float) (width/7.5));
+		btnN.setX((float) (width/9));
 		btnN.setY((float) (height/1.5));
 		btnN.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
