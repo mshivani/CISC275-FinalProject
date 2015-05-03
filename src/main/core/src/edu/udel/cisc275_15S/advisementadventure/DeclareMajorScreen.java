@@ -40,7 +40,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		majorChoices.add("Biological Sciences");
 		majorChoices.add("Communications");
 		majorChoices.add("Computer Science");
-		majorChoices.add("Crimanal Justice");
+		majorChoices.add("Criminal Justice");
 		majorChoices.add("Economics");
 		majorChoices.add("English");
 		majorChoices.add("Finance");
