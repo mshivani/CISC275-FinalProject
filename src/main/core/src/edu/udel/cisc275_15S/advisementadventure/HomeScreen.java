@@ -44,25 +44,13 @@ public class HomeScreen extends ScreenAdapter{
 	float height;
 	float width;
 	Texture bg;
+	Texture arr;
+	Image arrow;
 
 	public HomeScreen(MyGdxGame g){
 		this.game = g;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
-		//
-		//batch = new SpriteBatch();
-		//font = new BitmapFont();
-		//font.setColor(0, 0, 0, 1);
-		//bg = new Texture("homescreen.png");
-		// btnBack = new Texture("btn_back.png");
-		//btnNotes = new Texture("btn_notes.png");
-		//btnWeb = new Texture("btn_web.png");
-		//btnText = new Texture("btn_text.png");
-		//btnEmail = new Texture("btn_email.png");
-		//btnHelp = new Texture("btn_help.png");
-		// blueHen = new Texture("blueHen.png");
-		//input = false;
-		//		height = Gdx.graphics.getHeight();
-		//		width = Gdx.graphics.getWidth();
+		
 	}
 	@Override
 	public void show(){
@@ -182,6 +170,17 @@ public class HomeScreen extends ScreenAdapter{
 		s.addActor(btnN);
 		s.addActor(notesL);
 	}
+	
+	//TODO draw arrow on screen
+	public void createIndicatorArrow(){
+		arr = new Texture("arrow.png");
+		arrow = new Image(arr);
+		if (game.currText == -1 && game.currentTask == 1) {
+			arrow.setX((float) btnE.getImageX());
+			arrow.setY((float) btnE.getImageY());
+		}
+	}
+	
 	@Override
 	public void render(float delta){
 		//if(Gdx.input.isTouched()){
@@ -190,27 +189,13 @@ public class HomeScreen extends ScreenAdapter{
 		GL20 gl = Gdx.gl;
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//batch.begin();
+		
 		s.draw();
 		s.act();
 		
-		//		// batch.draw(blueHen, 150, 25, 340, 275);
-		//		batch.draw(bg, 0, 0, width, height);
-		//		// batch.draw(btnBack, 25, 425);
-		//		batch.draw(btnNotes, 75, 350);
-		//		batch.draw(btnWeb, 175, 350);
-		//		batch.draw(btnText, 275, 350);
-		//		batch.draw(btnEmail, 375, 350);
-		//		batch.draw(btnHelp, 475, 350);
-		//		
-		//		font.draw(batch, "Notes", 95, 325);
-		//		font.draw(batch, "Web", 195, 325);
-		//		font.draw(batch, "Texts", 295, 325);
-		//		font.draw(batch, "Email", 395, 325);
-		//		font.draw(batch, "Help", 495, 325);
-
-
-		//batch.end();
+		batch.begin();
+		
+		
 	}
 	@Override 
 	public void resize(int x, int y){
