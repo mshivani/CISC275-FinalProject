@@ -40,6 +40,8 @@ public class UDSIS_Screen extends ScreenAdapter {
 	
 	BitmapFont font;
 	Stage s;
+	
+	// width and height in pixels
 	float width;
 	float height;
 	
