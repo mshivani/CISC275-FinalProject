@@ -1,7 +1,6 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
