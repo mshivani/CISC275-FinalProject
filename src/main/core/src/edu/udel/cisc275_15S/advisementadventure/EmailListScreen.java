@@ -121,8 +121,8 @@ public class EmailListScreen extends ScreenAdapter {
 					if(game.currentTask==3 &&em.subject.equals("Degree Audit")){
 						game.currentTask=4;
 					}
-					if(game.currentTask==0&&em.subject.equals("Add Courses"))
-						game.currentTask=1;
+					if(game.currentTask==2&&em.subject.equals("Add Courses"))
+						game.currentTask=3;
 					if(game.currentTask==-1&&em.subject.equals("Add your Major")){
 
 						System.out.println("hit it");
