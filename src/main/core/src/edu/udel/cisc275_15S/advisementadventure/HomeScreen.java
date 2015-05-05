@@ -191,12 +191,9 @@ public class HomeScreen extends ScreenAdapter{
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		s.draw();
-		s.act();
-		
-		batch.begin();
-		
-		
+		s.act();	
 	}
+	
 	@Override 
 	public void resize(int x, int y){
 		this.show();
