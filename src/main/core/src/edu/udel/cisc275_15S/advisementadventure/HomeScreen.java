@@ -40,6 +40,8 @@ public class HomeScreen extends ScreenAdapter{
 	Label emailL;
 	Texture btnHelp;
 	Image btnH;
+	Texture indicArrow;
+	Image arrow;
 	Label helpL;
 	float height;
 	float width;
@@ -83,6 +85,7 @@ public class HomeScreen extends ScreenAdapter{
 		createTextButton();
 		createEmailButton();
 		createHelpButton();
+		// createIndicatorArrow();
 		Gdx.input.setInputProcessor(s);
 	}
 	public void createHelpButton(){
@@ -182,6 +185,16 @@ public class HomeScreen extends ScreenAdapter{
 		s.addActor(btnN);
 		s.addActor(notesL);
 	}
+	
+//	public void createIndicatorArrow() {
+//		indicArrow = new Texture("arrow.png");
+//		arrow = new Image(indicArrow);
+//		if (game.currText == -1 && game.currentTask == -1) {
+//			arrow.setX(emailL.getX());
+//			arrow.setY(emailL.getY());
+//		}
+//	}
+	
 	@Override
 	public void render(float delta){
 		//if(Gdx.input.isTouched()){
