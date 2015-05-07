@@ -45,25 +45,23 @@ public class LoginScreen extends ScreenAdapter {
 				String quest3 = reader.readLine();
 				System.out.println(quest3);
 				Question x;
-				if(quest3.equals("No responses")){
-					x = new Question(quest2, "empty", "empty", "empty", "empty", "empty");
-					//line =reader.readLine();
-					//line =reader.readLine();
-					//line = reader.readLine();
-					//line = reader.readLine();
+				if (quest3.equals("No responses")) {
+					x = new Question(quest2, "empty", "empty", "empty",
+							"empty", "empty");
+					// line =reader.readLine();
+					// line =reader.readLine();
+					// line = reader.readLine();
+					// line = reader.readLine();
 					System.out.println(x);
 					game.questionList.add(x);
-				}
-				else {
-					x = new Question(quest2,
-							quest3, line = reader.readLine(),
+				} else {
+					x = new Question(quest2, quest3, line = reader.readLine(),
 							line = reader.readLine(), line = reader.readLine(),
 							line = reader.readLine());
 					System.out.println(x);
 					game.questionList.add(x);
 				}
-				//				System.out.println(x);
-				
+				// System.out.println(x);
 
 			}
 			reader.close();
@@ -102,28 +100,30 @@ public class LoginScreen extends ScreenAdapter {
 		enter.setPosition(tf.getX() + tf.getWidth(), tf.getY());
 		enter.setHeight(tf.getHeight());
 		enter.addListener(new ClickListener() {
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
 				/*
-				 * if and else statement below can be added when we want to force
-				 * the user to enter an 9 digit number into the text field
+				 * if and else statement below can be added when we want to
+				 * force the user to enter an 9 digit number into the text field
 				 */
-				/*				if (tf.getText().matches("\\d\\d\\d\\d\\d\\d\\d\\d\\d")) {
-				 */ 
-				// FileHandle students =
-				// Gdx.files.local("list of students.txt");
-				// students.writeString(tf.getText(), false);
+				if (tf.getText().matches("\\d\\d\\d\\d\\d\\d\\d\\d\\d")) {
 
-				//					System.out.println("tf text " + tf.getText());
+					// FileHandle students =
+					// Gdx.files.local("list of students.txt");
+					// students.writeString(tf.getText(), false);
 
-				game.setScreen(new HomeScreen(game));
-				/*				} else {
-					Label enterAgain = new Label("Please enter a valid 9 digit student ID number.", uiskin);
+					// System.out.println("tf text " + tf.getText());
+
+					game.setScreen(new HomeScreen(game));
+				} else {
+					Label enterAgain = new Label(
+							"Please enter a valid 9 digit student ID number.",
+							uiskin);
 					enterAgain.setAlignment(Align.center);
 					enterAgain.setX(width / 2 - enterAgain.getWidth() / 2);
 					enterAgain.setY(height / 2 - enterAgain.getHeight() - 10);
 					s.addActor(enterAgain);
 				}
-				 */
 
 				return true;
 			}

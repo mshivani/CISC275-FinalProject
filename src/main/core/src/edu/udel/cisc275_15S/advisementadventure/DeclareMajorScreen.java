@@ -51,8 +51,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		majorChoices.add("Mathematics");
 		majorChoices.add("Music");
 		majorChoices.add("Nursing");
-		majorChoices.add("Womens Studies");
-		
+		majorChoices.add("Womens Studies");	
 	}
 	
 	private void createBackButton() {
@@ -146,5 +145,4 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		s.dispose();
 	}
 	
-
 }
