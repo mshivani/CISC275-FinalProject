@@ -10,6 +10,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
 
 public class HelpScreenFromMain extends ScreenAdapter{
 	MyGdxGame game;
@@ -19,96 +29,158 @@ public class HelpScreenFromMain extends ScreenAdapter{
 	Texture trans;
 	Texture glass;
 	Image btnB;
+	Image star;
+	Skin uiskin;
+	Stage s;
 
 	BitmapFont font;
-	float width = Gdx.graphics.getWidth();
-	float height = Gdx.graphics.getHeight();
+	float width;
+	float height;
 	String helpDisplay;
 	ArrayList<Task> tasklist;
-	Texture star;
+	ArrayList<Image> compImg;
+	ArrayList<Image> unCompImg;
+	ArrayList<Label> taskLabel;
+	Texture starT;
 	float speedx;
 	float speedy;
 
 
 	public HelpScreenFromMain(MyGdxGame g) {
 		this.game = g;
+		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(0, 0, 0, 1);
 		btnBack = new Texture("btn_Back.png");
+		btnB = new Image(btnBack);
+		
+		
+		compImg = new ArrayList<Image>();
+		unCompImg = new ArrayList<Image>();
+		taskLabel = new ArrayList<Label>();
+		
+		//add to every page
 		this.tasklist = g.taskList;
-		star = new Texture("star.png");
-
+		starT = new Texture("star.png");
+		star = new Image(starT);
 	}
+	
+	public void show(){
+		s=new Stage();
+		compImg.clear();
+		unCompImg.clear();
+		taskLabel.clear();
+		for(int i=0; i < tasklist.size();i++){
+			compImg.add(new Image(tasklist.get(i).getCompletedPic()));
+			unCompImg.add(new Image(tasklist.get(i).getUncompletedPic()));
+			taskLabel.add(new Label(tasklist.get(i).getDescription(), uiskin));
+		}
+		
+		batch = new SpriteBatch();
+		font = new BitmapFont();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
+		font.setColor(0, 0, 0, 1);
+		createBackButton();
+		createTaskImages();
+		createTaskList();
+		
+		Gdx.input.setInputProcessor(s);
+	}
+	
+	
+	
+	private void createTaskList(){
+		for(int i = 0; i < tasklist.size(); i++){
+			if(tasklist.get(i).isCompleted()){
+				star.setX(width*.06f);
+				star.setY(height*.57f - height*.05f*(i+1));
+				star.setWidth(width*.03f);
+				star.setHeight(width*.03f);
+				s.addActor(star);
+				taskLabel.get(i).setX(width*.1f);
+				taskLabel.get(i).setY(height*.6f - height*.05f*(i+1));
+				taskLabel.get(i).setColor(Color.BLACK);
+				s.addActor(taskLabel.get(i));
+			}
+			else{
+				taskLabel.get(i).setX(width*.1f);
+				taskLabel.get(i).setY(height*.6f - height*.05f*(i+1));
+				taskLabel.get(i).setColor(Color.GRAY);
+				s.addActor(taskLabel.get(i));
+			}
 
-	public void render(float delta){
-
-
-
-		//get coordinates of mouse
-		batch.begin();
-		Gdx.gl.glClearColor(205/255f, 242/255f, 250/255f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-
-		//width = Gdx.graphics.getWidth();
-		//height = Gdx.graphics.getHeight();
-		batch.draw(btnBack, (float)(width/25), (float) (height*.9f));
-
+		}
+	}
+	private void createTaskImages(){
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted()){
 				font.setColor(Color.BLACK);
-				batch.draw(tasklist.get(i).getCompletedPic(), (i+1)*(width*.15f), height*.8f);
+				compImg.get(i).setX((i+1)*(width*.15f));
+				compImg.get(i).setY(height*.8f);
+				s.addActor(compImg.get(i));
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
-				batch.draw(tasklist.get(i).getUncompletedPic(), (i+1)*(width*.15f), height*.8f);
+				unCompImg.get(i).setX((i+1)*(width*.15f));
+				unCompImg.get(i).setY(height*.8f);
+				s.addActor(unCompImg.get(i));
 			}
 		}
 		for(int i = tasklist.size()/2; i < tasklist.size(); i++){
 			if(tasklist.get(i).isCompleted()){
 				font.setColor(Color.BLACK);
-				batch.draw(tasklist.get(i).getCompletedPic(), (i+1-tasklist.size()/2)*(width*.15f), height*.6f);
+				compImg.get(i).setX((i+1-tasklist.size()/2)*(width*.15f));
+				compImg.get(i).setY(height*.6f);
+				s.addActor(compImg.get(i));
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
-				batch.draw(tasklist.get(i).getUncompletedPic(), (i+1-tasklist.size()/2)*(width*.15f), height*.6f);
+				unCompImg.get(i).setX((i+1-tasklist.size()/2)*(width*.15f));
+				unCompImg.get(i).setY(height*.6f);
+				s.addActor(unCompImg.get(i));
 			}
 		}
-
-
-		//write tasks
-		for(int i = 0; i < tasklist.size(); i++){
-			if(tasklist.get(i).isCompleted()){
-				batch.draw(star, width*.06f, height*.57f - height*.05f*(i+1), 
-						width*.03f, width*.03f);
-				font.setColor(Color.BLACK);
-				font.draw(batch, "Task " + (i+1) + ": " + tasklist.get(i).getDescription(), width*.1f, height*.6f - height*.05f*(i+1));
-
+		
+	}
+	private void createBackButton(){
+		btnBack = new Texture("btn_back.png");
+		btnB = new Image(btnBack);
+		btnB.setX(0);
+		btnB.setY(height-btnB.getHeight());
+		System.out.println(btnB.getHeight());
+		btnB.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(new HomeScreen(game));
+				System.out.println("back");
+				return true;
 			}
-			else{
-				font.setColor(Color.LIGHT_GRAY);
-				font.draw(batch, "Task " + (i+1) + ": " + tasklist.get(i).getDescription(), width*.1f, height*.6f - height*.05f*(i+1));
-			}
+		});
 
-		}
+		s.addActor(btnB);
+	}
 
+	public void render(float delta){
 
+		Gdx.gl.glClearColor(205/255f, 242/255f, 250/255f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		s.draw();
+		s.act();
 
-
-
-		batch.end();
-		if(Gdx.input.isTouched()){
-			helpFromMainClick();
-		}
+		
+	}
+	
+	public void resize(int x, int y){
+		this.show();
 	}
 	
 	public void helpFromMainClick() {
-		int clickX = Gdx.input.getX();
-		int clickY = Gdx.input.getY();
-		if (clickX >= width/25 && clickX <= (width/25 + btnBack.getWidth()) 
-				&& clickY <= height-(height*.9) && clickY >= height-(height*.9)-btnBack.getHeight()) {
-			game.setScreen(game.welcome);
-		}
+//		int clickX = Gdx.input.getX();
+//		int clickY = Gdx.input.getY();
+//		if (clickX >= width/25 && clickX <= (width/25 + btnBack.getWidth()) 
+//				&& clickY <= height-(height*.9) && clickY >= height-(height*.9)-btnBack.getHeight()) {
+//			game.setScreen(game.welcome);
+//		}
 	}
 }

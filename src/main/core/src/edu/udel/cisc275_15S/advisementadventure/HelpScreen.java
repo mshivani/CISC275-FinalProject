@@ -1,3 +1,4 @@
+
 package edu.udel.cisc275_15S.advisementadventure;
 
 import java.util.ArrayList;
@@ -8,13 +9,18 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
@@ -59,6 +65,8 @@ public class HelpScreen extends ScreenAdapter{
 	private ShapeRenderer shapeRend;
 	private boolean explosion;
 	Sound chime;
+	Sound awesome;
+	private boolean canBack;
 	
 	
 	public HelpScreen(MyGdxGame g) {
@@ -69,18 +77,19 @@ public class HelpScreen extends ScreenAdapter{
 		btnBack = new Texture("btn_Back.png");
 		trans = new Texture("blackTransparent.png");
 		glass = new Texture("glass.jpg");
-		//s = new Stage();
-		//createBackButton();
+		s = new Stage();
+		createBackButton();
 		this.tasklist = g.taskList;
 		star = new Texture("star.png");
 		vecArr = new ArrayList<Vector2>();
 		shapeRend = new ShapeRenderer();
-		//s.addActor(btnB);
+		
 		explosion = false;
 		sawComp = new boolean[10];
 		changePic = new boolean[10];
 		returnScreen = new boolean[10];
 		chime = Gdx.audio.newSound(Gdx.files.internal("chime.mp3"));
+		awesome = Gdx.audio.newSound(Gdx.files.internal("XcOSoSj-ar.mp3"));
 		for(int i=0; i<sawComp.length; i++){
 			sawComp[i] = false;
 			changePic[i] = false;
@@ -94,16 +103,12 @@ public class HelpScreen extends ScreenAdapter{
 		pos9 = new Vector2(width,height);
 		vecArr.add(pos0);vecArr.add(pos1);vecArr.add(pos2);vecArr.add(pos3);vecArr.add(pos4);
 		vecArr.add(pos5);vecArr.add(pos6);vecArr.add(pos7);vecArr.add(pos8);vecArr.add(pos9);
+		
+		
 	}
 	
 	
-//	public void create() {
-//	    camera = new PerspectiveCamera();
-//	    viewport = new FitViewport(width, height, camera);
-//	}
-//	public void resize(int width, int height) {
-//	    viewport.update(width, height);
-//	}
+
 	// Prototype assumes no current task. Final implementation will retrieve current task
 	// from MyGdxGame and display as string. Help suggestions will be tied to "type" of task.
 	// Game will have a list of tasks. Tasks will be marked as completed as they are finished.
@@ -127,13 +132,13 @@ public class HelpScreen extends ScreenAdapter{
 		Gdx.gl.glClearColor(205/255f, 242/255f, 250/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
        
-        batch.draw(btnBack, (float)(width/25), (float) (height*.9f));
+        
         
         
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted() && changePic[i]){
 				font.setColor(Color.BLACK);
-				batch.draw(tasklist.get(i).getCompletedPic(), (i+1)*(width*.15f), height*.8f);
+				batch.draw(tasklist.get(i).getCompletedPic(), (i+1)*(width*.15f), height*.8f, tasklist.get(i).getUncompletedPic().getWidth(),tasklist.get(i).getUncompletedPic().getHeight());
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
@@ -172,8 +177,12 @@ public class HelpScreen extends ScreenAdapter{
     			batch.draw(star, vecArr.get(i).x, vecArr.get(i).y, vecArr.get(i).x*.5f, vecArr.get(i).x*.5f);
     		}
     		if(tasklist.get(i).isCompleted() && !sawComp[i]){
-    			if(vecArr.get(i).x >= width*.75f && vecArr.get(i).x <= width*.77f)
+    			
+    		
+    			if(vecArr.get(i).x >= width*.75f && vecArr.get(i).x <= width*.77f){
     				chime.play();
+    				//awesome.play();
+    			}
     	    	speedx = width+75-vecArr.get(i).x;
     	    	speedy = vecArr.get(i).y +35- (height*.57f - height*.05f*(i+1));
     			if(vecArr.get(i).x >= width*.073f){
@@ -190,29 +199,12 @@ public class HelpScreen extends ScreenAdapter{
         	}
     	}
 
-//    	s.draw();
-//      s.act();
     	
-    	for(int i=0; i<tasklist.size(); i++){
-			if(returnScreen[i]){
-				batch.draw(trans, 0, 0, width, height);
-				font.setColor(217, 141, 32, 1);
-				font.draw(batch, "Congrats on Task " + (i+1) + "!", width*.4f, height*.6f);
-				font.draw(batch, "click anywhere to return", width*.38f, height*.5f);
-				if(Gdx.input.isTouched()){
-					returnScreen[i] = false;
-					sawComp[i] = true;
-					game.setScreen(game.email2);
-					
-				}
-			}
-		}
 		
 		
     	batch.end();
-    	if(Gdx.input.isTouched()){
-			clickHelper();
-		}
+    	s.draw();
+    	s.act();
 	}
 	
 	public void starExplosion(float x, float y, int index){
@@ -241,8 +233,10 @@ public class HelpScreen extends ScreenAdapter{
 			exp4.y -= speed*Gdx.graphics.getDeltaTime();
 		}else{
 			explosion = false;
-			returnScreen[index] = true;
+			
+			//returnScreen[index] = true;
 			sawComp[index] = true;
+			tasklist.get(index).setSeen();
 			
 		}
 		batch.draw(star, exp1.x, exp1.y, 10, 10);
@@ -252,35 +246,37 @@ public class HelpScreen extends ScreenAdapter{
 
 	}
 	
-	public void clickHelper() {
-		int clickX = Gdx.input.getX();
-		int clickY = Gdx.input.getY();
-		if (clickX >= width/25 && clickX <= (width/25 + btnBack.getWidth()) 
-				&& clickY <= height-(height*.9) && clickY >= height-(height*.9)-btnBack.getHeight()) {
-			game.setScreen(game.welcome);
-		}
+	
+	public void show(){
+		height = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		
+		
+		batch = new SpriteBatch();
+		s = new Stage();
+	
+		createBackButton();
+		s.addActor(btnB);
+		
+		Gdx.input.setInputProcessor(s);
 	}
 	
-//	
-//	public void show(){
-//		Gdx.input.setInputProcessor(s);
-//	}
-//	
-//	private void createBackButton(){
-//		btnBack = new Texture("btn_back.png");
-//		btnB = new Image(btnBack);
-//		//System.out.println(btnB.getHeight());
-//		btnB.addListener(new ClickListener(){
-//			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-//				game.setScreen(new HomeScreen(game));
-//				System.out.println("back");
-//				return true;
-//			}
-//		});
-//		btnB.setX(0);
-//		btnB.setY(height*.9f);
-//	}
+	private void createBackButton(){
+		btnBack = new Texture("btn_back.png");
+		btnB = new Image(btnBack);
+		//System.out.println(btnB.getHeight());
+		btnB.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(new HomeScreen(game));
+				System.out.println("back");
+				return true;
+			}
+		});
+		btnB.setX(0);
+		btnB.setY(height*.9f);
+	}
 	
 	
 	
 }
+

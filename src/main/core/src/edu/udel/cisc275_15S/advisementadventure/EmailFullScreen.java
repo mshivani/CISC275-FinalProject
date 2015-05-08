@@ -30,12 +30,16 @@ public class EmailFullScreen extends ScreenAdapter {
 	ArrayList<Email> emailList;
 	Email currentEmail;
 	Image btnB;
+	Image star;
 
 	public EmailFullScreen(MyGdxGame g, Email e) {
 		this.game = g;
 		textFont = new BitmapFont();
 		textFont.setColor(0, 0, 0, 1);
 		this.currentEmail = e;
+		this.taskList = g.taskList;
+		Texture starT = new Texture("star.png");
+		star = new Image(starT);
 	}
 	
 	@Override
@@ -46,6 +50,7 @@ public class EmailFullScreen extends ScreenAdapter {
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		createBackButton();
 		parseEmails();
+		createAchieveStar();
 		if (currentEmail != null) {
 			createEmail();
 		}
@@ -60,6 +65,20 @@ public class EmailFullScreen extends ScreenAdapter {
 		stage.draw();
 		stage.act();
 
+	}
+	
+	public void createAchieveStar(){
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+			}
+		}
+		if(create){
+			star.setX(screenWidth/2);
+			star.setY(screenHeight/2);
+			stage.addActor(star);
+		}
 	}
 	
 	public void parseEmails() {

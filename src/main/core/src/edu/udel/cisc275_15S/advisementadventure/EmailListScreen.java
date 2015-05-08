@@ -36,6 +36,7 @@ public class EmailListScreen extends ScreenAdapter {
 	ArrayList<Task> taskList;
 	Stage stage;
 	ArrayList<Email> emailList;
+	Image star;
 
 	public EmailListScreen(MyGdxGame g) {
 		this.game = g;
@@ -47,7 +48,9 @@ public class EmailListScreen extends ScreenAdapter {
 		this.taskList = g.taskList;
 		emailList = new ArrayList<Email>();
 		parseEmails();
-
+		//createAchieveStar();
+		Texture starT = new Texture("star.png");
+		star = new Image(starT);
 	}
 
 	@Override
@@ -77,6 +80,20 @@ public class EmailListScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(stage);
 	}
 
+//	public void createAchieveStar(){
+//		boolean create = false;
+//		for(int i = 0; i < taskList.size(); i++){
+//			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+//				create = true;
+//			}
+//		}
+//		if(create){
+//			star.setX(screenWidth/2);
+//			star.setY(screenHeight/2);
+//			stage.addActor(star);
+//		}
+//	}
+	
 	private void createTitle() {
 		inbox = new Label("Inbox", uiskin);
 		inbox.setX(screenWidth / 2 - inbox.getWidth());
@@ -124,7 +141,7 @@ public class EmailListScreen extends ScreenAdapter {
 					if(game.currentTask==2&&em.subject.equals("Add Courses"))
 						game.currentTask=3;
 					if(game.currentTask==-1&&em.subject.equals("Add your Major")){
-
+						
 						System.out.println("hit it");
 						game.currentTask=0;
 					}
@@ -133,10 +150,10 @@ public class EmailListScreen extends ScreenAdapter {
 					//game.currText++;
 					//					}
 					//
-					//					if (!taskList.get(4).isCompleted()) {
-					//						taskList.get(4).setCompleted();
-					//						game.setScreen(game.help);
-					//					}
+//										if (!taskList.get(0).isCompleted()) {
+//											taskList.get(0).setCompleted();
+//											game.setScreen(game.help);
+//										}
 					return true;
 				}
 			});
