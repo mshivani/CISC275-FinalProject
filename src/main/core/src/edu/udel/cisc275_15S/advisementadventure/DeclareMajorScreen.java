@@ -1,5 +1,7 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -29,10 +31,16 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	Stage s;
 	Texture btnBack;
 	Image btnB;
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	
 	
 	
 	public DeclareMajorScreen(MyGdxGame g){
+		
 		this.game = g;
+		this.taskList = g.taskList;
 		majorChoices = new Array();
 		majorChoices.add("Undeclared");
 		majorChoices.add("Agricultural and Natural Resources");
@@ -52,6 +60,9 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		majorChoices.add("Music");
 		majorChoices.add("Nursing");
 		majorChoices.add("Womens Studies");	
+		
+		
+
 	}
 	
 	private void createBackButton() {
@@ -96,10 +107,52 @@ public class DeclareMajorScreen extends ScreenAdapter {
 						game.currText=0;
 						game.currentTask=1;
 					}
+					if (!taskList.get(1).isCompleted()) {
+						taskList.get(1).setCompleted();
+						star.setX(100);
+						star.setY(300);
+						s.addActor(star);
+						star.addListener(new ClickListener(){
+							public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+								game.setScreen(game.help);			
+								return true;
+							}
+						});
+						star.setX(100);
+						star.setY(300);
+						s.addActor(star);
+					}
+					
 				}
 				return true;
 			}
 		});
+		
+	}
+	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setX(100);
+			star.setY(300);
+			s.addActor(star);
+		}
+		
 	}
 	
 	@Override
@@ -115,16 +168,19 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		createDropDown();
 		createAdd();
 		
+		
 		batch = new SpriteBatch();
 		banner = new Texture("schLogo.png");
 		
 		s = new Stage();
-		Gdx.input.setInputProcessor(s);
+		
 		s.addActor(btnB);
 		s.addActor(sb);
 		s.addActor(add);
-		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		createAchieveStar();
 		
+		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		Gdx.input.setInputProcessor(s);
 	}
 	
 	@Override

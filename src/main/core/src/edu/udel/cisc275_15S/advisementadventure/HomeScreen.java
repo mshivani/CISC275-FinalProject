@@ -39,10 +39,16 @@ public class HomeScreen extends ScreenAdapter{
 	Image btnE;
 	Label emailL;
 	Texture btnHelp;
+//<<<<<<< Updated upstream
 	Image btnH;
 	Texture indicArrow;
 	Image arrow;
 	Label helpL;
+//=======
+	
+	// Texture blueHen;
+	boolean input;
+//>>>>>>> Stashed changes
 	float height;
 	float width;
 	Texture bg;

@@ -9,12 +9,14 @@ public class Task {
 	Texture completedPic;
 	Texture uncompletedPic;
 	boolean completed;
+	boolean seen;
 	String description;
 	
 	public Task(int num, String comPic, String uncomPic, String des) {
 		tasknum = num;
 		this.display = "";
 		this.completed = false;
+		this.seen = false;
 		completedPic = new Texture(comPic);
 		uncompletedPic = new Texture(uncomPic);
 		description = des;
@@ -34,6 +36,14 @@ public class Task {
 	
 	public void setCompleted(){
 		completed = true;
+	}
+	
+	public void setSeen(){
+		seen = true;
+	}
+	
+	public boolean isSeen(){
+		return seen;
 	}
 	
 	public String getDescription(){
