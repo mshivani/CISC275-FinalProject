@@ -40,6 +40,12 @@ public class TextScreen extends ScreenAdapter{
 	float width;
 	float height;
 	Image textR;
+	int r1W;
+	int r2W;
+	int r3W;
+	int r4W;
+	int r5W;
+	int idk;
 
 	public TextScreen(MyGdxGame g, Question q) {
 		//width = Gdx.graphics.getWidth();
@@ -47,9 +53,11 @@ public class TextScreen extends ScreenAdapter{
 		this.currentQuestion = q;
 		this.game = g;
 		resp = q.getResponses();
+		
 	}
 	@Override
 	public void show(){
+		game.data.writeString(currentQuestion.toString() + "\n", true);
 		width = Gdx.graphics.getWidth();
 		height= Gdx.graphics.getHeight();
 
@@ -79,6 +87,10 @@ public class TextScreen extends ScreenAdapter{
 		wrong.setY(r1.getHeight() + r2.getHeight()+10);
 		wrong.setColor(Color.BLACK);
 	}
+
+		
+			
+	
 	public void createResponses(){
 		//final ArrayList<String> resp = currentQuestion.getResponses();	
 		System.out.println("resp is " + resp);
@@ -92,9 +104,14 @@ public class TextScreen extends ScreenAdapter{
 						System.out.println("Correct");
 						determineTasks();
 						createReply(currentQuestion.getCorrectResponse().response);
+						//updateFile(resp.get(0));
+						game.data.writeString(currentQuestion.updateFile(), true);
+						System.out.println(game.data.readString());
 					}
 					else{
 						createWrong();
+					//	updateFile(resp.get(0));
+						currentQuestion.updateWrong(resp.get(0));
 						s.addActor(wrong);
 						//game.setScreen(new HomeScreen(game));
 					}
@@ -113,9 +130,14 @@ public class TextScreen extends ScreenAdapter{
 						System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
+						game.data.writeString(currentQuestion.updateFile(), true);
+						System.out.println(game.data.readString());
+						//updateFile(resp.get(0));
 					}
 					else{
 						createWrong();
+						currentQuestion.updateWrong(resp.get(1));
+						//updateFile(resp.get(0));
 						s.addActor(wrong);
 						//game.setScreen(new HomeScreen(game));
 					}
@@ -135,9 +157,14 @@ public class TextScreen extends ScreenAdapter{
 						System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
+						game.data.writeString(currentQuestion.updateFile(), true);
+						System.out.println(game.data.readString());
+						//updateFile(resp.get(0));
 					}
 					else{
 						createWrong();
+						currentQuestion.updateWrong(resp.get(2));
+						//updateFile(resp.get(0));
 						s.addActor(wrong);
 						//game.setScreen(new HomeScreen(game));
 					}
@@ -149,16 +176,17 @@ public class TextScreen extends ScreenAdapter{
 		
 		if(!(resp.get(0).equals("empty") &&resp.get(1).equals("empty")&&resp.get(2).equals("empty"))){
 			r4 = new TextButton("I don't know", uiskin);
-			
-			
-			
+						
 			r4.setX(width-r3.getWidth());
 			r4.setY(r2.getHeight());
 			r4.setWidth(width/2);
 			r4.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					createWrong();
+					currentQuestion.updateWrong("I don't know");
 					s.addActor(wrong);
+					//idk++;
+					//game.data.writeString("I don't know " +idk, true);
 					//game.setScreen(new HomeScreen(game));
 					return true;
 				}

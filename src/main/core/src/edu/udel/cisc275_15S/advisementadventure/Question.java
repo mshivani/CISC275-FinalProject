@@ -7,10 +7,16 @@ import java.util.Random;
 public class Question {
 	String question;
 	private Response response1;
+	
 	private Response response2;
+	int wrongCount2;
 	private Response response3;
+	int wrongCount3;
 	private Response response4;
+	int wrongCount4;
 	private Response response5;
+	int wrongCount5;
+	private int idkCount;
 
 	public Question(String a, String b, String c, String d, String e, String f){
 		this.question = a;
@@ -25,8 +31,26 @@ public class Question {
 	}
 	@Override 
 	public String toString(){
-		return "question is " + question + " response 1 is " +  response1.response + " response 2 is " + response2.response
-				+ " response 3 is " + response3.response + " response 4 is " + response4.response + " response 5 is " + response5.response;
+		return question;
+	}
+	public String updateFile(){
+		String temp; 
+		temp = question + "\n" + "Response 1: 1 \n" + "Response 2: " + wrongCount2 + "\n" + "Response 3: " + wrongCount3 +"\n" + "Response 4: " + wrongCount4 + "\n"
+				+ "Response 5: " + wrongCount5 + "\n" + "I don't know" + idkCount + "\n";
+		return temp;
+	}
+	public void updateWrong(String x){
+		if(x.equals(response2.response))
+			wrongCount2++;
+		else if(x.equals(response3.response))
+			wrongCount3++;
+		else if(x.equals(response4.response))
+			wrongCount4++;
+		else if(x.equals(response5.response))
+			wrongCount5++;
+		else if(x.equals("I don't know"))
+			idkCount++;
+		
 	}
 	public ArrayList<String> getResponses(){
 		ArrayList<String> x = new ArrayList<String>();

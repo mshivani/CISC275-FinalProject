@@ -6,12 +6,13 @@ import java.util.Stack;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
 	public static final int btnBackMargin = 10;
-
+	FileHandle data;
 	ArrayList<Question> questionList;
 	SpriteBatch batch;
 	ArrayList<Note> notesList;
@@ -44,6 +45,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	public void create() {
 		currentTask=-1;
 		currText=-1;
+		data= Gdx.files.local("list of students.txt");
 		//parseQuestions();
 		questionList = new ArrayList<Question>();
 		notesList= new ArrayList<Note>();
