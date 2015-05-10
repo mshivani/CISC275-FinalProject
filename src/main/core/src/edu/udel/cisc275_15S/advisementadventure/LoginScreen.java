@@ -58,7 +58,7 @@ public class LoginScreen extends ScreenAdapter {
 					x = new Question(quest2, quest3, line = reader.readLine(),
 							line = reader.readLine(), line = reader.readLine(),
 							line = reader.readLine());
-					System.out.println(x);
+					//System.out.println(x);
 					game.questionList.add(x);
 				}
 				// System.out.println(x);
@@ -110,7 +110,7 @@ public class LoginScreen extends ScreenAdapter {
 
 					
 					 game.data.writeString(tf.getText() + "\n", false);
-					 System.out.println(game.data.readString());
+					// System.out.println(game.data.readString());
 					// System.out.println("tf text " + tf.getText());
 
 					game.setScreen(new HomeScreen(game));

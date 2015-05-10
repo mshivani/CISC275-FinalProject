@@ -36,7 +36,8 @@ public class Question {
 	public String updateFile(){
 		String temp; 
 		temp = question + "\n" + "Response 1: 1 \n" + "Response 2: " + wrongCount2 + "\n" + "Response 3: " + wrongCount3 +"\n" + "Response 4: " + wrongCount4 + "\n"
-				+ "Response 5: " + wrongCount5 + "\n" + "I don't know" + idkCount + "\n";
+				+ "Response 5: " + wrongCount5 + "\n" + "I don't know: " + idkCount + "\n";
+		System.out.println(temp);
 		return temp;
 	}
 	public void updateWrong(String x){
@@ -57,7 +58,7 @@ public class Question {
 		Random rand = new Random();
 		System.out.println(response1.response);
 		if(!this.response1.response.equals("empty")){
-			System.out.println("if statement hit");
+			//System.out.println("if statement hit");
 			x.add(this.response1.response);
 			for(int i =0;i<3;i++){
 				int temp = rand.nextInt(4);
@@ -73,7 +74,7 @@ public class Question {
 			Collections.shuffle(x);
 		}
 		else{
-			System.out.println("else statement hit");
+		//	System.out.println("else statement hit");
 			for(int i=0;i<5;i++){
 				x.add("empty");
 			}

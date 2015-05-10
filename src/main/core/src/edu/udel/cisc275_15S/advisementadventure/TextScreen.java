@@ -57,7 +57,7 @@ public class TextScreen extends ScreenAdapter{
 	}
 	@Override
 	public void show(){
-		game.data.writeString(currentQuestion.toString() + "\n", true);
+		//game.data.writeString(currentQuestion.toString() + "\n", true);
 		width = Gdx.graphics.getWidth();
 		height= Gdx.graphics.getHeight();
 
@@ -93,7 +93,7 @@ public class TextScreen extends ScreenAdapter{
 	
 	public void createResponses(){
 		//final ArrayList<String> resp = currentQuestion.getResponses();	
-		System.out.println("resp is " + resp);
+		//System.out.println("resp is " + resp);
 		if(!(resp.get(0).equals("empty"))){
 			r1 = new TextButton(resp.get(0), uiskin);
 			r1.setX(0);
@@ -239,7 +239,7 @@ public class TextScreen extends ScreenAdapter{
 		btnB = new Image(btnBack);
 		btnB.setX(0);
 		btnB.setY(height-btnB.getHeight());
-		System.out.println(btnB.getHeight());
+		//System.out.println(btnB.getHeight());
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				game.setScreen(new HomeScreen(game));
@@ -271,7 +271,7 @@ public class TextScreen extends ScreenAdapter{
 	}
 	@Override
 	public void resize(int width, int height){
-		System.out.println("resize");
+		//System.out.println("resize");
 		//width = Gdx.graphics.getWidth();
 		//height= Gdx.graphics.getHeight();
 		this.show();
