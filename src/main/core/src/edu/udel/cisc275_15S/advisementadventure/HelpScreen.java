@@ -132,9 +132,6 @@ public class HelpScreen extends ScreenAdapter{
 		Gdx.gl.glClearColor(205/255f, 242/255f, 250/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
        
-        
-        
-        
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted() && changePic[i]){
 				font.setColor(Color.BLACK);
@@ -181,7 +178,8 @@ public class HelpScreen extends ScreenAdapter{
     		
     			if(vecArr.get(i).x >= width*.75f && vecArr.get(i).x <= width*.77f){
     				chime.play();
-    				//awesome.play();
+    				tasklist.get(i).setSeen();
+    				
     			}
     	    	speedx = width+75-vecArr.get(i).x;
     	    	speedy = vecArr.get(i).y +35- (height*.57f - height*.05f*(i+1));
@@ -236,7 +234,7 @@ public class HelpScreen extends ScreenAdapter{
 			
 			//returnScreen[index] = true;
 			sawComp[index] = true;
-			tasklist.get(index).setSeen();
+			
 			
 		}
 		batch.draw(star, exp1.x, exp1.y, 10, 10);

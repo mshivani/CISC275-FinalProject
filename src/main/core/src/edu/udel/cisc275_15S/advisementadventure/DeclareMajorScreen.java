@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -34,6 +35,8 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	ArrayList<Task> taskList;
 	Image star;
 	Texture starT;
+	Label la;
+	int num;
 	
 	
 	
@@ -109,18 +112,30 @@ public class DeclareMajorScreen extends ScreenAdapter {
 					}
 					if (!taskList.get(1).isCompleted()) {
 						taskList.get(1).setCompleted();
-						star.setX(100);
-						star.setY(300);
+						num=0;
+						for(int i = 0; i < taskList.size(); i++){
+							if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+								num++;
+							}
+						}
+						
+						star.setWidth(80);
+						star.setHeight(80);
+						star.setX(width - star.getWidth());
+						star.setY(height - star.getHeight());
 						s.addActor(star);
+						la = new Label(num+"", uiskin);
+						la.setX(star.getX()+star.getWidth()*.44f);
+						la.setY(star.getY()+star.getHeight()*.36f);
+						la.setColor(Color.BLACK);
+						s.addActor(la);
 						star.addListener(new ClickListener(){
 							public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 								game.setScreen(game.help);			
 								return true;
 							}
 						});
-						star.setX(100);
-						star.setY(300);
-						s.addActor(star);
+					
 					}
 					
 				}
@@ -133,11 +148,12 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	public void createAchieveStar(){
 		starT = new Texture("star.png");
 		star = new Image(starT);
-		
+		num = 0;
 		boolean create = false;
 		for(int i = 0; i < taskList.size(); i++){
 			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
 				create = true;
+				num++;
 			}
 		}
 	
@@ -148,9 +164,16 @@ public class DeclareMajorScreen extends ScreenAdapter {
 					return true;
 				}
 			});
-			star.setX(100);
-			star.setY(300);
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
 			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
 		}
 		
 	}

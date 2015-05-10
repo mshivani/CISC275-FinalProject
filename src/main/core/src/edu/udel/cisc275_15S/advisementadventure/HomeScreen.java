@@ -1,5 +1,6 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
@@ -45,7 +46,11 @@ public class HomeScreen extends ScreenAdapter{
 	Image arrow;
 	Label helpL;
 //=======
-	
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
 	// Texture blueHen;
 	boolean input;
 //>>>>>>> Stashed changes
@@ -56,6 +61,7 @@ public class HomeScreen extends ScreenAdapter{
 	public HomeScreen(MyGdxGame g){
 		this.game = g;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+		this.taskList = g.taskList;
 		//
 		//batch = new SpriteBatch();
 		//font = new BitmapFont();
@@ -91,9 +97,44 @@ public class HomeScreen extends ScreenAdapter{
 		createTextButton();
 		createEmailButton();
 		createHelpButton();
+		createAchieveStar();
 		// createIndicatorArrow();
 		Gdx.input.setInputProcessor(s);
 	}
+	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
+		
+	}
+
 	public void createHelpButton(){
 		helpL = new Label("Trophies", uiskin);
 		btnHelp = new Texture("trophy-widget.png");

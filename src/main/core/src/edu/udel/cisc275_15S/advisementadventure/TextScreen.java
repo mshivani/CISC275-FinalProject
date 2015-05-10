@@ -40,6 +40,13 @@ public class TextScreen extends ScreenAdapter{
 	float width;
 	float height;
 	Image textR;
+
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
+
 	int r1W;
 	int r2W;
 	int r3W;
@@ -47,11 +54,13 @@ public class TextScreen extends ScreenAdapter{
 	int r5W;
 	int idk;
 
+
 	public TextScreen(MyGdxGame g, Question q) {
 		//width = Gdx.graphics.getWidth();
 		//height= Gdx.graphics.getHeight();
 		this.currentQuestion = q;
 		this.game = g;
+		this.taskList = g.taskList;
 		resp = q.getResponses();
 		
 	}
@@ -71,8 +80,42 @@ public class TextScreen extends ScreenAdapter{
 		createResponses();
 		//createWrong();
 		//createReply();
+		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 		determineTasks();
+		
+	}
+	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
 		
 	}
 	public void determineTasks(){

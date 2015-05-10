@@ -1,13 +1,18 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class DegreeAuditScreen extends ScreenAdapter {
@@ -20,9 +25,16 @@ public class DegreeAuditScreen extends ScreenAdapter {
 	Image btnB;
 	Texture bg;
 	//Texture activeCourses;
+	Skin uiskin;
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
 	
 	public DegreeAuditScreen(MyGdxGame g){
 		this.game = g;
+		this.taskList = g.taskList;
 	}
 	
 	private void createBackButton() {
@@ -47,7 +59,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		}
 		bg = new Texture("univReq.png");
 		//activeCourses = new Texture("activeCourses.png");
-
+		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
 		
@@ -58,7 +70,41 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		s = new Stage();
 		Gdx.input.setInputProcessor(s);
 		s.addActor(btnB);
+		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		
+	}
+	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
 		
 	}
 	

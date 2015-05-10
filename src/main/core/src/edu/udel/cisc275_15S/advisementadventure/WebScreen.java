@@ -1,5 +1,7 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -30,11 +32,51 @@ public class WebScreen extends ScreenAdapter{
 	float width;
 	float height;
 	TextureRegion temp1 = new TextureRegion();
+	
+	Image star;
+	Texture starT;
+	ArrayList<Task> taskList;
+	Label la;
+	int num;
 
 
 	public WebScreen(MyGdxGame g) {
 		this.game = g;
+		this.taskList = g.taskList;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+	}
+	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
+		
 	}
 	
 	
@@ -85,6 +127,7 @@ public class WebScreen extends ScreenAdapter{
 		s.addActor(btnUD);
 		s.addActor(btnRSVP);
 		s.addActor(btnB);
+		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 	}
 	@Override

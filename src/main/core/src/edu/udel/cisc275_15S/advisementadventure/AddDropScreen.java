@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -38,6 +39,14 @@ public class AddDropScreen extends ScreenAdapter {
 	Array dropItems;
 	Label AddL;
 	Label DropL;
+
+	
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
+
 	
 	public AddDropScreen(MyGdxGame g) {
 		
@@ -66,6 +75,7 @@ public class AddDropScreen extends ScreenAdapter {
 		dropItems.add("");
 		
 		this.game = g;
+		this.taskList = g.taskList;
 		
 	}
 
@@ -175,6 +185,40 @@ public class AddDropScreen extends ScreenAdapter {
 	}
 	
 
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
+		
+	}
+
+
 	// initializations of pictures, methods, and adding actors
 	@Override
 	public void show() {
@@ -205,6 +249,7 @@ public class AddDropScreen extends ScreenAdapter {
 		s.addActor(add);
 		s.addActor(drop);
 		s.addActor(btnB);
+		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		
 	}

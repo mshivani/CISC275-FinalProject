@@ -1,7 +1,10 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,11 +31,24 @@ public class RsvpScreen extends ScreenAdapter {
 	Stage s;
 	Texture btnBack;
 	Image btnB;
+//<<<<<<< Updated upstream
+
+//=======
+//<<<<<<< HEAD
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
+//=======
 	Label rsvpL;
+//>>>>>>> origin/master
+//>>>>>>> Stashed changes
 	
 	
 	public RsvpScreen(MyGdxGame g){
 		this.game = g;
+		this.taskList = g.taskList;
 		rsvpChoices = new Array();
 		rsvpChoices.add(" ");
 		rsvpChoices.add("Advisory Networking Night: March 9, 2016");
@@ -89,6 +105,39 @@ public class RsvpScreen extends ScreenAdapter {
 		});
 	}
 	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
+		
+	}
+	
 	@Override
 	public void show() {
 		
@@ -112,6 +161,7 @@ public class RsvpScreen extends ScreenAdapter {
 		s.addActor(btnB);
 		s.addActor(sb);
 		s.addActor(add);
+		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		
 	}

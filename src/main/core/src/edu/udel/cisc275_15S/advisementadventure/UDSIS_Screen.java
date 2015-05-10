@@ -1,7 +1,10 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -9,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -38,6 +42,10 @@ public class UDSIS_Screen extends ScreenAdapter {
 	Texture audit;
 	Image btnAudit;
 	
+	Image star;
+	Texture starT;
+	ArrayList<Task> taskList;
+	
 	BitmapFont font;
 	Stage s;
 	
@@ -47,9 +55,43 @@ public class UDSIS_Screen extends ScreenAdapter {
 	
 	public UDSIS_Screen(MyGdxGame g){
 		this.game = g;
+		this.taskList = g.taskList;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 	}
 	
+	public void createAchieveStar(){
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		Label la;
+		int num = 0;
+		boolean create = false;
+		for(int i = 0; i < taskList.size(); i++){
+			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+				create = true;
+				num++;
+			}
+		}
+	
+		if(create){
+			star.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			s.addActor(star);
+			la = new Label(num+"", uiskin);
+			la.setX(star.getX()+star.getWidth()*.44f);
+			la.setY(star.getY()+star.getHeight()*.36f);
+			la.setColor(Color.BLACK);
+			s.addActor(la);
+		}
+		
+	}
 	public void show(){
 		
 		width = Gdx.graphics.getWidth();
@@ -105,6 +147,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		btnMajor = new Image(major);
 		btnMajor.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				
 				game.setScreen(game.major);
 				return true;
 			}
@@ -116,6 +159,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		btnAudit = new Image(audit);
 		btnAudit.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				taskList.get(4).setCompleted();				
 				game.setScreen(game.degreeAudit);
 				return true;
 			}
@@ -123,6 +167,8 @@ public class UDSIS_Screen extends ScreenAdapter {
 		btnAudit.setBounds(10, height - (udBanner.getHeight()+academicsBar.getHeight()+50) - btnClassSch.getHeight() - btnAddDrop.getHeight() - btnMajor.getHeight(),  btnAudit.getWidth(), btnAudit.getHeight());
 		s.addActor(btnAudit);
 		
+		
+		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 	}
 	
