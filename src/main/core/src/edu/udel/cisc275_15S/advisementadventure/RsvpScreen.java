@@ -28,19 +28,19 @@ public class RsvpScreen extends ScreenAdapter {
 	Stage s;
 	Texture btnBack;
 	Image btnB;
+	Label rsvpL;
 	
 	
 	public RsvpScreen(MyGdxGame g){
 		this.game = g;
 		rsvpChoices = new Array();
 		rsvpChoices.add(" ");
+		rsvpChoices.add("Advisory Networking Night: March 9, 2016");
+		rsvpChoices.add("A slot in the Writing Center");
+		rsvpChoices.add("Getting the Flu Shot");
+		rsvpChoices.add("J.P.Morgan Dining Etiquette: April 21, 2015");
 		rsvpChoices.add("Meet the Firms Night: Sept 9, 2015");
 		rsvpChoices.add("Law School Fair: Oct 14, 2015");
-		rsvpChoices.add("Consulting/Advisory Networking Night: March 9, 2016");
-		rsvpChoices.add("J.P.Morgan Dining Etiquette: April 21, 2015");
-		rsvpChoices.add("Register to get the Flu Shot");
-		rsvpChoices.add("Register for a slot in the Writing Center");
-	
 	}
 	
 	private void createBackButton() {
@@ -72,7 +72,15 @@ public class RsvpScreen extends ScreenAdapter {
 		add.setHeight(sb.getHeight());
 		add.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				if(sb.getSelected() != null && sb.getSelected() != " "){
+				if(sb.getSelected() != null && sb.getSelected() != " "){	
+					
+					rsvpL.setText("Congrats! You have registered for: " + sb.getSelected());
+					s.addActor(rsvpL);
+					rsvpL.setColor(1, 0, 0, 1);
+					rsvpL.setX(sb.getX() - sb.getX()/2);
+					rsvpL.setY(sb.getY() - sb.getHeight());
+					
+					
 					rsvpChoices.removeValue(sb.getSelected(), true);
 					sb.setItems(rsvpChoices);
 				}
@@ -89,6 +97,8 @@ public class RsvpScreen extends ScreenAdapter {
 
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
+		
+		rsvpL = new Label(" ", uiskin);
 		
 		createBackButton();
 		createDropDown();
