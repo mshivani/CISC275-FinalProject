@@ -40,6 +40,8 @@ public class AddDropScreen extends ScreenAdapter {
 	Label DropL;
 	
 	public AddDropScreen(MyGdxGame g) {
+		
+		// Create a list of items that stores the possible classes that the user can take
 		currentList = new ArrayList();
 		newItems  = new Array();
 		newItems.add("");
@@ -59,13 +61,15 @@ public class AddDropScreen extends ScreenAdapter {
 		newItems.add("UNIV 101");
 		newItems.add("WOMS 205");
 		
-		
+		//initializes a drop items list for the possible classes that the user can drop 
 		dropItems = new Array();
 		dropItems.add("");
+		
 		this.game = g;
 		
 	}
 
+	// creates a drop down for the classes the user is able to add
 	public void createDropDown(){
 		sb = new SelectBox(uiskin);
 		sb.setWidth(width/2);
@@ -74,6 +78,7 @@ public class AddDropScreen extends ScreenAdapter {
 		sb.setMaxListCount(3);
 	}
 	
+	// creates a drop down for the classes the user is able to drop
 	public void createDropDown2(){
 		sb2 = new SelectBox(uiskin);
 		sb2.setWidth(width/2);
@@ -83,6 +88,7 @@ public class AddDropScreen extends ScreenAdapter {
 	}
 	
 	
+	// creates an add button for the user to click on in order to add a class
 	public void createAdd(){
 		add = new TextButton("Add", uiskin);
 		add.setPosition(sb.getX()+sb.getWidth(), sb.getY());
@@ -93,15 +99,20 @@ public class AddDropScreen extends ScreenAdapter {
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb.getSelected() != null && sb.getSelected() != ""){
 					
+					// displays a message to the user confirming that they have added the class
 					AddL.setText("Congrats! You have added: " + sb.getSelected());
 					s.addActor(AddL);
 					AddL.setColor(1, 0, 0, 1);
 					AddL.setX(sb.getX());
 					AddL.setY(sb.getY() - sb.getHeight());
 					
+					//updates the list of classes the user is able to add
 					currentList.add(sb.getSelected());
 					newItems.removeValue(sb.getSelected(), true);
+					
+					//updates the list of classes that the user is able to drop
 					dropItems.add(sb.getSelected());
+					
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
 					
@@ -114,6 +125,8 @@ public class AddDropScreen extends ScreenAdapter {
 		});
 	}
 	
+	
+	// creates an drop button for the user to click on in order to drop a class
 	public void createDrop(){
 		drop = new TextButton("Drop", uiskin);
 		drop.setPosition(sb2.getX()+sb2.getWidth(), sb2.getY());
@@ -124,15 +137,20 @@ public class AddDropScreen extends ScreenAdapter {
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb2.getSelected() != null && sb2.getSelected() != ""){
 					
+					// displays a message to the user confirming that they have dropped the class
 					DropL.setText("Congrats! You have dropped: " + sb2.getSelected());
 					s.addActor(DropL);
 					DropL.setColor(1, 0, 0, 1);
 					DropL.setX(sb2.getX());
 					DropL.setY(sb2.getY() - sb2.getHeight());
 					
+					//updates the list of classes that the user is able to drop
 					currentList.remove(sb2.getSelected());
 					dropItems.removeValue(sb2.getSelected(), true);
+					
+					//updates the list of classes the user is able to add
 					newItems.add(sb2.getSelected());
+					
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
 					classCount--;
@@ -142,6 +160,7 @@ public class AddDropScreen extends ScreenAdapter {
 		});
 	}
 
+	// creates a back button that the user is able to click on in order to go back to the udsis screen
 	private void createBackButton() {
 		Texture btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
@@ -156,7 +175,7 @@ public class AddDropScreen extends ScreenAdapter {
 	}
 	
 
-	
+	// initializations of pictures, methods, and adding actors
 	@Override
 	public void show() {
 		
@@ -174,9 +193,11 @@ public class AddDropScreen extends ScreenAdapter {
 		
 		createAdd();
 		createDrop();
+		
 		batch = new SpriteBatch();
 		banner = new Texture("schLogo.png");
 		registration = new Texture("Registration.png");
+		
 		s = new Stage();
 		Gdx.input.setInputProcessor(s);
 		s.addActor(sb);
