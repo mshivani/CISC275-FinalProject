@@ -36,20 +36,29 @@ public class AddDropScreen extends ScreenAdapter {
 	ArrayList currentList;
 	Array newItems;
 	Array dropItems;
+	Label AddL;
+	Label DropL;
 	
 	public AddDropScreen(MyGdxGame g) {
 		currentList = new ArrayList();
 		newItems  = new Array();
 		newItems.add("");
-		newItems.add("EGGG 101");
-		newItems.add("MUSC 100");
+		newItems.add("ANTH 101");
 		newItems.add("CHEM 103");
-		newItems.add("ENGL 110");
-		newItems.add("PHYS 207");
 		newItems.add("CISC 108");
-		newItems.add("HIST 104");
+		newItems.add("DANC101");
 		newItems.add("ECON 101");
+		newItems.add("EGGG 101");
+		newItems.add("ENGL 110");
+		newItems.add("GEOG 102");
+		newItems.add("HIST 104");
+		newItems.add("LING 101");
+		newItems.add("PHYS 207");
+		newItems.add("MATH 201");
+		newItems.add("MUSC 100");
 		newItems.add("UNIV 101");
+		newItems.add("WOMS 205");
+		
 		
 		dropItems = new Array();
 		dropItems.add("");
@@ -83,11 +92,19 @@ public class AddDropScreen extends ScreenAdapter {
 
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb.getSelected() != null && sb.getSelected() != ""){
+					
+					AddL.setText("Congrats! You have added: " + sb.getSelected());
+					s.addActor(AddL);
+					AddL.setColor(1, 0, 0, 1);
+					AddL.setX(sb.getX());
+					AddL.setY(sb.getY() - sb.getHeight());
+					
 					currentList.add(sb.getSelected());
 					newItems.removeValue(sb.getSelected(), true);
 					dropItems.add(sb.getSelected());
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
+					
 					classCount++;
 					if(classCount>=5 && game.currentTask==3)
 						game.currentTask=4;
@@ -106,6 +123,13 @@ public class AddDropScreen extends ScreenAdapter {
 
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb2.getSelected() != null && sb2.getSelected() != ""){
+					
+					DropL.setText("Congrats! You have dropped: " + sb2.getSelected());
+					s.addActor(DropL);
+					DropL.setColor(1, 0, 0, 1);
+					DropL.setX(sb2.getX());
+					DropL.setY(sb2.getY() - sb2.getHeight());
+					
 					currentList.remove(sb2.getSelected());
 					dropItems.removeValue(sb2.getSelected(), true);
 					newItems.add(sb2.getSelected());
@@ -140,6 +164,9 @@ public class AddDropScreen extends ScreenAdapter {
 
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
+		
+		AddL = new Label(" ", uiskin);
+		DropL = new Label(" ", uiskin);
 		
 		createBackButton();
 		createDropDown();
