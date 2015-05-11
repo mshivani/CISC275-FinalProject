@@ -112,29 +112,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 					}
 					if (!taskList.get(1).isCompleted()) {
 						taskList.get(1).setCompleted();
-						num=0;
-						for(int i = 0; i < taskList.size(); i++){
-							if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
-								num++;
-							}
-						}
-						
-						star.setWidth(80);
-						star.setHeight(80);
-						star.setX(width - star.getWidth());
-						star.setY(height - star.getHeight());
-						s.addActor(star);
-						la = new Label(num+"", uiskin);
-						la.setX(star.getX()+star.getWidth()*.44f);
-						la.setY(star.getY()+star.getHeight()*.36f);
-						la.setColor(Color.BLACK);
-						s.addActor(la);
-						star.addListener(new ClickListener(){
-							public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-								game.setScreen(game.help);			
-								return true;
-							}
-						});
+						createAchieveStar();
 					
 					}
 					

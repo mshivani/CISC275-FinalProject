@@ -127,8 +127,11 @@ public class AddDropScreen extends ScreenAdapter {
 					sb2.setItems(dropItems);
 					
 					classCount++;
-					if(classCount>=5 && game.currentTask==3)
+					if(classCount>=5 && game.currentTask==3){
+						taskList.get(3).setCompleted();
 						game.currentTask=4;
+						createAchieveStar();
+					}
 				}
 				return true;
 			}
@@ -142,7 +145,7 @@ public class AddDropScreen extends ScreenAdapter {
 		drop.setPosition(sb2.getX()+sb2.getWidth(), sb2.getY());
 		drop.setHeight(sb2.getHeight());
 		drop.addListener(new ClickListener(){
-			private int classCount;
+			private int classCount=0;
 
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb2.getSelected() != null && sb2.getSelected() != ""){

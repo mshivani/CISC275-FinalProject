@@ -1,1 +1,8 @@
-123456789
+123467898
+Hey roomie! I�m trying to register for classes for my finance major, but I have no idea which ones to take. Any ideas?
+Response 1: 1 
+Response 2: 0
+Response 3: 0
+Response 4: 0
+Response 5: 0
+I don't know: 0

@@ -159,6 +159,9 @@ public class EmailListScreen extends ScreenAdapter {
 			email.setStyle(labelStyle);
 			email.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent ev, float x, float y, int pointer, int button) {
+					if (!taskList.get(0).isCompleted()) {
+						taskList.get(0).setCompleted();
+					}
 					game.setScreenHelp(game.email2, em);
 					if(game.currentTask==3 &&em.subject.equals("Degree Audit")){
 						game.currentTask=4;
@@ -170,7 +173,7 @@ public class EmailListScreen extends ScreenAdapter {
 						System.out.println("hit it");
 						game.currentTask=0;
 					}
-
+					
 					//System.out.println(game.textCount);
 					//game.currText++;
 					//					}

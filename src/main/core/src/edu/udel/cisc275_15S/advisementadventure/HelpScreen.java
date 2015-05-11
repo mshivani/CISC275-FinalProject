@@ -89,7 +89,7 @@ public class HelpScreen extends ScreenAdapter{
 		changePic = new boolean[10];
 		returnScreen = new boolean[10];
 		chime = Gdx.audio.newSound(Gdx.files.internal("chime.mp3"));
-		awesome = Gdx.audio.newSound(Gdx.files.internal("XcOSoSj-ar.mp3"));
+		
 		for(int i=0; i<sawComp.length; i++){
 			sawComp[i] = false;
 			changePic[i] = false;
