@@ -151,6 +151,12 @@ public class DeclareMajorScreen extends ScreenAdapter {
 			la.setX(star.getX()+star.getWidth()*.44f);
 			la.setY(star.getY()+star.getHeight()*.36f);
 			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener(){
+				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+					game.setScreen(game.help);			
+					return true;
+				}
+			});
 			s.addActor(la);
 		}
 		
