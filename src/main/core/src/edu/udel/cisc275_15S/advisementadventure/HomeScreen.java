@@ -98,7 +98,7 @@ public class HomeScreen extends ScreenAdapter{
 		createEmailButton();
 		createHelpButton();
 		createAchieveStar();
-		// createIndicatorArrow();
+		createIndicatorArrow();
 		Gdx.input.setInputProcessor(s);
 	}
 	
@@ -233,14 +233,16 @@ public class HomeScreen extends ScreenAdapter{
 		s.addActor(notesL);
 	}
 	
-//	public void createIndicatorArrow() {
-//		indicArrow = new Texture("arrow.png");
-//		arrow = new Image(indicArrow);
-//		if (game.currText == -1 && game.currentTask == -1) {
-//			arrow.setX(emailL.getX());
-//			arrow.setY(emailL.getY());
-//		}
-//	}
+	public void createIndicatorArrow() {
+		indicArrow = new Texture("arrow.png");
+		arrow = new Image(indicArrow);
+		if (game.currText == -1 && game.currentTask == -1) {
+			arrow.setX(emailL.getX() + emailL.getWidth());
+			arrow.setY(emailL.getY());
+			s.addActor(arrow);
+		}
+		
+	}
 	
 	@Override
 	public void render(float delta){
