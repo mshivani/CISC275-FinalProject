@@ -150,10 +150,7 @@ public class TextScreen extends ScreenAdapter{
 			r1.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(0))){
-						if(!taskList.get(2).isCompleted()){
-							taskList.get(2).setCompleted();
-							createAchieveStar(); 
-						}
+						
 						System.out.println("Correct");
 						determineTasks();
 						createReply(currentQuestion.getCorrectResponse().response);
@@ -180,10 +177,7 @@ public class TextScreen extends ScreenAdapter{
 			r2.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(1))){
-						if(!taskList.get(2).isCompleted()){
-							taskList.get(2).setCompleted();
-							createAchieveStar(); 
-						}
+						
 						System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
@@ -211,10 +205,7 @@ public class TextScreen extends ScreenAdapter{
 			r3.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(2))){
-						if(!taskList.get(2).isCompleted()){
-							taskList.get(2).setCompleted();
-							createAchieveStar(); 
-						}
+						
 						System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();

@@ -186,8 +186,12 @@ public class HomeScreen extends ScreenAdapter{
 		btnT.setY(btnW.getY());
 		btnT.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				if(game.currText >= 0)
+				if(game.currText >= 0){
+					if(!taskList.get(2).isCompleted()){
+						taskList.get(2).setCompleted();
+					}
 					game.setScreen(new TextScreen(game, game.questionList.get(game.currText)));
+				}
 				return true;
 			}
 		});
