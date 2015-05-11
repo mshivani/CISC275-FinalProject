@@ -157,6 +157,7 @@ public class HelpScreen extends ScreenAdapter{
     	//write tasks
     	for(int i = 0; i < tasklist.size(); i++){
     		if(tasklist.get(i).isCompleted()){
+    			font.setColor(Color.LIGHT_GRAY);
     			if(vecArr.get(i).x <= width*.073)
     				font.setColor(Color.BLACK);
 				font.draw(batch, "Task " + (i+1) + ": " + tasklist.get(i).getDescription(), width*.1f, height*.6f - height*.05f*(i+1));
