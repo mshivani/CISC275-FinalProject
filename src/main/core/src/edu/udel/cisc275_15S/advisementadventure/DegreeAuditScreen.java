@@ -52,6 +52,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 	
 	@Override
 	public void show() {
+		game.previousScreen = this;
 		if(game.currentTask==4){
 			game.currText=1;
 			game.currentTask=5;

@@ -8,11 +8,13 @@ import java.util.Stack;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends Game implements ApplicationListener{
 	public static final int btnBackMargin = 10;
+	public ScreenAdapter previousScreen;
 	FileHandle data;
 	ArrayList<Question> questionList;
 	SpriteBatch batch;

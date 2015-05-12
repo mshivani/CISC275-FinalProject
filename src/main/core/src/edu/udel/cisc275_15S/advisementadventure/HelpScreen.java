@@ -263,7 +263,7 @@ public class HelpScreen extends ScreenAdapter{
 		//System.out.println(btnB.getHeight());
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new HomeScreen(game));
+				game.setScreen(game.previousScreen);
 				System.out.println("back");
 				return true;
 			}

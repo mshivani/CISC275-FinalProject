@@ -57,6 +57,8 @@ public class HomeScreen extends ScreenAdapter {
 	Texture bg;
 
 	int timeViewingScreen;
+	Texture n;
+	Image notification;
 
 	public HomeScreen(MyGdxGame g) {
 		this.game = g;
@@ -82,8 +84,8 @@ public class HomeScreen extends ScreenAdapter {
 
 	@Override
 	public void show() {
+		game.previousScreen = this;
 		s = new Stage();
-
 		bg = new Texture("homescreen-bg.png");
 		Image bgI = new Image(bg);
 		s.addActor(bgI);
@@ -102,6 +104,9 @@ public class HomeScreen extends ScreenAdapter {
 		createAchieveStar();
 		createIndicatorArrow();
 		Gdx.input.setInputProcessor(s);
+		n = new Texture("warning-icon.png");
+		notification = new Image(n);
+		setNotificationImage(btnE, true);
 	}
 
 	public void createAchieveStar() {
@@ -330,6 +335,16 @@ public class HomeScreen extends ScreenAdapter {
 			game.setScreen(game.helpFromMain);
 		}
 
+	}
+
+	private void setNotificationImage(Image appIcon, boolean setOn) {
+		if (setOn) {
+			notification.setX(appIcon.getX() + appIcon.getWidth()*3/4);
+			notification.setY(appIcon.getY() + appIcon.getHeight()*3/4);
+			s.addActor(notification);
+		} else {
+			notification.remove();
+		}
 	}
 
 }

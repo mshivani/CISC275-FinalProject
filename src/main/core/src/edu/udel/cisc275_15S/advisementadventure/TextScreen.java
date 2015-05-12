@@ -66,6 +66,7 @@ public class TextScreen extends ScreenAdapter{
 	}
 	@Override
 	public void show(){
+		game.previousScreen = this;
 		//game.data.writeString(currentQuestion.toString() + "\n", true);
 		width = Gdx.graphics.getWidth();
 		height= Gdx.graphics.getHeight();

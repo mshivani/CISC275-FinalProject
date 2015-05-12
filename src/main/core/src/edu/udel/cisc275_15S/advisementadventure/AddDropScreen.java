@@ -231,7 +231,7 @@ public class AddDropScreen extends ScreenAdapter {
 	// initializations of pictures, methods, and adding actors
 	@Override
 	public void show() {
-		
+		game.previousScreen = this;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 
 		height = Gdx.graphics.getHeight();

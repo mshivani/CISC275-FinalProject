@@ -73,7 +73,7 @@ public class ScheduleScreen extends ScreenAdapter{
 	}
 	
 public void show() {
-		
+		game.previousScreen = this;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		
 		height = Gdx.graphics.getHeight();

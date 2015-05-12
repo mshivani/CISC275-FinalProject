@@ -146,7 +146,7 @@ public class RsvpScreen extends ScreenAdapter {
 	
 	@Override
 	public void show() {
-		
+		game.previousScreen = this;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		
 

@@ -68,6 +68,7 @@ public class EmailListScreen extends ScreenAdapter {
 
 	@Override
 	public void show() {
+		game.previousScreen = this;
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 		stage = new Stage();

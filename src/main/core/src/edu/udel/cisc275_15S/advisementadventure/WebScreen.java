@@ -88,6 +88,7 @@ public class WebScreen extends ScreenAdapter{
 	
 	@Override
 	public void show(){
+		game.previousScreen = this;
 		s = new Stage();
 		Label rsvpL = new Label("RSVP", uiskin);
 		Label udL = new Label("UDSIS", uiskin);

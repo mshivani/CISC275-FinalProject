@@ -156,6 +156,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	}
 	@Override
 	public void show(){
+		game.previousScreen = this;
 		if(notes.getText().equals("")){
 			Gdx.input.getTextInput(new TextInputListener(){
 

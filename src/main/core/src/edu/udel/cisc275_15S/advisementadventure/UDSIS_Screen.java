@@ -99,7 +99,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		
 	}
 	public void show(){
-		
+		game.previousScreen = this;
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
 		
