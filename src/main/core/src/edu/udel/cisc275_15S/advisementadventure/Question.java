@@ -54,24 +54,42 @@ public class Question {
 		
 	}
 	public ArrayList<String> getResponses(){
+		boolean alreadyDone = true;
 		ArrayList<String> x = new ArrayList<String>();
+		ArrayList<Integer> y = new ArrayList<Integer>();
 		Random rand = new Random();
 		System.out.println(response1.response);
 		if(!this.response1.response.equals("empty")){
-			//System.out.println("if statement hit");
+			
 			x.add(this.response1.response);
-			for(int i =0;i<3;i++){
+			while(x.size() < 3){
 				int temp = rand.nextInt(4);
-				if(temp==0 && !x.contains(response2.response))
-					x.add(this.response2.response);
-				else if(temp==1 && !x.contains(response3.response))
-					x.add(this.response3.response);
-				else if(temp==2 && !x.contains(response4.response))
-					x.add(this.response4.response);
-				else if(temp==3 && !x.contains(response5.response))
-					x.add(this.response5.response);
+				for(int b = 0; b<y.size();b++){
+					if(temp==y.get(b)){
+						alreadyDone = false;
+					}					
+				}
+				if(alreadyDone == true){
+					if(temp==0){
+						x.add(this.response2.response);
+						y.add(0);
+					}
+					else if(temp==1){
+						x.add(this.response3.response);
+						y.add(1);
+					}
+					else if(temp==2){
+						x.add(this.response4.response);
+						y.add(2);
+					}
+					else if(temp==3){
+						x.add(this.response5.response);
+						y.add(3);
+					}
+				}
+
 			}
-			Collections.shuffle(x);
+
 		}
 		else{
 		//	System.out.println("else statement hit");
