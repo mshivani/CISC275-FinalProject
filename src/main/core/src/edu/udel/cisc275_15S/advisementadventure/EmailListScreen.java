@@ -79,23 +79,24 @@ public class EmailListScreen extends ScreenAdapter {
 		createAchieveStar();
 		Gdx.input.setInputProcessor(stage);
 	}
-	
-	public void createAchieveStar(){
+
+	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
 		num = 0;
 		boolean create = false;
-		for(int i = 0; i < taskList.size(); i++){
-			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
 				create = true;
 				num++;
 			}
 		}
-	
-		if(create){
-			star.addListener(new ClickListener(){
-				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-					game.setScreen(game.help);			
+
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
 					return true;
 				}
 			});
@@ -104,19 +105,20 @@ public class EmailListScreen extends ScreenAdapter {
 			star.setX(screenWidth - star.getWidth());
 			star.setY(screenHeight - star.getHeight());
 			stage.addActor(star);
-			la = new Label(num+"", uiskin);
-			la.setX(star.getX()+star.getWidth()*.44f);
-			la.setY(star.getY()+star.getHeight()*.36f);
+			la = new Label(num + "", uiskin);
+			la.setX(star.getX() + star.getWidth() * .44f);
+			la.setY(star.getY() + star.getHeight() * .36f);
 			la.setColor(Color.BLACK);
-			la.addListener(new ClickListener(){
-				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-					game.setScreen(game.help);			
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
 					return true;
 				}
 			});
 			stage.addActor(la);
 		}
-		
+
 	}
 
 	private void createTitle() {
@@ -136,6 +138,7 @@ public class EmailListScreen extends ScreenAdapter {
 		btnB.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
 				game.setScreen(game.welcome);
 				return true;
 			}
@@ -145,58 +148,84 @@ public class EmailListScreen extends ScreenAdapter {
 
 	private void createEmail() {
 		int emailLocationFactor = 0;
-		for (Email e : emailList) {
-			final Email em = e;
-			email = new Label(em.getSender() + "\n" + em.getDate() + "\n"
-					+ em.getSubject() + "\n" + em.getSalutation() + "\n"
-					+ wrapString(em.getContent(), 90) + "\n" + em.getClosing()
-					+ "\n" + em.getSignature(), uiskin);
-			email.setX(emailLabelMargin);
-			email.setY(emailLocationFactor
-					+ (screenHeight - btnB.getHeight() - email.getHeight()
-							- MyGdxGame.btnBackMargin - emailLabelMargin));
-			email.setColor(Color.BLACK);
-			email.setWidth(screenWidth - 20);
-			email.setWrap(true);
-			LabelStyle labelStyle = new LabelStyle();
-			labelStyle.font = new BitmapFont();
-			labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f,
-					0.8f, 0.2f);
-			email.setStyle(labelStyle);
-
-			email.addListener(new ClickListener() {
-				public boolean touchDown(InputEvent ev, float x, float y,
-						int pointer, int button) {
-					if (!taskList.get(0).isCompleted()) {
-						taskList.get(0).setCompleted();
-					}
-					game.setScreenHelp(game.email2, em);
-					if(game.currentTask==3 &&em.subject.equals("Degree Audit")){
-						game.currentTask=4;
-					}
-					if(game.currentTask==2&&em.subject.equals("Add Courses"))
-						game.currentTask=3;
-					if(game.currentTask==-1&&em.subject.equals("Add your Major")){
-						
-						System.out.println("hit it");
-						game.currentTask=0;
-					}
-					
-					//System.out.println(game.textCount);
-					//game.currText++;
-					//					}
-					//
-//										if (!taskList.get(0).isCompleted()) {
-//											taskList.get(0).setCompleted();
-//											game.setScreen(game.help);
-//										}
-					return true;
-				}
-			});
-			stage.addActor(email);
-			emailLocationFactor -= email.getHeight() + emailLabelMargin;
-			emailLabelWidth = email.getWidth();
+		int emailShown = 0;
+		System.out.println("Current Task: " + game.currentTask);
+		switch (game.currentTask) {
+		case 0:
+			emailShown = 0;
+			break;
+		case 1:
+			emailShown = 0;
+			break;
+		case 2:
+			System.out.println("hit 2");
+			emailShown = 1;
+			break;
+		case 3:
+			emailShown = 1;
+			break;
+		case 4:
+			emailShown = 2;
+			break;
+		case 5:
+			emailShown = 2;
+			break;
+		default:
+			emailShown = 0;
+			break;
 		}
+		final Email em = emailList.get(emailShown);
+		email = new Label(em.getSender() + "\n" + em.getDate() + "\n"
+				+ em.getSubject() + "\n" + em.getSalutation() + "\n"
+				+ wrapString(em.getContent(), 90) + "\n" + em.getClosing()
+				+ "\n" + em.getSignature(), uiskin);
+		email.setX(emailLabelMargin);
+		email.setY(emailLocationFactor
+				+ (screenHeight - btnB.getHeight() - email.getHeight()
+						- MyGdxGame.btnBackMargin - emailLabelMargin));
+		email.setColor(Color.BLACK);
+		email.setWidth(screenWidth - 20);
+		email.setWrap(true);
+		LabelStyle labelStyle = new LabelStyle();
+		labelStyle.font = new BitmapFont();
+		labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f, 0.8f,
+				0.2f);
+		email.setStyle(labelStyle);
+
+		email.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent ev, float x, float y,
+					int pointer, int button) {
+				if (!taskList.get(0).isCompleted()) {
+					taskList.get(0).setCompleted();
+				}
+				game.setScreenHelp(game.email2, em);
+				if (game.currentTask == 3 && em.subject.equals("Degree Audit")) {
+					game.currentTask = 4;
+				}
+				if (game.currentTask == 2 && em.subject.equals("Add Courses"))
+					game.currentTask = 3;
+				if (game.currentTask == -1
+						&& em.subject.equals("Add your Major")) {
+
+					System.out.println("hit it");
+					game.currentTask = 0;
+				}
+
+				// System.out.println(game.textCount);
+				// game.currText++;
+				// }
+				//
+				// if (!taskList.get(0).isCompleted()) {
+				// taskList.get(0).setCompleted();
+				// game.setScreen(game.help);
+				// }
+				return true;
+			}
+		});
+		stage.addActor(email);
+		emailLocationFactor -= email.getHeight() + emailLabelMargin;
+		emailLabelWidth = email.getWidth();
+
 	}
 
 	public static String wrapString(String string, int charWrap) {
