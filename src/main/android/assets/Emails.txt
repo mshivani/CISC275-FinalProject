@@ -1,4 +1,4 @@
-3
+5
 Dr. Doctor
 3/21/15
 Add your Major
@@ -20,3 +20,16 @@ Hi New Blue Hen,
 I'm glad to see you picked your classes! If you need help deciding on what to take, you can always shoot me an email to with a question or to set-up a meeting. Otherwise, you can check out your degree audit on UDSIS. It'll tell you what classes you've taken and what classes are left to be completed for your degree. You can also look at the course catalog to see what your major requirements are.
 Thanks,
 Your Advisor
+Dr. Doc
+5/11/2015
+Busy Semester
+Dear New Blue Hen,
+I saw that you’re taking XXX101. It’s not required for your major and you might like the extra time to get involved with some clubs or organizations on campus. Head over to UDSIS to drop the class.
+Sincerely, 
+Dr. Doc
+Dr. Doc
+5/11/2015
+Flu Shot
+Flu season is just around the corner! You can get a flu shot at the Student Health Center in Laurel Hall on South Green. Sign-up for a time slot.
+Sincerely, 
+Dr. Doc
