@@ -1,11 +1,9 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -52,14 +50,25 @@ public class EmailFullScreen extends ScreenAdapter {
 		screenHeight = Gdx.graphics.getHeight();
 		stage = new Stage();
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+		this.emailList = game.getEmailList();
 		createBackButton();
-		parseEmails();
 		createAchieveStar();
 		if (currentEmail != null) {
 			createEmail();
 		}
 		Gdx.input.setInputProcessor(stage);
 	}
+	
+	@Override
+	public void render(float delta) {
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		stage.draw();
+		stage.act();
+
+	}
+	
 	public void createAchieveStar(){
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -97,42 +106,6 @@ public class EmailFullScreen extends ScreenAdapter {
 			stage.addActor(la);
 		}
 		
-	}
-
-	@Override
-	public void render(float delta) {
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		stage.draw();
-		stage.act();
-
-	}
-	
-	
-	
-	public void parseEmails() {
-		emailList = new ArrayList<Email>();
-		try {
-			FileHandle fileReader = Gdx.files.internal("Emails.txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader.reader());
-			String line = bufferedReader.readLine();
-			ArrayList<String> lines = new ArrayList<String>();
-			int amountOfEmails = Integer.parseInt(line);
-			for (int i = 0; i < amountOfEmails; i++) {
-				for (int j = 1; j < 8; j++) {
-					line = bufferedReader.readLine();
-					lines.add(line);
-				}
-				Email e = new Email(i, lines.get(0), lines.get(1), lines.get(2),
-									lines.get(3), lines.get(4), lines.get(5), lines.get(6));
-				emailList.add(e);
-				lines.clear();
-			}
-		//	fileReader.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	private void createBackButton() {

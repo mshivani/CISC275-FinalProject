@@ -1,11 +1,9 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -49,9 +47,6 @@ public class EmailListScreen extends ScreenAdapter {
 		this.titleFont.setScale(2);
 		this.titleFont.setColor(0, 0, 0, 1);
 		this.taskList = g.taskList;
-		emailList = new ArrayList<Email>();
-		parseEmails();
-		//createAchieveStar();
 		Texture starT = new Texture("star.png");
 		star = new Image(starT);
 	}
@@ -77,6 +72,7 @@ public class EmailListScreen extends ScreenAdapter {
 		screenHeight = Gdx.graphics.getHeight();
 		stage = new Stage();
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+		emailList = game.getEmailList();
 		createTitle();
 		createBackButton();
 		createEmail();
@@ -123,8 +119,6 @@ public class EmailListScreen extends ScreenAdapter {
 		
 	}
 
-
-	
 	private void createTitle() {
 		inbox = new Label("Inbox", uiskin);
 		inbox.setX(screenWidth / 2 - inbox.getWidth());
@@ -153,18 +147,26 @@ public class EmailListScreen extends ScreenAdapter {
 		int emailLocationFactor = 0;
 		for (Email e : emailList) {
 			final Email em = e;
-			email = new Label(e.toString(), uiskin);
+			email = new Label(em.getSender() + "\n" + em.getDate() + "\n"
+					+ em.getSubject() + "\n" + em.getSalutation() + "\n"
+					+ wrapString(em.getContent(), 90) + "\n" + em.getClosing()
+					+ "\n" + em.getSignature(), uiskin);
 			email.setX(emailLabelMargin);
-			email.setY(emailLocationFactor + (screenHeight - btnB.getHeight() - email.getHeight() - MyGdxGame.btnBackMargin - emailLabelMargin));
+			email.setY(emailLocationFactor
+					+ (screenHeight - btnB.getHeight() - email.getHeight()
+							- MyGdxGame.btnBackMargin - emailLabelMargin));
 			email.setColor(Color.BLACK);
 			email.setWidth(screenWidth - 20);
 			email.setWrap(true);
 			LabelStyle labelStyle = new LabelStyle();
 			labelStyle.font = new BitmapFont();
-			labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f, 0.8f, 0.2f);
+			labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f,
+					0.8f, 0.2f);
 			email.setStyle(labelStyle);
+
 			email.addListener(new ClickListener() {
-				public boolean touchDown(InputEvent ev, float x, float y, int pointer, int button) {
+				public boolean touchDown(InputEvent ev, float x, float y,
+						int pointer, int button) {
 					if (!taskList.get(0).isCompleted()) {
 						taskList.get(0).setCompleted();
 					}
@@ -195,30 +197,6 @@ public class EmailListScreen extends ScreenAdapter {
 			emailLocationFactor -= email.getHeight() + emailLabelMargin;
 			emailLabelWidth = email.getWidth();
 		}
-	}
-
-	public void parseEmails() {
-		try {
-			FileHandle fileReader = Gdx.files.internal("Emails.txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader.reader());
-			String line = bufferedReader.readLine();
-			ArrayList<String> lines = new ArrayList<String>();
-			int amountOfEmails = Integer.parseInt(line);
-			for (int i = 0; i < amountOfEmails; i++) {
-				for (int j = 1; j < 8; j++) {
-					line = bufferedReader.readLine();
-					lines.add(line);
-				}
-				Email e = new Email(i, lines.get(0), lines.get(1), lines.get(2),
-						lines.get(3), wrapString(lines.get(4), 100), lines.get(5), lines.get(6));
-				emailList.add(e);
-				lines.clear();
-			}
-			//fileReader.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public static String wrapString(String string, int charWrap) {
