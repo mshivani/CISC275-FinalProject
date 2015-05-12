@@ -42,6 +42,9 @@ public class UDSIS_Screen extends ScreenAdapter {
 	Texture audit;
 	Image btnAudit;
 	
+	Texture home;
+	Image btnHome;
+	
 	Image star;
 	Texture starT;
 	ArrayList<Task> taskList;
@@ -127,6 +130,15 @@ public class UDSIS_Screen extends ScreenAdapter {
 		btnBack.setY(height - btnBack.getHeight());
 		s.addActor(btnBack);
 		
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 		
 		ClassSch = new Texture("schedule-btn.png");
 		btnClassSch = new Image(ClassSch);

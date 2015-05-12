@@ -32,6 +32,9 @@ public class EmailFullScreen extends ScreenAdapter {
 	Image star;
 	Label la;
 	int num;
+	
+	Texture home;
+	Image btnHome;
 
 	public EmailFullScreen(MyGdxGame g, Email e) {
 		this.game = g;
@@ -139,6 +142,18 @@ public class EmailFullScreen extends ScreenAdapter {
 
 	public void setCurrentEmail(Email currentEmail) {
 		this.currentEmail = currentEmail;
+	}
+	
+	public void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		stage.addActor(btnHome);
 	}
 
 }

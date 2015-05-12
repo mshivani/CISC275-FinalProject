@@ -32,6 +32,9 @@ public class DegreeAuditScreen extends ScreenAdapter {
 	Label la;
 	int num;
 	
+	Texture home;
+	Image btnHome;
+	
 	public DegreeAuditScreen(MyGdxGame g){
 		this.game = g;
 		this.taskList = g.taskList;
@@ -48,6 +51,18 @@ public class DegreeAuditScreen extends ScreenAdapter {
 				return true;
 			}
 		});
+	}
+	
+	private void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 	}
 	
 	@Override
@@ -74,6 +89,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		s.addActor(btnB);
 		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		createHomeButton();
 		
 	}
 	

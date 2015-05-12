@@ -38,6 +38,9 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	Label la;
 	int num;
 	
+	Texture home;
+	Image btnHome;
+	
 	
 	
 	public DeclareMajorScreen(MyGdxGame g){
@@ -185,6 +188,16 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		s.addActor(sb);
 		s.addActor(add);
 		createAchieveStar();
+		
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 		
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		Gdx.input.setInputProcessor(s);

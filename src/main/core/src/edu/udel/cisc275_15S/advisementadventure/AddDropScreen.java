@@ -39,6 +39,9 @@ public class AddDropScreen extends ScreenAdapter {
 	Array dropItems;
 	Label AddL;
 	Label DropL;
+	
+	Texture home;
+	Image btnHome;
 
 	
 	ArrayList<Task> taskList;
@@ -95,6 +98,18 @@ public class AddDropScreen extends ScreenAdapter {
 		sb2.setItems(dropItems);
 		sb2.setPosition(width/4, height/3.5f);
 		sb2.setMaxListCount(3);
+	}
+	
+	public void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 	}
 	
 	
@@ -247,6 +262,8 @@ public class AddDropScreen extends ScreenAdapter {
 		
 		createAdd();
 		createDrop();
+		
+		createHomeButton();
 		
 		batch = new SpriteBatch();
 		banner = new Texture("schLogo.png");

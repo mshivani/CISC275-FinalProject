@@ -35,6 +35,9 @@ public class ScheduleScreen extends ScreenAdapter{
 	Skin uiskin;
 	Stage s;
 	
+	Texture home;
+	Image btnHome;
+	
 	public ScheduleScreen(MyGdxGame g) {
 		this.game = g;
 		this.taskList = g.taskList;
@@ -84,6 +87,7 @@ public void show() {
 		s = new Stage();
 	
 		createAchieveStar();
+		createHomeButton();
 		
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		Gdx.input.setInputProcessor(s);
@@ -126,6 +130,18 @@ public void show() {
 			s.addActor(la);
 		}
 		
+	}
+	
+	public void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 	}
 	
 	public void SechScreenClick() {
