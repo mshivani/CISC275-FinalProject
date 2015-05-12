@@ -263,7 +263,6 @@ public class AddDropScreen extends ScreenAdapter {
 		createAdd();
 		createDrop();
 		
-		createHomeButton();
 		
 		batch = new SpriteBatch();
 		banner = new Texture("schLogo.png");
@@ -277,6 +276,7 @@ public class AddDropScreen extends ScreenAdapter {
 		s.addActor(drop);
 		s.addActor(btnB);
 		createAchieveStar();
+		createHomeButton();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		
 	}
