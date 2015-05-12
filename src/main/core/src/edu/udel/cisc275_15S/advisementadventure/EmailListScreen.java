@@ -37,6 +37,11 @@ public class EmailListScreen extends ScreenAdapter {
 	Texture starT;
 	Image star;
 	Label la;
+	
+	Texture indicArrow;
+	Image arrow;
+	
+	
 	int num;
 
 	public EmailListScreen(MyGdxGame g) {
@@ -78,6 +83,7 @@ public class EmailListScreen extends ScreenAdapter {
 		createBackButton();
 		createEmail();
 		createAchieveStar();
+		createIndicatorArrow();
 		Gdx.input.setInputProcessor(stage);
 	}
 
@@ -120,6 +126,18 @@ public class EmailListScreen extends ScreenAdapter {
 			stage.addActor(la);
 		}
 
+	}
+	
+	public void createIndicatorArrow() {
+		if (game.currentTask == 0) {
+			indicArrow = new Texture("arrow.png");
+			arrow = new Image(indicArrow);
+			if (game.currentTask == 0) {
+				arrow.setX(screenWidth - inbox.getWidth());
+				arrow.setY(screenHeight / 2);
+				stage.addActor(arrow);
+			}
+		}
 	}
 
 	private void createTitle() {
