@@ -129,6 +129,7 @@ public class AddDropScreen extends ScreenAdapter {
 					classCount++;
 					if(classCount>=5 && game.currentTask==3){
 						taskList.get(3).setCompleted();
+						game.currentTask2 = -1;
 						game.currentTask=4;
 						createAchieveStar();
 					}

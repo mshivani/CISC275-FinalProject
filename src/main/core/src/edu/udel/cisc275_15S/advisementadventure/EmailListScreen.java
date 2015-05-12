@@ -150,7 +150,6 @@ public class EmailListScreen extends ScreenAdapter {
 	private void createEmail() {
 		int emailLocationFactor = 0;
 		int emailShown = 0;
-		System.out.println("Current Task: " + game.currentTask);
 		switch (game.currentTask) {
 		case 0:
 			emailShown = 0;
@@ -159,7 +158,6 @@ public class EmailListScreen extends ScreenAdapter {
 			emailShown = 0;
 			break;
 		case 2:
-			System.out.println("hit 2");
 			emailShown = 1;
 			break;
 		case 3:
@@ -200,15 +198,18 @@ public class EmailListScreen extends ScreenAdapter {
 					taskList.get(0).setCompleted();
 				}
 				game.setScreenHelp(game.email2, em);
-				if (game.currentTask == 3 && em.subject.equals("Degree Audit")) {
-					game.currentTask = 4;
+				System.out.println("email list current task: "+game.currentTask+
+						em.subject.equals("Degree Audit"));
+				if (game.currentTask == 4 && em.subject.equals("Degree Audit")) {
+					game.currentTask2 = 100;
+//					game.currentTask = 4;
 				}
-				if (game.currentTask == 2 && em.subject.equals("Add Courses"))
+				if (game.currentTask == 2 && em.subject.equals("Add Courses")) {
+					game.currentTask2 = 101;
 					game.currentTask = 3;
+				}
 				if (game.currentTask == -1
 						&& em.subject.equals("Add your Major")) {
-
-					System.out.println("hit it");
 					game.currentTask = 0;
 				}
 

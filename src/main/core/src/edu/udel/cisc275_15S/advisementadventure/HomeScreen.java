@@ -106,7 +106,65 @@ public class HomeScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(s);
 		n = new Texture("warning-icon.png");
 		notification = new Image(n);
-		setNotificationImage(btnE, true);
+		System.out.println("currentTask: " + game.currentTask + "     currentTask2: " + game.currentTask2);
+		if (game.currentTask2 == 100) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 101) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnW, true);
+		} else {
+			switch (game.currentTask) {
+			case 0:
+				if (timeViewingScreen != 0) {
+					setNotificationImage(btnT, false);
+					setNotificationImage(btnE, false);
+					setNotificationImage(btnW, true);
+				} else {
+					setNotificationImage(btnT, false);
+					setNotificationImage(btnW, false);
+					setNotificationImage(btnE, true);
+				}
+				break;
+			case 1:
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, true);
+				break;
+			case 2:
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
+				setNotificationImage(btnE, true);
+				break;
+			case 3:
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
+				setNotificationImage(btnE, true);
+				break;
+			case 4:
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
+				setNotificationImage(btnE, true);
+				break;
+			case 5:
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, true);
+				break;
+			case 6:
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
+				break;
+			default:
+				// setNotificationImage(btnE, false);
+				// setNotificationImage(btnW, false);
+				// setNotificationImage(btnT, false);
+				break;
+			}
+		}
 	}
 
 	public void createAchieveStar() {
@@ -337,10 +395,10 @@ public class HomeScreen extends ScreenAdapter {
 
 	}
 
-	private void setNotificationImage(Image appIcon, boolean setOn) {
+	public void setNotificationImage(Image appIcon, boolean setOn) {
 		if (setOn) {
-			notification.setX(appIcon.getX() + appIcon.getWidth()*3/4);
-			notification.setY(appIcon.getY() + appIcon.getHeight()*3/4);
+			notification.setX(appIcon.getX() + appIcon.getWidth() * 3 / 4);
+			notification.setY(appIcon.getY() + appIcon.getHeight() * 3 / 4);
 			s.addActor(notification);
 		} else {
 			notification.remove();
