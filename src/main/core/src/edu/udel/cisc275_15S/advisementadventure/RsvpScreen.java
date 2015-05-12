@@ -31,6 +31,9 @@ public class RsvpScreen extends ScreenAdapter {
 	Stage s;
 	Texture btnBack;
 	Image btnB;
+	
+	Texture home;
+	Image btnHome;
 //<<<<<<< Updated upstream
 
 //=======
@@ -142,6 +145,18 @@ public class RsvpScreen extends ScreenAdapter {
 			s.addActor(la);
 		}
 		
+	}
+	
+	public void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 	}
 	
 	@Override
