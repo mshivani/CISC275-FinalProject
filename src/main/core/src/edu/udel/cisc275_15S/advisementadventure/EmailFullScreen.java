@@ -32,7 +32,6 @@ public class EmailFullScreen extends ScreenAdapter {
 	Image star;
 	Label la;
 	int num;
-	
 
 	public EmailFullScreen(MyGdxGame g, Email e) {
 		this.game = g;
@@ -43,7 +42,7 @@ public class EmailFullScreen extends ScreenAdapter {
 		Texture starT = new Texture("star.png");
 		star = new Image(starT);
 	}
-	
+
 	@Override
 	public void show() {
 		screenWidth = Gdx.graphics.getWidth();
@@ -58,7 +57,7 @@ public class EmailFullScreen extends ScreenAdapter {
 		}
 		Gdx.input.setInputProcessor(stage);
 	}
-	
+
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -68,23 +67,24 @@ public class EmailFullScreen extends ScreenAdapter {
 		stage.act();
 
 	}
-	
-	public void createAchieveStar(){
+
+	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
 		num = 0;
 		boolean create = false;
-		for(int i = 0; i < taskList.size(); i++){
-			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
 				create = true;
 				num++;
 			}
 		}
-	
-		if(create){
-			star.addListener(new ClickListener(){
-				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-					game.setScreen(game.help);			
+
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
 					return true;
 				}
 			});
@@ -93,28 +93,30 @@ public class EmailFullScreen extends ScreenAdapter {
 			star.setX(screenWidth - star.getWidth());
 			star.setY(screenHeight - star.getHeight());
 			stage.addActor(star);
-			la = new Label(num+"", uiskin);
-			la.setX(star.getX()+star.getWidth()*.44f);
-			la.setY(star.getY()+star.getHeight()*.36f);
+			la = new Label(num + "", uiskin);
+			la.setX(star.getX() + star.getWidth() * .44f);
+			la.setY(star.getY() + star.getHeight() * .36f);
 			la.setColor(Color.BLACK);
-			la.addListener(new ClickListener(){
-				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-					game.setScreen(game.help);			
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
 					return true;
 				}
 			});
 			stage.addActor(la);
 		}
-		
+
 	}
-	
+
 	private void createBackButton() {
 		Texture btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
 		btnB.setX(MyGdxGame.btnBackMargin);
 		btnB.setY(screenHeight - btnB.getHeight() - MyGdxGame.btnBackMargin);
 		btnB.addListener(new ClickListener() {
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
 				game.setScreen(game.email);
 				return true;
 			}
@@ -126,16 +128,16 @@ public class EmailFullScreen extends ScreenAdapter {
 		int numberInList = currentEmail.getNumberInList();
 		Email fullEmail = emailList.get(numberInList);
 		Label email = new Label(fullEmail.toString(), uiskin);
-		email.setX(EmailListScreen.emailLabelMargin);
-		email.setY(screenHeight - btnB.getHeight() - email.getHeight() - MyGdxGame.btnBackMargin - EmailListScreen.emailLabelMargin);
-		email.setColor(Color.BLACK);
-		email.setWidth(screenWidth - 20);
 		email.setWrap(true);
+		email.setWidth(screenWidth - 20);
+		email.setX(EmailListScreen.emailLabelMargin);
+		email.setY(screenHeight - btnB.getHeight() - email.getHeight() - 2*MyGdxGame.btnBackMargin - 2*EmailListScreen.emailLabelMargin);
+		email.setColor(Color.BLACK);
 		stage.addActor(email);
 	}
 
 	public void setCurrentEmail(Email currentEmail) {
 		this.currentEmail = currentEmail;
 	}
-	
+
 }
