@@ -116,6 +116,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 					}
 					if (!taskList.get(1).isCompleted()) {
 						taskList.get(1).setCompleted();
+						star.remove();
 						createAchieveStar();
 					
 					}
