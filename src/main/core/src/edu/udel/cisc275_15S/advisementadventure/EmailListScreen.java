@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
@@ -82,14 +83,14 @@ public class EmailListScreen extends ScreenAdapter {
 		createTitle();
 		createBackButton();
 		createEmail();
-		createAchieveStar();
+		
 		createIndicatorArrow();
+		createAchieveStar();
 		Gdx.input.setInputProcessor(stage);
 	}
 
-	public void createAchieveStar() {
-		starT = new Texture("star.png");
-		star = new Image(starT);
+public void createAchieveStar() {
+		
 		num = 0;
 		boolean create = false;
 		for (int i = 0; i < taskList.size(); i++) {
@@ -98,7 +99,7 @@ public class EmailListScreen extends ScreenAdapter {
 				num++;
 			}
 		}
-
+		
 		if (create) {
 			star.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -111,10 +112,19 @@ public class EmailListScreen extends ScreenAdapter {
 			star.setHeight(80);
 			star.setX(screenWidth - star.getWidth());
 			star.setY(screenHeight - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(screenWidth-65, screenHeight-65, .7f), 
+					Actions.moveTo(screenWidth-80, screenHeight-80, .7f))));
+		
 			stage.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(star.getX() + star.getWidth() * .44f);
-			la.setY(star.getY() + star.getHeight() * .36f);
+			la.setX(screenWidth - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(screenHeight - star.getHeight() + star.getHeight() * .36f);
+			la.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(la.getX()+7, la.getY()+7, .7f), 
+					Actions.moveTo(la.getX(), la.getY(), .7f))));
 			la.setColor(Color.BLACK);
 			la.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
