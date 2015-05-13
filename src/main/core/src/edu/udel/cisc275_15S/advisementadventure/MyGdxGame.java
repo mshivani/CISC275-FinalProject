@@ -115,16 +115,16 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	}
 	
 	private void createTasks() {
-		Task t1 = new Task(1, "btn_notes.png", "btn_help.png", "Open your first email in the email app.");
-		Task t2 = new Task(2, "btn_notes.png", "btn_help.png", "Declare your major.");
-		Task t3 = new Task(1, "btn_notes.png", "btn_help.png", "Introduce yourself to your roommate.");
-		Task t4 = new Task(2, "btn_notes.png", "btn_help.png", "Register for classes.");
+		Task t1 = new Task(1, "mailbox-color.png", "mailbox-gray.png", "Open your first email in the email app.");
+		Task t2 = new Task(2, "major-color.png", "major-gray.png", "Declare your major.");
+		Task t3 = new Task(1, "roommate-color.png", "roommate-gray.png", "Introduce yourself to your roommate.");
+		Task t4 = new Task(2, "register-color.png", "register-gray.png", "Register for classes.");
 		Task t5 = new Task(1, "btn_notes.png", "btn_help.png", "Look at your degree audit.");
 		Task t6 = new Task(2, "btn_notes.png", "btn_help.png", "Drop a class.");
 		Task t7 = new Task(1, "btn_notes.png", "btn_help.png", "Sign up for a slot at the writing center.");
 		Task t8 = new Task(2, "btn_notes.png", "btn_help.png", "Sign up to get a flu shot.");
-		Task t9 = new Task(1, "btn_notes.png", "btn_help.png", "Close out of the game.");
-		Task t10 = new Task(2, "btn_notes.png", "btn_help.png", "Nothing for the last one.");
+		// Task t9 = new Task(1, "btn_notes.png", "btn_help.png", "Close out of the game.");
+		// Task t10 = new Task(2, "btn_notes.png", "btn_help.png", "Nothing for the last one.");
 		taskList.add(t1);
 		taskList.add(t2);
 		taskList.add(t3);
@@ -133,7 +133,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		taskList.add(t6);
 		taskList.add(t7);
 		taskList.add(t8);
-		taskList.add(t9);
-		taskList.add(t10);
+		// taskList.add(t9);
+		// taskList.add(t10);
 	}
 }

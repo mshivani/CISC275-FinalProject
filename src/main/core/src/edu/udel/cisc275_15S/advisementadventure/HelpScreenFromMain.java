@@ -114,13 +114,13 @@ public class HelpScreenFromMain extends ScreenAdapter{
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted()){
 				font.setColor(Color.BLACK);
-				compImg.get(i).setX((i+1)*(width*.15f));
+				compImg.get(i).setX((i+1)*(width*.5f));
 				compImg.get(i).setY(height*.8f);
 				s.addActor(compImg.get(i));
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
-				unCompImg.get(i).setX((i+1)*(width*.15f));
+				unCompImg.get(i).setX((i+1)*(width*.5f));
 				unCompImg.get(i).setY(height*.8f);
 				s.addActor(unCompImg.get(i));
 			}
@@ -128,13 +128,13 @@ public class HelpScreenFromMain extends ScreenAdapter{
 		for(int i = tasklist.size()/2; i < tasklist.size(); i++){
 			if(tasklist.get(i).isCompleted()){
 				font.setColor(Color.BLACK);
-				compImg.get(i).setX((i+1-tasklist.size()/2)*(width*.15f));
+				compImg.get(i).setX((i+1-tasklist.size()/2)*(width*.5f));
 				compImg.get(i).setY(height*.6f);
 				s.addActor(compImg.get(i));
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
-				unCompImg.get(i).setX((i+1-tasklist.size()/2)*(width*.15f));
+				unCompImg.get(i).setX((i+1-tasklist.size()/2)*(width*.5f));
 				unCompImg.get(i).setY(height*.6f);
 				s.addActor(unCompImg.get(i));
 			}
