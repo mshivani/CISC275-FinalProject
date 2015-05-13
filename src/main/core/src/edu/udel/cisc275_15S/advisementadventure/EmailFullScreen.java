@@ -53,8 +53,7 @@ public class EmailFullScreen extends ScreenAdapter {
 		shrink = false;
 		starT = new Texture("star.png");
 		star = new Image(starT);
-		star.setWidth(80);
-		star.setHeight(80);
+		
 	}
 
 	@Override
@@ -102,8 +101,11 @@ public class EmailFullScreen extends ScreenAdapter {
 					return true;
 				}
 			});
+			star.setWidth(80);
+			star.setHeight(80);
 			star.setX(screenWidth - star.getWidth());
 			star.setY(screenHeight - star.getHeight());
+			
 			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
 			star.addAction(Actions.forever(Actions.sequence(
 					Actions.moveTo(screenWidth-65, screenHeight-65, .7f), 
@@ -111,8 +113,8 @@ public class EmailFullScreen extends ScreenAdapter {
 		
 			stage.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(star.getX() + star.getWidth() * .44f);
-			la.setY(star.getY() + star.getHeight() * .36f);
+			la.setX(screenWidth - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(screenHeight - star.getHeight() + star.getHeight() * .36f);
 			la.addAction(Actions.forever(Actions.sequence(
 					Actions.moveTo(la.getX()+7, la.getY()+7, .7f), 
 					Actions.moveTo(la.getX(), la.getY(), .7f))));
@@ -137,6 +139,8 @@ public class EmailFullScreen extends ScreenAdapter {
 		btnB.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
+				star.clearActions();
+				la.clearActions();
 				game.setScreen(game.email);
 				return true;
 			}
