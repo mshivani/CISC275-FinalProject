@@ -172,8 +172,6 @@ public class HelpScreen extends ScreenAdapter{
     			batch.draw(star, vecArr.get(i).x, vecArr.get(i).y, vecArr.get(i).x*.5f, vecArr.get(i).x*.5f);
     		}
     		if(tasklist.get(i).isCompleted() && !sawComp[i]){
-    			
-    		
     			if(vecArr.get(i).x >= width*.75f && vecArr.get(i).x <= width*.77f){
     				chime.play();
     				tasklist.get(i).setSeen();
