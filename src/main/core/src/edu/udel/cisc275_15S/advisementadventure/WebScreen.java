@@ -90,8 +90,8 @@ public class WebScreen extends ScreenAdapter{
 	public void show(){
 		game.previousScreen = this;
 		s = new Stage();
-		Label rsvpL = new Label("RSVP", uiskin);
-		Label udL = new Label("UDSIS", uiskin);
+		//Label rsvpL = new Label("RSVP", uiskin);
+		//Label udL = new Label("UDSIS", uiskin);
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
 		btnBack = new Texture("btn_back.png");
@@ -112,7 +112,9 @@ public class WebScreen extends ScreenAdapter{
 				return true;
 			}
 		});
-		btnRSVP.setBounds(width/8, height/4,  width/2.6f, height/1.6f);
+		btnRSVP.setX(width/12);
+		btnRSVP.setY((height/4) - (btnRSVP.getHeight()/10));
+		// btnRSVP.setBounds(width/8, height/4,  width/2.6f, height/1.6f);
 		btnUDSIS = new Texture("udsis-page.png");
 		btnUD = new Image(btnUDSIS);
 		btnUD.addListener(new ClickListener(){
@@ -122,15 +124,17 @@ public class WebScreen extends ScreenAdapter{
 
 			}
 		});
-		btnUD.setBounds(width/1.8f, height/4,  width/2.6f, height/1.6f);
-		rsvpL.setX(btnRSVP.getX()+ btnRSVP.getWidth()/2 - rsvpL.getWidth());
-		rsvpL.setY(btnRSVP.getY() - rsvpL.getHeight());
-		udL.setX(btnUD.getX()+ btnUD.getWidth()/2 - udL.getWidth());
-		udL.setY(btnUD.getY() - udL.getHeight());
-		rsvpL.setColor(Color.BLACK);
-		udL.setColor(Color.BLACK);
-		s.addActor(udL);
-		s.addActor(rsvpL);
+		btnUD.setX(width/9 + btnUD.getWidth());
+		btnUD.setY((height/4) - (btnUD.getHeight()/10));
+		// btnUD.setBounds(width/1.8f, height/4,  width/2.6f, height/1.6f);
+//		rsvpL.setX(btnRSVP.getX()+ btnRSVP.getWidth()/2 - rsvpL.getWidth());
+//		rsvpL.setY(btnRSVP.getY() - rsvpL.getHeight());
+//		udL.setX(btnUD.getX()+ btnUD.getWidth()/2 - udL.getWidth());
+//		udL.setY(btnUD.getY() - udL.getHeight());
+//		rsvpL.setColor(Color.BLACK);
+//		udL.setColor(Color.BLACK);
+//		s.addActor(udL);
+//		s.addActor(rsvpL);
 		s.addActor(btnUD);
 		s.addActor(btnRSVP);
 		s.addActor(btnB);
