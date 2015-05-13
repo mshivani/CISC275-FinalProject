@@ -33,9 +33,7 @@ public class EmailFullScreen extends ScreenAdapter {
 	Image star;
 	Label la;
 	int num;
-	
-	Texture home;
-	Image btnHome;
+
 
 	boolean shrink;
 
