@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -167,7 +168,7 @@ public class HomeScreen extends ScreenAdapter {
 		}
 	}
 
-	public void createAchieveStar() {
+public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
 		num = 0;
@@ -178,7 +179,7 @@ public class HomeScreen extends ScreenAdapter {
 				num++;
 			}
 		}
-
+		
 		if (create) {
 			star.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -191,10 +192,19 @@ public class HomeScreen extends ScreenAdapter {
 			star.setHeight(80);
 			star.setX(width - star.getWidth());
 			star.setY(height - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width-65, height-65, .7f), 
+					Actions.moveTo(width-80, height-80, .7f))));
+		
 			s.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(star.getX() + star.getWidth() * .44f);
-			la.setY(star.getY() + star.getHeight() * .36f);
+			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(height - star.getHeight() + star.getHeight() * .36f);
+			la.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(la.getX()+7, la.getY()+7, .7f), 
+					Actions.moveTo(la.getX(), la.getY(), .7f))));
 			la.setColor(Color.BLACK);
 			la.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,

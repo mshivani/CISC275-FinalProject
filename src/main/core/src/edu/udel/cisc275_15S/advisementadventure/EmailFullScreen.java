@@ -48,8 +48,7 @@ public class EmailFullScreen extends ScreenAdapter {
 		textFont.setColor(0, 0, 0, 1);
 		this.currentEmail = e;
 		this.taskList = g.taskList;
-		Texture starT = new Texture("star.png");
-		star = new Image(starT);
+	
 		shrink = false;
 		starT = new Texture("star.png");
 		star = new Image(starT);
