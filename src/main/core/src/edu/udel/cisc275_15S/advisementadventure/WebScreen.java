@@ -104,7 +104,7 @@ public class WebScreen extends ScreenAdapter{
 		});
 		btnB.setX(0);
 		btnB.setY(height - btnB.getHeight());
-		rsvp = new Texture("rsvp.png");
+		rsvp = new Texture("web-rsvp.jpg");
 		btnRSVP = new Image(rsvp);
 		btnRSVP.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -113,7 +113,7 @@ public class WebScreen extends ScreenAdapter{
 			}
 		});
 		btnRSVP.setBounds(width/8, height/4,  width/2.6f, height/1.6f);
-		btnUDSIS = new Texture("UDSIS.jpg");
+		btnUDSIS = new Texture("udsis-page.png");
 		btnUD = new Image(btnUDSIS);
 		btnUD.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -140,7 +140,7 @@ public class WebScreen extends ScreenAdapter{
 	@Override
 	public void render(float delta){
 		GL20 gl = Gdx.gl;
-		gl.glClearColor(1, 1.18f, 0, 1);
+		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		s.draw();
 		s.act();
