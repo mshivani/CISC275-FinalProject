@@ -147,7 +147,11 @@ public class AddDropScreen extends ScreenAdapter {
 						taskList.get(3).setCompleted();
 						game.currentTask2 = -1;
 						game.currentTask=4;
-						//createAchieveStar();
+						if(!taskList.get(2).isSeen()){
+							la.remove();
+							star.remove();
+						}
+						createAchieveStar();
 					}
 				}
 				return true;
@@ -232,16 +236,14 @@ public class AddDropScreen extends ScreenAdapter {
 			
 			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(width-65, height-65, .7f), 
+					Actions.moveTo(width-72, height-72, .7f), 
 					Actions.moveTo(width-80, height-80, .7f))));
 		
 			s.addActor(star);
 			la = new Label(num + "", uiskin);
 			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
 			la.setY(height - star.getHeight() + star.getHeight() * .36f);
-			la.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(la.getX()+7, la.getY()+7, .7f), 
-					Actions.moveTo(la.getX(), la.getY(), .7f))));
+
 			la.setColor(Color.BLACK);
 			la.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -254,7 +256,6 @@ public class AddDropScreen extends ScreenAdapter {
 		}
 
 	}
-
 	// initializations of pictures, methods, and adding actors
 	@Override
 	public void show() {

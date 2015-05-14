@@ -90,7 +90,8 @@ public class EmailListScreen extends ScreenAdapter {
 	}
 
 public void createAchieveStar() {
-		
+		starT = new Texture("star.png");
+		star = new Image(starT);
 		num = 0;
 		boolean create = false;
 		for (int i = 0; i < taskList.size(); i++) {
@@ -115,16 +116,14 @@ public void createAchieveStar() {
 			
 			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(screenWidth-65, screenHeight-65, .7f), 
+					Actions.moveTo(screenWidth-72, screenHeight-72, .7f), 
 					Actions.moveTo(screenWidth-80, screenHeight-80, .7f))));
 		
 			stage.addActor(star);
 			la = new Label(num + "", uiskin);
 			la.setX(screenWidth - star.getWidth()+ star.getWidth() * .44f);
 			la.setY(screenHeight - star.getHeight() + star.getHeight() * .36f);
-			la.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(la.getX()+7, la.getY()+7, .7f), 
-					Actions.moveTo(la.getX(), la.getY(), .7f))));
+
 			la.setColor(Color.BLACK);
 			la.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -136,8 +135,7 @@ public void createAchieveStar() {
 			stage.addActor(la);
 		}
 
-	}
-	
+	}	
 	public void createIndicatorArrow() {
 		if (game.currentTask == 0) {
 			indicArrow = new Texture("arrow.png");

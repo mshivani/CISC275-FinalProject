@@ -74,16 +74,14 @@ public class WebScreen extends ScreenAdapter{
 			
 			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(width-65, height-65, .7f), 
+					Actions.moveTo(width-72, height-72, .7f), 
 					Actions.moveTo(width-80, height-80, .7f))));
 		
 			s.addActor(star);
 			la = new Label(num + "", uiskin);
 			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
 			la.setY(height - star.getHeight() + star.getHeight() * .36f);
-			la.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(la.getX()+7, la.getY()+7, .7f), 
-					Actions.moveTo(la.getX(), la.getY(), .7f))));
+
 			la.setColor(Color.BLACK);
 			la.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -96,7 +94,6 @@ public class WebScreen extends ScreenAdapter{
 		}
 
 	}
-	
 	@Override
 	public void show(){
 		game.previousScreen = this;
