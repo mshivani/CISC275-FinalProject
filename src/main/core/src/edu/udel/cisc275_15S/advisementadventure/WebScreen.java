@@ -112,7 +112,7 @@ public class WebScreen extends ScreenAdapter{
 		});
 		btnB.setX(0);
 		btnB.setY(height - btnB.getHeight());
-		rsvp = new Texture("web-rsvp.jpg");
+		rsvp = new Texture("web-rsvp.png");
 		btnRSVP = new Image(rsvp);
 		btnRSVP.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
@@ -120,7 +120,7 @@ public class WebScreen extends ScreenAdapter{
 				return true;
 			}
 		});
-		btnRSVP.setX(width/12);
+		btnRSVP.setX(width/16);
 		btnRSVP.setY((height/4) - (btnRSVP.getHeight()/10));
 		// btnRSVP.setBounds(width/8, height/4,  width/2.6f, height/1.6f);
 		btnUDSIS = new Texture("udsis-page.png");
@@ -132,7 +132,7 @@ public class WebScreen extends ScreenAdapter{
 
 			}
 		});
-		btnUD.setX(width/9 + btnUD.getWidth());
+		btnUD.setX(width/14 + btnUD.getWidth() + 5);
 		btnUD.setY((height/4) - (btnUD.getHeight()/10));
 		// btnUD.setBounds(width/1.8f, height/4,  width/2.6f, height/1.6f);
 //		rsvpL.setX(btnRSVP.getX()+ btnRSVP.getWidth()/2 - rsvpL.getWidth());
