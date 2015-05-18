@@ -41,6 +41,8 @@ public class EmailListScreen extends ScreenAdapter {
 	
 	Texture indicArrow;
 	Image arrow;
+	Texture warning;
+	Image warn;
 	
 	
 	int num;
@@ -140,10 +142,15 @@ public void createAchieveStar() {
 		if (game.currentTask == 0) {
 			indicArrow = new Texture("arrow.png");
 			arrow = new Image(indicArrow);
+			warning = new Texture("warning-icon.png");
+			warn = new Image(warning);
 			if (game.currentTask == 0) {
 				arrow.setX(screenWidth - inbox.getWidth());
 				arrow.setY(screenHeight / 2);
+				warn.setX(arrow.getX() + 15);
+				warn.setY(arrow.getY() - 15);
 				stage.addActor(arrow);
+				stage.addActor(warn);
 			}
 		}
 	}
