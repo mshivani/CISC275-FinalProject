@@ -45,6 +45,7 @@ public class EmailListScreen extends ScreenAdapter {
 	Image warn;
 	
 	
+	
 	int num;
 
 	public EmailListScreen(MyGdxGame g) {
@@ -231,18 +232,15 @@ public void createAchieveStar() {
 					taskList.get(0).setCompleted();
 				}
 				game.setScreenHelp(game.email2, em);
-				System.out.println("email list current task: "+game.currentTask+
-						em.subject.equals("Degree Audit"));
-				if (game.currentTask == 4 && em.subject.equals("Degree Audit")) {
+				if (game.currentTask == 4) {
 					game.currentTask2 = 100;
 //					game.currentTask = 4;
 				}
-				if (game.currentTask == 2 && em.subject.equals("Add Courses")) {
+				if (game.currentTask == 2) {
 					game.currentTask2 = 101;
 					game.currentTask = 3;
 				}
-				if (game.currentTask == -1
-						&& em.subject.equals("Add your Major")) {
+				if (game.currentTask == -1) {
 					game.currentTask = 0;
 				}
 
