@@ -142,13 +142,13 @@ public void createAchieveStar() {
 		if (game.currentTask == 0) {
 			indicArrow = new Texture("arrow.png");
 			arrow = new Image(indicArrow);
-			warning = new Texture("warning-icon.png");
+			warning = new Texture("warning-icon-sm.png");
 			warn = new Image(warning);
 			if (game.currentTask == 0) {
 				arrow.setX(screenWidth - inbox.getWidth());
 				arrow.setY(screenHeight / 2);
-				warn.setX(arrow.getX() + 15);
-				warn.setY(arrow.getY() - 15);
+				warn.setX(arrow.getX() + 21);
+				warn.setY(arrow.getY() - 5);
 				stage.addActor(arrow);
 				stage.addActor(warn);
 			}
