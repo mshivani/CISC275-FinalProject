@@ -143,7 +143,7 @@ public class AddDropScreen extends ScreenAdapter {
 					sb2.setItems(dropItems);
 					
 					classCount++;
-					if(classCount>=5 && game.currentTask==3){
+					if(classCount>=5){
 						taskList.get(3).setCompleted();
 						game.currentTask2 = -1;
 						game.currentTask=4;
