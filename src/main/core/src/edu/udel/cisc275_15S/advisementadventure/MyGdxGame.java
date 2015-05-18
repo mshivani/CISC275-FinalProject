@@ -111,14 +111,13 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	private void createTasks() {
 		Task t1 = new Task(1, "mailbox-color.png", "mailbox-gray.png", "Open your first email in the email app.");
 		Task t2 = new Task(2, "major-color.png", "major-gray.png", "Declare your major.");
 		Task t3 = new Task(1, "roommate-color.png", "roommate-gray.png", "Introduce yourself to your roommate.");
-		Task t4 = new Task(2, "register-color.png", "register-gray.png", "Register for classes.");
+		Task t4 = new Task(2, "register-color.png", "register-gray.png", "Register for five classes.");
 		Task t5 = new Task(1, "audit-color.png", "audit-gray.png", "Look at your degree audit.");
 		Task t6 = new Task(2, "drop-color.png", "drop-gray.png", "Drop a class.");
 		Task t7 = new Task(1, "writing-color.png", "writing-gray.png", "Sign up for a slot at the writing center.");

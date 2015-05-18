@@ -159,6 +159,11 @@ public class HomeScreen extends ScreenAdapter {
 				setNotificationImage(btnW, true);
 				setNotificationImage(btnT, false);
 				break;
+			case 7:
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
+				setNotificationImage(btnE, true);
+				break;
 			default:
 				// setNotificationImage(btnE, false);
 				// setNotificationImage(btnW, false);

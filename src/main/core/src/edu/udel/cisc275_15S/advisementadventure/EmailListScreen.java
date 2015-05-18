@@ -203,6 +203,9 @@ public void createAchieveStar() {
 		case 5:
 			emailShown = 2;
 			break;
+		case 6:
+			emailShown = 3;
+			break;
 		default:
 			emailShown = 0;
 			break;
