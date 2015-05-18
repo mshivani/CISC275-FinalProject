@@ -188,6 +188,17 @@ public class AddDropScreen extends ScreenAdapter {
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
 					classCount--;
+					if (game.currentTask == 6 && classCount <= 4) {
+						taskList.get(5).setCompleted();
+						game.currentTask2 = -1;
+						game.currentTask=7;
+						if(!taskList.get(4).isSeen()){
+							la.remove();
+							star.remove();
+						}
+						createAchieveStar();
+					}
+					
 				}
 				return true;
 			}
