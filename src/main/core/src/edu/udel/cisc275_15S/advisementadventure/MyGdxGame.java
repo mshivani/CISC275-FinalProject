@@ -49,7 +49,7 @@ public class MyGdxGame extends Game implements ApplicationListener{
 
 	@Override
 	public void create() {
-		currentTask=0;
+		currentTask = 1;
 		currentTask2 = -1;
 		currText=-1;
 		data= Gdx.files.local("list of students.txt");

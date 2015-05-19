@@ -192,13 +192,13 @@ public void createAchieveStar() {
 			emailShown = 0;
 			break;
 		case 2:
-			emailShown = 1;
+			emailShown = 0;
 			break;
 		case 3:
-			emailShown = 1;
+			emailShown = 0;
 			break;
 		case 4:
-			emailShown = 2;
+			emailShown = 1;
 			break;
 		case 5:
 			emailShown = 2;
@@ -206,7 +206,7 @@ public void createAchieveStar() {
 		case 6:
 			emailShown = 3;
 			break;
-		case 7:
+		case 8:
 			emailShown = 4;
 		default:
 			emailShown = 0;
@@ -241,12 +241,12 @@ public void createAchieveStar() {
 					game.currentTask2 = 100;
 //					game.currentTask = 4;
 				}
-				if (game.currentTask == 2) {
-					game.currentTask2 = 101;
-					game.currentTask = 3;
-				}
-				if (game.currentTask == -1) {
-					game.currentTask = 0;
+//				if (game.currentTask == 2) {
+//					game.currentTask2 = 101;
+//					game.currentTask = 3;
+//				}
+				if (game.currentTask == 1) {
+					game.currentTask = 2;
 				}
 
 				// System.out.println(game.textCount);

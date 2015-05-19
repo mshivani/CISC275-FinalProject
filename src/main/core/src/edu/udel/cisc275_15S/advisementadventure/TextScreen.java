@@ -132,6 +132,9 @@ public class TextScreen extends ScreenAdapter{
 				}
 			});
 			s.addActor(la);
+			if (game.currentTask == 3) {
+				game.currentTask = 4;
+			}
 		}
 
 	}
