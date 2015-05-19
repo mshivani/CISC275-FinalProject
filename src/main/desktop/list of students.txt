@@ -1,15 +1,1 @@
 123456789
-Hey roomie! I have a class in my schedule that I do not want to take and I want to replace it with another class. Do you know when the drop/add deadline is?
-Response 1: 1 
-Response 2: 0
-Response 3: 0
-Response 4: 0
-Response 5: 0
-I don't know: 0
-Hey roomie! I have a class in my schedule that I do not want to take and I want to replace it with another class. Do you know when the drop/add deadline is?
-Response 1: 1 
-Response 2: 0
-Response 3: 0
-Response 4: 0
-Response 5: 0
-I don't know: 0
