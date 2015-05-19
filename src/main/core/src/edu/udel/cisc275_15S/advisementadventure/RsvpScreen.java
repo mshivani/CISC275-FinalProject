@@ -55,12 +55,12 @@ public class RsvpScreen extends ScreenAdapter {
 		this.taskList = g.taskList;
 		rsvpChoices = new Array();
 		rsvpChoices.add(" ");
-		rsvpChoices.add("Advisory Networking Night: March 9, 2016");
-		rsvpChoices.add("A slot in the Writing Center");
-		rsvpChoices.add("Getting the Flu Shot");
-		rsvpChoices.add("J.P.Morgan Dining Etiquette: April 21, 2015");
-		rsvpChoices.add("Meet the Firms Night: Sept 9, 2015");
-		rsvpChoices.add("Law School Fair: Oct 14, 2015");
+		rsvpChoices.add("Writing Center appointment");
+		rsvpChoices.add("Flu shot appointment");
+		rsvpChoices.add("Advisory Networking Night");
+		rsvpChoices.add("J.P.Morgan Dining Etiquette");
+		rsvpChoices.add("Meet the Firms Night");
+		rsvpChoices.add("Law School Fair");
 	}
 	
 	private void createBackButton() {
