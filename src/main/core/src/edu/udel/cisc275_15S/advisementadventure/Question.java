@@ -37,7 +37,7 @@ public class Question {
 		String temp; 
 		temp = question + "\n" + "Response 1: 1 \n" + "Response 2: " + wrongCount2 + "\n" + "Response 3: " + wrongCount3 +"\n" + "Response 4: " + wrongCount4 + "\n"
 				+ "Response 5: " + wrongCount5 + "\n" + "I don't know: " + idkCount + "\n";
-		System.out.println(temp);
+		//System.out.println(temp);
 		return temp;
 	}
 	public void updateWrong(String x){
@@ -58,7 +58,7 @@ public class Question {
 		ArrayList<String> x = new ArrayList<String>();
 		ArrayList<Integer> y = new ArrayList<Integer>();
 		Random rand = new Random();
-		System.out.println(response1.response);
+		//System.out.println(response1.response);
 		if(!this.response1.response.equals("empty")){
 			
 			x.add(this.response1.response);

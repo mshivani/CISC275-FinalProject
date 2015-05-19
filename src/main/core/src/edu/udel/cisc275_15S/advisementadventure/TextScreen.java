@@ -163,7 +163,7 @@ public class TextScreen extends ScreenAdapter{
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(0))){
 						
-						System.out.println("Correct");
+						//System.out.println("Correct");
 						determineTasks();
 						createReply(currentQuestion.getCorrectResponse().response);
 						//updateFile(resp.get(0));
@@ -190,11 +190,11 @@ public class TextScreen extends ScreenAdapter{
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(1))){
 						
-						System.out.println("Correct");
+						// System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
 						game.data.writeString(currentQuestion.updateFile(), true);
-						System.out.println(game.data.readString());
+						// System.out.println(game.data.readString());
 						//updateFile(resp.get(0));
 					}
 					else{
@@ -218,11 +218,11 @@ public class TextScreen extends ScreenAdapter{
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(2))){
 						
-						System.out.println("Correct");
+						//System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
 						game.data.writeString(currentQuestion.updateFile(), true);
-						System.out.println(game.data.readString());
+						//System.out.println(game.data.readString());
 						//updateFile(resp.get(0));
 					}
 					else{
@@ -266,7 +266,7 @@ public class TextScreen extends ScreenAdapter{
 		Label message = new Label(currentQuestion.question, uiskin);
 
 		textC.setX(0);
-		System.out.println(textC.getHeight());
+		//System.out.println(textC.getHeight());
 		
 		textC.setWidth((float) (width/2.5));
 		textC.setHeight(height/3);
@@ -307,7 +307,7 @@ public class TextScreen extends ScreenAdapter{
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				game.setScreen(new HomeScreen(game));
-				System.out.println("back");
+				//System.out.println("back");
 				return true;
 			}
 		});
