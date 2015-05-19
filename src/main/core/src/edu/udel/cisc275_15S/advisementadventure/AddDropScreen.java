@@ -192,7 +192,7 @@ public class AddDropScreen extends ScreenAdapter {
 					if (game.currentTask == 6 && classCount <= 4) {
 						game.currText=3;
 						taskList.get(5).setCompleted();
-						game.currentTask2 = -1;
+//						game.currentTask2 = -1;
 						game.currentTask=7;
 						if(!taskList.get(4).isSeen()){
 							la.remove();

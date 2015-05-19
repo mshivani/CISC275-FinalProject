@@ -128,7 +128,7 @@ public class HomeScreen extends ScreenAdapter {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnW, false);
 			setNotificationImage(btnE, true);
-		} else if (game.currentTask2 == 105) {
+		} else if (game.currentTask2 == 105 && game.currentTask != 7) {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnW, true);
@@ -145,6 +145,10 @@ public class HomeScreen extends ScreenAdapter {
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnT, true);
 		} else if (game.currentTask2 == 109) {
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 110) {
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnW, true);
@@ -193,8 +197,8 @@ public class HomeScreen extends ScreenAdapter {
 				setNotificationImage(btnT, true);
 				break;
 			case 7:
-				setNotificationImage(btnW, false);
 				setNotificationImage(btnE, false);
+				setNotificationImage(btnW, false);
 				setNotificationImage(btnT, true);
 				break;
 			case 8:
