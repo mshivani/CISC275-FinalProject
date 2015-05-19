@@ -100,7 +100,7 @@ public class RsvpScreen extends ScreenAdapter {
 					rsvpL.setX(sb.getX() - sb.getX()/2);
 					rsvpL.setY(sb.getY() - sb.getHeight());
 					
-					if(sb.getSelected().equals("A slot in the Writing Center")){
+					if(sb.getSelected().equals("Writing Center appointment")){
 						boolean remove = false;
 						for (int i = 0; i < taskList.size(); i++) {
 							if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
@@ -115,7 +115,7 @@ public class RsvpScreen extends ScreenAdapter {
 						createAchieveStar();
 						
 					}
-					if(sb.getSelected().equals("Getting the Flu Shot")){
+					if(sb.getSelected().equals("Flu shot appointment")){
 						boolean remove = false;
 						for (int i = 0; i < taskList.size(); i++) {
 							if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
