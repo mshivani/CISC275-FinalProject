@@ -116,9 +116,42 @@ public class HomeScreen extends ScreenAdapter {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 102) {
+			setNotificationImage(btnW, false);
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnE, true);
+		} else if (game.currentTask2 == 103 && game.currentTask != 6) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 104) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnW, false);
+			setNotificationImage(btnE, true);
+		} else if (game.currentTask2 == 105) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 106) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 107) {
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnW, false);
+			setNotificationImage(btnE, true);
+		} else if (game.currentTask2 == 108) {
+			setNotificationImage(btnW, false);
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnT, true);
+		} else if (game.currentTask2 == 109) {
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnW, true);
 		} else {
 			switch (game.currentTask) {
 			case 0:
+				System.out.println("Time viewing screen: " + timeViewingScreen);
 				if (timeViewingScreen != 0) {
 					setNotificationImage(btnT, false);
 					setNotificationImage(btnE, false);
@@ -130,19 +163,19 @@ public class HomeScreen extends ScreenAdapter {
 				}
 				break;
 			case 1:
-				setNotificationImage(btnE, false);
-				setNotificationImage(btnW, false);
-				setNotificationImage(btnT, true);
-				break;
-			case 2:
 				setNotificationImage(btnW, false);
 				setNotificationImage(btnT, false);
 				setNotificationImage(btnE, true);
+				break;
+			case 2:
+				setNotificationImage(btnT, false);
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnW, true);
 				break;
 			case 3:
 				setNotificationImage(btnW, false);
-				setNotificationImage(btnT, false);
-				setNotificationImage(btnE, true);
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnT, true);
 				break;
 			case 4:
 				setNotificationImage(btnW, false);
@@ -156,13 +189,18 @@ public class HomeScreen extends ScreenAdapter {
 				break;
 			case 6:
 				setNotificationImage(btnE, false);
-				setNotificationImage(btnW, true);
-				setNotificationImage(btnT, false);
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, true);
 				break;
 			case 7:
 				setNotificationImage(btnW, false);
-				setNotificationImage(btnT, true);
 				setNotificationImage(btnE, false);
+				setNotificationImage(btnT, true);
+				break;
+			case 8:
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnT, true);
 				break;
 			default:
 				// setNotificationImage(btnE, false);
@@ -270,7 +308,7 @@ public void createAchieveStar() {
 		btnT.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
-				if (game.currText >= 0) {
+				if (game.currentTask >= 3) {
 					if (!taskList.get(2).isCompleted()) {
 						taskList.get(2).setCompleted();
 					}

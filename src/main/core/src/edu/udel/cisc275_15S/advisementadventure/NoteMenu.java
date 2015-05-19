@@ -72,7 +72,7 @@ public class NoteMenu extends ScreenAdapter {
 		bb.setY(Gdx.graphics.getHeight()-bb.getHeight());
 		bb.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new HomeScreen(game));
+				game.setScreen(game.welcome);
 				return true;
 			}
 		});

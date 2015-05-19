@@ -132,6 +132,9 @@ public class TextScreen extends ScreenAdapter{
 				}
 			});
 			s.addActor(la);
+			if (game.currentTask == 3) {
+				game.currentTask = 4;
+			}
 		}
 
 	}
@@ -139,8 +142,8 @@ public class TextScreen extends ScreenAdapter{
 	public void determineTasks(){
 		if(game.currentTask==1)
 			game.currentTask=2;
-		if(game.currentTask==5)
-			game.currentTask=6;
+//		if(game.currentTask==5)
+//			game.currentTask=6;
 //		if(game.currentTask==7)
 //			game.currentTask=8;
 	}
@@ -299,6 +302,19 @@ public class TextScreen extends ScreenAdapter{
 
 		s.addActor(textR);
 		s.addActor(correctAnswer);
+		if (game.currentTask == 5) {
+			game.currentTask2 = 102;
+		}
+		if (game.currentTask == 6) {
+			game.currentTask2 = 104;
+		}
+		if (game.currentTask == 7) {
+			game.currentTask2 = 106;
+		} if (game.currentTask2 == 108) {
+			game.currentTask2 = 109;
+		} else if (game.currentTask == 8) {
+			game.currentTask2 = 107;
+		}
 	}
 	private void createBackButton(){
 		btnBack = new Texture("btn_back.png");
@@ -308,7 +324,7 @@ public class TextScreen extends ScreenAdapter{
 		//System.out.println(btnB.getHeight());
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new HomeScreen(game));
+				game.setScreen(game.welcome);
 				//System.out.println("back");
 				return true;
 			}

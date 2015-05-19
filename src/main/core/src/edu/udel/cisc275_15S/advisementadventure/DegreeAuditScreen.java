@@ -73,7 +73,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 			game.currentTask2 = -1;
 			game.currText=2;
 			game.currentTask=5;
-			System.out.println("hit it audit");
+			// System.out.println("hit it audit");
 		}
 		bg = new Texture("univReq.png");
 		//activeCourses = new Texture("activeCourses.png");
@@ -138,6 +138,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 				}
 			});
 			s.addActor(la);
+			game.currentTask = 6;
 		}
 
 	}	
