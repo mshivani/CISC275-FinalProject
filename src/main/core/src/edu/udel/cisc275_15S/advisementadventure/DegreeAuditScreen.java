@@ -71,7 +71,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		game.previousScreen = this;
 		if(game.currentTask==4){
 			game.currentTask2 = -1;
-			game.currText=1;
+			game.currText=2;
 			game.currentTask=5;
 			System.out.println("hit it audit");
 		}
