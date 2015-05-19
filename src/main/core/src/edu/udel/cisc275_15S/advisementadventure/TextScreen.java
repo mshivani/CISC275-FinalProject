@@ -142,8 +142,8 @@ public class TextScreen extends ScreenAdapter{
 	public void determineTasks(){
 		if(game.currentTask==1)
 			game.currentTask=2;
-		if(game.currentTask==5)
-			game.currentTask=6;
+//		if(game.currentTask==5)
+//			game.currentTask=6;
 //		if(game.currentTask==7)
 //			game.currentTask=8;
 	}
