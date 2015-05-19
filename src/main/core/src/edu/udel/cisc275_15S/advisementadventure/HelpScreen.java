@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -36,6 +37,7 @@ public class HelpScreen extends ScreenAdapter{
 	String helpDisplay;
 	ArrayList<Task> tasklist;
 	Texture star;
+	Image starI;
 	ArrayList<Vector2> vecArr;
 	float speedx;
 	float speedy;
@@ -64,6 +66,7 @@ public class HelpScreen extends ScreenAdapter{
 	Sound chime;
 	Sound awesome;
 	private boolean canBack;
+	private boolean finished;
 	
 	
 	public HelpScreen(MyGdxGame g) {
@@ -86,7 +89,7 @@ public class HelpScreen extends ScreenAdapter{
 		changePic = new boolean[10];
 		returnScreen = new boolean[10];
 		chime = Gdx.audio.newSound(Gdx.files.internal("chime.mp3"));
-		
+		finished = false;
 		for(int i=0; i<sawComp.length; i++){
 			sawComp[i] = false;
 			changePic[i] = false;
@@ -191,7 +194,7 @@ public class HelpScreen extends ScreenAdapter{
     	    	}
         	}
     	}
-
+    	
     	
 		
 		
@@ -229,7 +232,9 @@ public class HelpScreen extends ScreenAdapter{
 			
 			//returnScreen[index] = true;
 			sawComp[index] = true;
-			
+			if(index == 7){
+				game.setScreen(game.helpFromMain);
+			}
 			
 		}
 		batch.draw(star, exp1.x, exp1.y, 10, 10);
@@ -245,6 +250,8 @@ public class HelpScreen extends ScreenAdapter{
 		width = Gdx.graphics.getWidth();
 		
 		
+		
+		
 		batch = new SpriteBatch();
 		s = new Stage();
 	
@@ -253,6 +260,7 @@ public class HelpScreen extends ScreenAdapter{
 		
 		Gdx.input.setInputProcessor(s);
 	}
+	
 	
 	private void createBackButton(){
 		btnBack = new Texture("btn_back.png");
