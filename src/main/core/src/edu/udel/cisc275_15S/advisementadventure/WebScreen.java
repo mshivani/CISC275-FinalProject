@@ -116,7 +116,9 @@ public class WebScreen extends ScreenAdapter{
 		btnRSVP = new Image(rsvp);
 		btnRSVP.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				if (game.currentTask >= 7) {
 				game.setScreen(game.rsvp);
+				}
 				return true;
 			}
 		});
