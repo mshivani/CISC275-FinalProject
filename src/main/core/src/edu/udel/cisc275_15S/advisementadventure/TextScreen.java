@@ -141,8 +141,8 @@ public class TextScreen extends ScreenAdapter{
 			game.currentTask=2;
 		if(game.currentTask==5)
 			game.currentTask=6;
-		if(game.currentTask==7)
-			game.currentTask=8;
+//		if(game.currentTask==7)
+//			game.currentTask=8;
 	}
 	public void createWrong(){
 		wrong = new Label("Please try again later", uiskin);
