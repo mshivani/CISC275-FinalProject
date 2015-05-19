@@ -1,13 +1,19 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class DegreeAuditScreen extends ScreenAdapter {
@@ -20,9 +26,19 @@ public class DegreeAuditScreen extends ScreenAdapter {
 	Image btnB;
 	Texture bg;
 	//Texture activeCourses;
+	Skin uiskin;
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
+	
+	Texture home;
+	Image btnHome;
 	
 	public DegreeAuditScreen(MyGdxGame g){
 		this.game = g;
+		this.taskList = g.taskList;
 	}
 	
 	private void createBackButton() {
@@ -38,16 +54,30 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		});
 	}
 	
+	private void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
+	}
+	
 	@Override
 	public void show() {
+		game.previousScreen = this;
 		if(game.currentTask==4){
+			game.currentTask2 = -1;
 			game.currText=1;
 			game.currentTask=5;
 			System.out.println("hit it audit");
 		}
 		bg = new Texture("univReq.png");
 		//activeCourses = new Texture("activeCourses.png");
-
+		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
 		
@@ -58,9 +88,59 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		s = new Stage();
 		Gdx.input.setInputProcessor(s);
 		s.addActor(btnB);
+		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
+		createHomeButton();
 		
 	}
+	
+	public void createAchieveStar() {
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+				create = true;
+				num++;
+			}
+		}
+		
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width-72, height-72, .7f), 
+					Actions.moveTo(width-80, height-80, .7f))));
+		
+			s.addActor(star);
+			la = new Label(num + "", uiskin);
+			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(height - star.getHeight() + star.getHeight() * .36f);
+
+			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			s.addActor(la);
+		}
+
+	}	
 	
 	@Override
 	public void render(float delta) {

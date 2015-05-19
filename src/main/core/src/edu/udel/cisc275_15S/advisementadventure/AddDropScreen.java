@@ -3,12 +3,14 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
@@ -39,6 +41,17 @@ public class AddDropScreen extends ScreenAdapter {
 	Label AddL;
 	Label DropL;
 	
+	Texture home;
+	Image btnHome;
+
+	
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
+
+	
 	public AddDropScreen(MyGdxGame g) {
 		
 		// Create a list of items that stores the possible classes that the user can take
@@ -66,6 +79,7 @@ public class AddDropScreen extends ScreenAdapter {
 		dropItems.add("");
 		
 		this.game = g;
+		this.taskList = g.taskList;
 		
 	}
 
@@ -85,6 +99,18 @@ public class AddDropScreen extends ScreenAdapter {
 		sb2.setItems(dropItems);
 		sb2.setPosition(width/4, height/3.5f);
 		sb2.setMaxListCount(3);
+	}
+	
+	public void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnHome);
 	}
 	
 	
@@ -117,8 +143,16 @@ public class AddDropScreen extends ScreenAdapter {
 					sb2.setItems(dropItems);
 					
 					classCount++;
-					if(classCount>=5 && game.currentTask==3)
+					if(classCount>=5){
+						taskList.get(3).setCompleted();
+						game.currentTask2 = -1;
 						game.currentTask=4;
+						if(!taskList.get(2).isSeen()){
+							la.remove();
+							star.remove();
+						}
+						createAchieveStar();
+					}
 				}
 				return true;
 			}
@@ -132,7 +166,7 @@ public class AddDropScreen extends ScreenAdapter {
 		drop.setPosition(sb2.getX()+sb2.getWidth(), sb2.getY());
 		drop.setHeight(sb2.getHeight());
 		drop.addListener(new ClickListener(){
-			private int classCount;
+			private int classCount=0;
 
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				if(sb2.getSelected() != null && sb2.getSelected() != ""){
@@ -154,6 +188,18 @@ public class AddDropScreen extends ScreenAdapter {
 					sb.setItems(newItems);
 					sb2.setItems(dropItems);
 					classCount--;
+					if (game.currentTask == 6 && classCount <= 4) {
+						game.currText=2;
+						taskList.get(5).setCompleted();
+						game.currentTask2 = -1;
+						game.currentTask=7;
+						if(!taskList.get(4).isSeen()){
+							la.remove();
+							star.remove();
+						}
+						createAchieveStar();
+					}
+					
 				}
 				return true;
 			}
@@ -175,10 +221,57 @@ public class AddDropScreen extends ScreenAdapter {
 	}
 	
 
+	public void createAchieveStar() {
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+				create = true;
+				num++;
+			}
+		}
+		
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width-72, height-72, .7f), 
+					Actions.moveTo(width-80, height-80, .7f))));
+		
+			s.addActor(star);
+			la = new Label(num + "", uiskin);
+			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(height - star.getHeight() + star.getHeight() * .36f);
+
+			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			s.addActor(la);
+		}
+
+	}
 	// initializations of pictures, methods, and adding actors
 	@Override
 	public void show() {
-		
+		game.previousScreen = this;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 
 		height = Gdx.graphics.getHeight();
@@ -194,6 +287,7 @@ public class AddDropScreen extends ScreenAdapter {
 		createAdd();
 		createDrop();
 		
+		
 		batch = new SpriteBatch();
 		banner = new Texture("schLogo.png");
 		registration = new Texture("Registration.png");
@@ -205,6 +299,8 @@ public class AddDropScreen extends ScreenAdapter {
 		s.addActor(add);
 		s.addActor(drop);
 		s.addActor(btnB);
+		createAchieveStar();
+		createHomeButton();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		
 	}

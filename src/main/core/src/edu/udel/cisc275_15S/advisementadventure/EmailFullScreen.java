@@ -1,17 +1,16 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -30,7 +29,18 @@ public class EmailFullScreen extends ScreenAdapter {
 	ArrayList<Email> emailList;
 	Email currentEmail;
 	Image btnB;
+	Texture starT;
 	Image star;
+	Label la;
+	int num;
+
+
+	boolean shrink;
+
+	
+	Texture home;
+	Image btnHome;
+
 
 	public EmailFullScreen(MyGdxGame g, Email e) {
 		this.game = g;
@@ -38,18 +48,22 @@ public class EmailFullScreen extends ScreenAdapter {
 		textFont.setColor(0, 0, 0, 1);
 		this.currentEmail = e;
 		this.taskList = g.taskList;
-		Texture starT = new Texture("star.png");
-		star = new Image(starT);
-	}
 	
+		shrink = false;
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		
+	}
+
 	@Override
 	public void show() {
+		game.previousScreen = this;
 		screenWidth = Gdx.graphics.getWidth();
 		screenHeight = Gdx.graphics.getHeight();
 		stage = new Stage();
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+		this.emailList = game.getEmailList();
 		createBackButton();
-		parseEmails();
 		createAchieveStar();
 		if (currentEmail != null) {
 			createEmail();
@@ -66,52 +80,65 @@ public class EmailFullScreen extends ScreenAdapter {
 		stage.act();
 
 	}
-	
-	public void createAchieveStar(){
+
+	public void createAchieveStar() {
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
 		boolean create = false;
-		for(int i = 0; i < taskList.size(); i++){
-			if(taskList.get(i).isCompleted() && !taskList.get(i).isSeen()){
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
 				create = true;
+				num++;
 			}
 		}
-		if(create){
-			star.setX(screenWidth/2);
-			star.setY(screenHeight/2);
-			stage.addActor(star);
-		}
-	}
-	
-	public void parseEmails() {
-		emailList = new ArrayList<Email>();
-		try {
-			FileHandle fileReader = Gdx.files.internal("Emails.txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader.reader());
-			String line = bufferedReader.readLine();
-			ArrayList<String> lines = new ArrayList<String>();
-			int amountOfEmails = Integer.parseInt(line);
-			for (int i = 0; i < amountOfEmails; i++) {
-				for (int j = 1; j < 8; j++) {
-					line = bufferedReader.readLine();
-					lines.add(line);
+		
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
 				}
-				Email e = new Email(i, lines.get(0), lines.get(1), lines.get(2),
-									lines.get(3), lines.get(4), lines.get(5), lines.get(6));
-				emailList.add(e);
-				lines.clear();
-			}
-		//	fileReader.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(screenWidth - star.getWidth());
+			star.setY(screenHeight - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(screenWidth-72, screenHeight-72, .7f), 
+					Actions.moveTo(screenWidth-80, screenHeight-80, .7f))));
+		
+			stage.addActor(star);
+			la = new Label(num + "", uiskin);
+			la.setX(screenWidth - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(screenHeight - star.getHeight() + star.getHeight() * .36f);
+
+			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			stage.addActor(la);
 		}
-	}
-	
+
+	}	
+
 	private void createBackButton() {
 		Texture btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
 		btnB.setX(MyGdxGame.btnBackMargin);
 		btnB.setY(screenHeight - btnB.getHeight() - MyGdxGame.btnBackMargin);
 		btnB.addListener(new ClickListener() {
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
+				star.clearActions();
+				la.clearActions();
 				game.setScreen(game.email);
 				return true;
 			}
@@ -123,11 +150,11 @@ public class EmailFullScreen extends ScreenAdapter {
 		int numberInList = currentEmail.getNumberInList();
 		Email fullEmail = emailList.get(numberInList);
 		Label email = new Label(fullEmail.toString(), uiskin);
-		email.setX(EmailListScreen.emailLabelMargin);
-		email.setY(screenHeight - btnB.getHeight() - email.getHeight() - MyGdxGame.btnBackMargin - EmailListScreen.emailLabelMargin);
-		email.setColor(Color.BLACK);
-		email.setWidth(screenWidth - 20);
 		email.setWrap(true);
+		email.setWidth(screenWidth - 20);
+		email.setX(EmailListScreen.emailLabelMargin);
+		email.setY(screenHeight - btnB.getHeight() - email.getHeight() - 2*MyGdxGame.btnBackMargin - 2*EmailListScreen.emailLabelMargin);
+		email.setColor(Color.BLACK);
 		stage.addActor(email);
 	}
 
@@ -135,4 +162,16 @@ public class EmailFullScreen extends ScreenAdapter {
 		this.currentEmail = currentEmail;
 	}
 	
+	public void createHomeButton() {
+		home = new Texture("home-icon.png");
+		btnHome = new Image(home);
+		btnHome.addListener(new ClickListener(){
+			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		stage.addActor(btnHome);
+	}
+
 }

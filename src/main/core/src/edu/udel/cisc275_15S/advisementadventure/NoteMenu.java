@@ -1,5 +1,7 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
@@ -8,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -30,12 +33,18 @@ public class NoteMenu extends ScreenAdapter {
 	Skin uiskin;
 	TextButton newNote;
 	private SpriteBatch batch;
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
 
 	public NoteMenu(MyGdxGame g){
 		batch = new SpriteBatch();
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
 		this.game = g;
+		this.taskList = g.taskList;
 		s = new Stage();
 		t = new Table();
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
@@ -95,11 +104,60 @@ public class NoteMenu extends ScreenAdapter {
 			heightcounter -= x.getHeight();
 		}
 	}
+	
+	public void createAchieveStar() {
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+				create = true;
+				num++;
+			}
+		}
+		
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width-72, height-72, .7f), 
+					Actions.moveTo(width-80, height-80, .7f))));
+		
+			s.addActor(star);
+			la = new Label(num + "", uiskin);
+			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(height - star.getHeight() + star.getHeight() * .36f);
+
+			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			s.addActor(la);
+		}
+
+	}
 
 	@Override
 	public void show(){
 		//drawScreen();
 		//s.addActor(t);
+		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 	}
 
@@ -109,9 +167,10 @@ public class NoteMenu extends ScreenAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//s.act();
 		batch.begin();
+		
+		batch.end();
 		s.draw();
 		s.act();
-		batch.end();
 	}
 	@Override
 	public void hide(){

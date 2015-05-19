@@ -9,18 +9,15 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 
@@ -89,7 +86,7 @@ public class HelpScreen extends ScreenAdapter{
 		changePic = new boolean[10];
 		returnScreen = new boolean[10];
 		chime = Gdx.audio.newSound(Gdx.files.internal("chime.mp3"));
-		awesome = Gdx.audio.newSound(Gdx.files.internal("XcOSoSj-ar.mp3"));
+		
 		for(int i=0; i<sawComp.length; i++){
 			sawComp[i] = false;
 			changePic[i] = false;
@@ -132,9 +129,6 @@ public class HelpScreen extends ScreenAdapter{
 		Gdx.gl.glClearColor(205/255f, 242/255f, 250/255f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
        
-        
-        
-        
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted() && changePic[i]){
 				font.setColor(Color.BLACK);
@@ -160,6 +154,7 @@ public class HelpScreen extends ScreenAdapter{
     	//write tasks
     	for(int i = 0; i < tasklist.size(); i++){
     		if(tasklist.get(i).isCompleted()){
+    			font.setColor(Color.LIGHT_GRAY);
     			if(vecArr.get(i).x <= width*.073)
     				font.setColor(Color.BLACK);
 				font.draw(batch, "Task " + (i+1) + ": " + tasklist.get(i).getDescription(), width*.1f, height*.6f - height*.05f*(i+1));
@@ -177,11 +172,10 @@ public class HelpScreen extends ScreenAdapter{
     			batch.draw(star, vecArr.get(i).x, vecArr.get(i).y, vecArr.get(i).x*.5f, vecArr.get(i).x*.5f);
     		}
     		if(tasklist.get(i).isCompleted() && !sawComp[i]){
-    			
-    		
     			if(vecArr.get(i).x >= width*.75f && vecArr.get(i).x <= width*.77f){
     				chime.play();
-    				//awesome.play();
+    				tasklist.get(i).setSeen();
+    				
     			}
     	    	speedx = width+75-vecArr.get(i).x;
     	    	speedy = vecArr.get(i).y +35- (height*.57f - height*.05f*(i+1));
@@ -236,7 +230,7 @@ public class HelpScreen extends ScreenAdapter{
 			
 			//returnScreen[index] = true;
 			sawComp[index] = true;
-			tasklist.get(index).setSeen();
+			
 			
 		}
 		batch.draw(star, exp1.x, exp1.y, 10, 10);
@@ -267,7 +261,7 @@ public class HelpScreen extends ScreenAdapter{
 		//System.out.println(btnB.getHeight());
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new HomeScreen(game));
+				game.setScreen(game.previousScreen);
 				System.out.println("back");
 				return true;
 			}

@@ -31,6 +31,47 @@ public class LoginScreen extends ScreenAdapter {
 	float width;
 	TextButton enter;
 
+	public LoginScreen(MyGdxGame g) {
+		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
+
+		height = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		this.game = g;
+		createTextField();
+		createEnter();
+		createWelcome();
+		batch = new SpriteBatch();
+		bg = new Texture("login-bg.png");
+		// font = new BitmapFont();
+		s = new Stage();
+		s.addActor(tf);
+		s.addActor(enter);
+		s.addActor(welcome);
+	}
+	
+	@Override
+	public void show() {
+		parseQuestions();
+		Gdx.input.setInputProcessor(s);
+	}
+
+	@Override
+	public void render(float delta) {
+		GL20 gl = Gdx.gl;
+		batch.begin();
+		gl.glClearColor(1, 0, 0, 1);
+		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.draw(bg, 0, 0, width, height);
+		batch.end();
+		s.draw();
+	}
+
+	@Override
+	public void hide() {
+		batch.dispose();
+		s.dispose();
+	}
+	
 	public void parseQuestions() {
 		FileHandle quest = Gdx.files.internal("Questions.txt");
 		// game.questionList = new ArrayList<Question>();
@@ -69,24 +110,6 @@ public class LoginScreen extends ScreenAdapter {
 			e.printStackTrace();
 		}
 
-	}
-
-	public LoginScreen(MyGdxGame g) {
-		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
-
-		height = Gdx.graphics.getHeight();
-		width = Gdx.graphics.getWidth();
-		this.game = g;
-		createTextField();
-		createEnter();
-		createWelcome();
-		batch = new SpriteBatch();
-		bg = new Texture("login-bg.png");
-		// font = new BitmapFont();
-		s = new Stage();
-		s.addActor(tf);
-		s.addActor(enter);
-		s.addActor(welcome);
 	}
 
 	public void createTextField() {
@@ -136,29 +159,4 @@ public class LoginScreen extends ScreenAdapter {
 		welcome.setX(width / 2 - welcome.getWidth() / 2);
 		welcome.setY(height / 2 + height / 4);
 	}
-
-	@Override
-	public void show() {
-		parseQuestions();
-		Gdx.input.setInputProcessor(s);
-
-	}
-
-	@Override
-	public void render(float delta) {
-		GL20 gl = Gdx.gl;
-		batch.begin();
-		gl.glClearColor(1, 0, 0, 1);
-		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.draw(bg, 0, 0, width, height);
-		batch.end();
-		s.draw();
-	}
-
-	@Override
-	public void hide() {
-		batch.dispose();
-		s.dispose();
-	}
-
 }

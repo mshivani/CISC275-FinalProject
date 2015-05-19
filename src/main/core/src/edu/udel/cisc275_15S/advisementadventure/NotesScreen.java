@@ -1,11 +1,14 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input.TextInputListener;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,7 +16,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -36,8 +41,16 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	boolean backspace;
 	int code;
 	int untitledCount;
+	float height;
+	float width;
 	//boolean alreadyCreated;
 	Note temp;
+	Image btnB;
+	ArrayList<Task> taskList;
+	Texture starT;
+	Image star;
+	Label la;
+	int num;
 
 	public NotesScreen(MyGdxGame g, Note note) {
 		//notes = note;
@@ -46,6 +59,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 		temp.setName(note.getName());
 		notes = note;
 		this.game = g;
+		this.taskList = g.taskList;
 		s = new Stage();
 		m = new InputMultiplexer();
 		batch = new SpriteBatch();
@@ -133,6 +147,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 		//ta.setText(notes);
 
 		s.draw();
+		s.act();
 	}
 	@Override
 	public void hide(){
@@ -143,6 +158,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	}
 	@Override
 	public void show(){
+		game.previousScreen = this;
 		if(notes.getText().equals("")){
 			Gdx.input.getTextInput(new TextInputListener(){
 
@@ -161,10 +177,60 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 
 			}, "Enter Name for new note", null, "Name");
 		}
+		height = Gdx.graphics.getHeight();
+		width = Gdx.graphics.getWidth();
+		createAchieveStar();
 		Gdx.input.setInputProcessor(m);
 		Gdx.input.setOnscreenKeyboardVisible(true);
 	}
+	
+	public void createAchieveStar() {
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+				create = true;
+				num++;
+			}
+		}
+		
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width-72, height-72, .7f), 
+					Actions.moveTo(width-80, height-80, .7f))));
+		
+			s.addActor(star);
+			la = new Label(num + "", uiskin);
+			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(height - star.getHeight() + star.getHeight() * .36f);
 
+			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			s.addActor(la);
+		}
+
+	}
 	@Override
 	public boolean keyDown(int keycode) {
 		code = keycode;

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -40,6 +41,13 @@ public class TextScreen extends ScreenAdapter{
 	float width;
 	float height;
 	Image textR;
+
+	ArrayList<Task> taskList;
+	Image star;
+	Texture starT;
+	Label la;
+	int num;
+
 	int r1W;
 	int r2W;
 	int r3W;
@@ -47,16 +55,19 @@ public class TextScreen extends ScreenAdapter{
 	int r5W;
 	int idk;
 
+
 	public TextScreen(MyGdxGame g, Question q) {
 		//width = Gdx.graphics.getWidth();
 		//height= Gdx.graphics.getHeight();
 		this.currentQuestion = q;
 		this.game = g;
+		this.taskList = g.taskList;
 		resp = q.getResponses();
 		
 	}
 	@Override
 	public void show(){
+		game.previousScreen = this;
 		//game.data.writeString(currentQuestion.toString() + "\n", true);
 		width = Gdx.graphics.getWidth();
 		height= Gdx.graphics.getHeight();
@@ -71,15 +82,67 @@ public class TextScreen extends ScreenAdapter{
 		createResponses();
 		//createWrong();
 		//createReply();
+		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 		determineTasks();
 		
 	}
+	
+	public void createAchieveStar() {
+		starT = new Texture("star.png");
+		star = new Image(starT);
+		num = 0;
+		boolean create = false;
+		for (int i = 0; i < taskList.size(); i++) {
+			if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+				create = true;
+				num++;
+			}
+		}
+		
+		if (create) {
+			star.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			star.setWidth(80);
+			star.setHeight(80);
+			star.setX(width - star.getWidth());
+			star.setY(height - star.getHeight());
+			
+			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width-72, height-72, .7f), 
+					Actions.moveTo(width-80, height-80, .7f))));
+		
+			s.addActor(star);
+			la = new Label(num + "", uiskin);
+			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setY(height - star.getHeight() + star.getHeight() * .36f);
+
+			la.setColor(Color.BLACK);
+			la.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(game.help);
+					return true;
+				}
+			});
+			s.addActor(la);
+		}
+
+	}
+	
 	public void determineTasks(){
 		if(game.currentTask==1)
 			game.currentTask=2;
 		if(game.currentTask==5)
 			game.currentTask=6;
+		if(game.currentTask==7)
+			game.currentTask=8;
 	}
 	public void createWrong(){
 		wrong = new Label("Please try again later", uiskin);
@@ -101,7 +164,8 @@ public class TextScreen extends ScreenAdapter{
 			r1.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(0))){
-						System.out.println("Correct");
+						
+						//System.out.println("Correct");
 						determineTasks();
 						createReply(currentQuestion.getCorrectResponse().response);
 						//updateFile(resp.get(0));
@@ -127,11 +191,12 @@ public class TextScreen extends ScreenAdapter{
 			r2.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(1))){
-						System.out.println("Correct");
+						
+						// System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
 						game.data.writeString(currentQuestion.updateFile(), true);
-						System.out.println(game.data.readString());
+						// System.out.println(game.data.readString());
 						//updateFile(resp.get(0));
 					}
 					else{
@@ -154,11 +219,12 @@ public class TextScreen extends ScreenAdapter{
 			r3.addListener(new ClickListener(){
 				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 					if(currentQuestion.getCorrectResponse().response.equals(resp.get(2))){
-						System.out.println("Correct");
+						
+						//System.out.println("Correct");
 						createReply(currentQuestion.getCorrectResponse().response);
 						determineTasks();
 						game.data.writeString(currentQuestion.updateFile(), true);
-						System.out.println(game.data.readString());
+						//System.out.println(game.data.readString());
 						//updateFile(resp.get(0));
 					}
 					else{
@@ -202,7 +268,7 @@ public class TextScreen extends ScreenAdapter{
 		Label message = new Label(currentQuestion.question, uiskin);
 
 		textC.setX(0);
-		System.out.println(textC.getHeight());
+		//System.out.println(textC.getHeight());
 		
 		textC.setWidth((float) (width/2.5));
 		textC.setHeight(height/3);
@@ -243,7 +309,7 @@ public class TextScreen extends ScreenAdapter{
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				game.setScreen(new HomeScreen(game));
-				System.out.println("back");
+				//System.out.println("back");
 				return true;
 			}
 		});

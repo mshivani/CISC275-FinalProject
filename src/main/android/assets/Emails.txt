@@ -1,22 +1,35 @@
-3
+5
 Dr. Doctor
 3/21/15
-Add your Major
+DECLARE YOUR MAJOR
 Hi New Blue Hen,
-Welcome to the University of Delaware! I'm your faculty advisor, Dr. Doc. I'm here to help you out with all your academic and career goals! Don't worry. You don't need to pick your career just yet, but you do need to pick a major. Head over to UDSIS and declare your major. Once I see in UDSIS that you\'ve declared your major, I'll shoot you another email with some more information.
+Welcome to the University of Delaware! I'm your faculty advisor, Dr. Doc. I'm here to help you out with all your academic and career goals! Don't worry. You don't need to pick your career just yet, Career Services can help you with that, but you do need to pick a major. Head over to UDSIS and declare your major. Once I see in UDSIS that you've declared your major, I'll shoot you another email with some more information.
 Best,
 Dr. Doctor
-Advisor
+Dr. Doc
 3/22/15
-Add Courses
+ADD 5 COURSES
 Hi New Blue Hen,
-I saw that you declared your major. Congratulations! It's time to register for classes. You can do that on UDSIS too. Head over there now and pick out five classes.
+I saw that you declared your major. Congratulations! It's time to register for classes. You can do that on UDSIS too. Head over there now and pick out five classes. Don’t forget that the free drop/add period ends 2 weeks after the semester begins.
 Sincerely,
-Your Advisor
-Your Advisor
+Dr. Doc
+Dr. Doc
 3/30/15
-Degree Audit
+CHECK YOUR DEGREE AUDIT
 Hi New Blue Hen,
-I'm glad to see you picked your classes! If you need help deciding on what to take, you can always shoot me an email to with a question or to set-up a meeting. Otherwise, you can check out your degree audit on UDSIS. It'll tell you what classes you've taken and what classes are left to be completed for your degree. You can also look at the course catalog to see what your major requirements are.
+I'm glad to see you picked your classes! If you need help deciding on what to take, you can always shoot me an email to with a question or to set-up a meeting. Otherwise, you can check out your degree audit on UDSIS. It'll tell you what classes you've taken and what classes are left to be completed for your degree. You can also look at the course catalog to see what your major requirements are. Check out the course catalog on the UD website at udel.edu. Don't forget that the deadline to withdraw from a class without academic penalty is 8 weeks after the semester begins.
 Thanks,
-Your Advisor
+Dr. Doc
+Dr. Doc
+5/11/2015
+DROP A CLASS
+Dear New Blue Hen,
+You should think about dropping one of your five classes so you have more time to get involved on campus. Don't forget if you need advice about changing your major, or anything else academic, you can talk to me or go to the academic advisement office.
+Sincerely, 
+Dr. Doc
+Student Health Services
+5/11/2015
+SIGN UP FOR A FLU SHOT
+Flu season is just around the corner! You can get a flu shot at the Student Health Center in Laurel Hall on South Green. Sign-up for a time slot.
+Sincerely, 
+Student Health Services

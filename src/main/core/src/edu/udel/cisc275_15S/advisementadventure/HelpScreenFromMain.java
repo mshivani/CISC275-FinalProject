@@ -9,16 +9,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class HelpScreenFromMain extends ScreenAdapter{
@@ -67,6 +63,7 @@ public class HelpScreenFromMain extends ScreenAdapter{
 	}
 	
 	public void show(){
+		game.previousScreen = this;
 		s=new Stage();
 		compImg.clear();
 		unCompImg.clear();
@@ -117,13 +114,13 @@ public class HelpScreenFromMain extends ScreenAdapter{
 		for(int i = 0; i < tasklist.size()/2; i++){
 			if(tasklist.get(i).isCompleted()){
 				font.setColor(Color.BLACK);
-				compImg.get(i).setX((i+1)*(width*.15f));
+				compImg.get(i).setX((i+1)*(width*.5f));
 				compImg.get(i).setY(height*.8f);
 				s.addActor(compImg.get(i));
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
-				unCompImg.get(i).setX((i+1)*(width*.15f));
+				unCompImg.get(i).setX((i+1)*(width*.5f));
 				unCompImg.get(i).setY(height*.8f);
 				s.addActor(unCompImg.get(i));
 			}
@@ -131,13 +128,13 @@ public class HelpScreenFromMain extends ScreenAdapter{
 		for(int i = tasklist.size()/2; i < tasklist.size(); i++){
 			if(tasklist.get(i).isCompleted()){
 				font.setColor(Color.BLACK);
-				compImg.get(i).setX((i+1-tasklist.size()/2)*(width*.15f));
+				compImg.get(i).setX((i+1-tasklist.size()/2)*(width*.5f));
 				compImg.get(i).setY(height*.6f);
 				s.addActor(compImg.get(i));
 			}
 			else{
 				font.setColor(Color.LIGHT_GRAY);
-				unCompImg.get(i).setX((i+1-tasklist.size()/2)*(width*.15f));
+				unCompImg.get(i).setX((i+1-tasklist.size()/2)*(width*.5f));
 				unCompImg.get(i).setY(height*.6f);
 				s.addActor(unCompImg.get(i));
 			}
@@ -152,7 +149,7 @@ public class HelpScreenFromMain extends ScreenAdapter{
 		System.out.println(btnB.getHeight());
 		btnB.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(new HomeScreen(game));
+				game.setScreen(game.welcome);
 				System.out.println("back");
 				return true;
 			}

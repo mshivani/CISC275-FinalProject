@@ -23,18 +23,44 @@ public class Email {
 
 	@Override
 	public String toString() {
-//		String contentString = "";
-//		for (int i = 0; i < content.length(); i++) {
-//			contentString += content.charAt(i);
-//			if (contentString.length() >= EmailScreen.emailLabelWidth) {
-//				contentString += "\n";
-//			}
-//		}
 		return sender + "\n" + date + "\n" + subject + "\n" + salutation + "\n" + content + "\n" + closing + "\n" + signature;
 	}
 	
+	public String getSender() {
+		return sender;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getSalutation() {
+		return salutation;
+	}
+
+	public String getClosing() {
+		return closing;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
 	public int getNumberInList() {
 		return numberInList;
 	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 }
+
