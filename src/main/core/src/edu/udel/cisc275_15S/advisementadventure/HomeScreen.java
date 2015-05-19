@@ -108,7 +108,7 @@ public class HomeScreen extends ScreenAdapter {
 		n = new Texture("warning-icon.png");
 		notification = new Image(n);
 		System.out.println("currentTask: " + game.currentTask + "     currentTask2: " + game.currentTask2);
-		if (game.currentTask2 == 100) {
+		if (game.currentTask2 == 100 && game.currentTask == 4) {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnW, true);
@@ -120,7 +120,7 @@ public class HomeScreen extends ScreenAdapter {
 			setNotificationImage(btnW, false);
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, true);
-		} else if (game.currentTask2 == 103 && game.currentTask != 6) {
+		} else if (game.currentTask2 == 103 && game.currentTask == 5) {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnW, true);
@@ -163,36 +163,19 @@ public class HomeScreen extends ScreenAdapter {
 				}
 				break;
 			case 1:
-<<<<<<< HEAD
-=======
-				setNotificationImage(btnE, true);
->>>>>>> branch 'master' of https://github.com/UD-CISC-275-15S/j-unit
 				setNotificationImage(btnW, false);
 				setNotificationImage(btnT, false);
-<<<<<<< HEAD
 				setNotificationImage(btnE, true);
 				break;
 			case 2:
 				setNotificationImage(btnT, false);
 				setNotificationImage(btnE, false);
 				setNotificationImage(btnW, true);
-=======
-				break;
-			case 2:
-				setNotificationImage(btnW, true);
-				setNotificationImage(btnT, false);
-				setNotificationImage(btnE, false);
->>>>>>> branch 'master' of https://github.com/UD-CISC-275-15S/j-unit
 				break;
 			case 3:
 				setNotificationImage(btnW, false);
-<<<<<<< HEAD
 				setNotificationImage(btnE, false);
 				setNotificationImage(btnT, true);
-=======
-				setNotificationImage(btnT, true);
-				setNotificationImage(btnE, false);
->>>>>>> branch 'master' of https://github.com/UD-CISC-275-15S/j-unit
 				break;
 			case 4:
 				setNotificationImage(btnW, false);
