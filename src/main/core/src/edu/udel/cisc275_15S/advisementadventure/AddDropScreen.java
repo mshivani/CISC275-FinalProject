@@ -200,6 +200,7 @@ public class AddDropScreen extends ScreenAdapter {
 						createAchieveStar();
 					}
 					
+
 				}
 				return true;
 			}

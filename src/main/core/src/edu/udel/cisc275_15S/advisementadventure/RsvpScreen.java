@@ -100,9 +100,39 @@ public class RsvpScreen extends ScreenAdapter {
 					rsvpL.setX(sb.getX() - sb.getX()/2);
 					rsvpL.setY(sb.getY() - sb.getHeight());
 					
+					if(sb.getSelected().equals("A slot in the Writing Center")){
+						boolean remove = false;
+						for (int i = 0; i < taskList.size(); i++) {
+							if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+								remove = true;
+							}
+						}
+						if(remove){
+							la.remove();
+							star.remove();
+						}
+						taskList.get(6).setCompleted();
+						createAchieveStar();
+						
+					}
+					if(sb.getSelected().equals("Getting the Flu Shot")){
+						boolean remove = false;
+						for (int i = 0; i < taskList.size(); i++) {
+							if (taskList.get(i).isCompleted() && !taskList.get(i).isSeen()) {
+								remove = true;
+							}
+						}
+						if(remove){
+							la.remove();
+							star.remove();
+						}
+						taskList.get(7).setCompleted();
+						createAchieveStar();
+					}
 					
 					rsvpChoices.removeValue(sb.getSelected(), true);
 					sb.setItems(rsvpChoices);
+					
 				}
 				return true;
 			}

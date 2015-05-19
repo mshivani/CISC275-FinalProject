@@ -174,8 +174,7 @@ public class HelpScreen extends ScreenAdapter{
     		if(tasklist.get(i).isCompleted() && !sawComp[i]){
     			if(vecArr.get(i).x >= width*.75f && vecArr.get(i).x <= width*.77f){
     				chime.play();
-    				tasklist.get(i).setSeen();
-    				
+    				tasklist.get(i).setSeen();	
     			}
     	    	speedx = width+75-vecArr.get(i).x;
     	    	speedy = vecArr.get(i).y +35- (height*.57f - height*.05f*(i+1));
