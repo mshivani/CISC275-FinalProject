@@ -25,10 +25,10 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	Skin uiskin;
 	Texture banner;
 	TextButton add;
-	SelectBox sb;
+	SelectBox<String> sb;
 	float height;
 	float width;
-	Array majorChoices;
+	Array<String> majorChoices;
 	String yourMajor;
 	Stage s;
 	Texture btnBack;
@@ -46,7 +46,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 
 		this.game = g;
 		this.taskList = g.taskList;
-		majorChoices = new Array();
+		majorChoices = new Array<String>();
 		majorChoices.add("Undeclared");
 		majorChoices.add("Agricultural and Natural Resources");
 		majorChoices.add("Art");
@@ -83,7 +83,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	}
 
 	public void createDropDown() {
-		sb = new SelectBox(uiskin);
+		sb = new SelectBox<String>(uiskin);
 		sb.setWidth(width / 2);
 		sb.setItems(majorChoices);
 		sb.setPosition(width / 4, height / 2f);

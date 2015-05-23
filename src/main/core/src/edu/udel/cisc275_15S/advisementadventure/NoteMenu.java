@@ -19,7 +19,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class NoteMenu extends ScreenAdapter {
-	private String note;
 	Texture btnBack;
 	Texture createNew;
 	Image createNote;
@@ -39,7 +38,7 @@ public class NoteMenu extends ScreenAdapter {
 	Label la;
 	int num;
 
-	public NoteMenu(MyGdxGame g){
+	public NoteMenu(MyGdxGame g) {
 		batch = new SpriteBatch();
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
@@ -51,60 +50,66 @@ public class NoteMenu extends ScreenAdapter {
 		l = new Label("Notes", uiskin);
 		createNew = new Texture("create_new.PNG");
 		createNote = new Image(createNew);
-		createNote.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+		createNote.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
 				game.setScreen(new NotesScreen(game, new Note()));
 				return true;
 			}
 		});
 		createNote.setX(width - createNote.getWidth());
 		createNote.setY(0);
-		
+
 		t.setFillParent(true);
-		
-		l.setX(width/2 - l.getWidth());
-		l.setY(height-l.getHeight()-5);
+
+		l.setX(width / 2 - l.getWidth());
+		l.setY(height - l.getHeight() - 5);
 		l.setColor(Color.BLACK);
 		l.setFontScale(2);
 		btnBack = new Texture("btn_back.png");
 		bb = new Image(btnBack);
 		bb.setX(0);
-		bb.setY(Gdx.graphics.getHeight()-bb.getHeight());
-		bb.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+		bb.setY(Gdx.graphics.getHeight() - bb.getHeight());
+		bb.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
 				game.setScreen(game.welcome);
 				return true;
 			}
 		});
-		//t.setBounds(0, 0, width, height-bb.getHeight());
+		// t.setBounds(0, 0, width, height-bb.getHeight());
 		s.addActor(createNote);
-		//t.row();
-		s.addActor(l);		
+		// t.row();
+		s.addActor(l);
 		s.addActor(bb);
-		//s.addActor(t);
+		// s.addActor(t);
 		drawScreen();
 	}
-	public void drawScreen(){
-		//System.out.println(
-		float heightcounter=height- createNote.getHeight();
-		//int widthcounter;
-		for (int i =0; i <game.notesList.size(); i++){
+
+	public void drawScreen() {
+		// System.out.println(
+		float heightcounter = height - createNote.getHeight();
+		// int widthcounter;
+		for (int i = 0; i < game.notesList.size(); i++) {
 			final int index = i;
-			TextButton x = new TextButton(game.notesList.get(i).getName(), uiskin);
+			TextButton x = new TextButton(game.notesList.get(i).getName(),
+					uiskin);
 			x.setY(heightcounter - x.getHeight());
 			x.setWidth(width);
-			x.addListener(new ClickListener(){
-				public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-					game.setScreen(new NotesScreen(game, game.notesList.get(index)));
+			x.addListener(new ClickListener() {
+				public boolean touchDown(InputEvent e, float x, float y,
+						int pointer, int button) {
+					game.setScreen(new NotesScreen(game, game.notesList
+							.get(index)));
 					System.out.println("pressed extras");
 					return true;
 				}
 			});
-			s.addActor(x);			
+			s.addActor(x);
 			heightcounter -= x.getHeight();
 		}
 	}
-	
+
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -116,7 +121,7 @@ public class NoteMenu extends ScreenAdapter {
 				num++;
 			}
 		}
-		
+
 		if (create) {
 			star.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -129,15 +134,16 @@ public class NoteMenu extends ScreenAdapter {
 			star.setHeight(80);
 			star.setX(width - star.getWidth());
 			star.setY(height - star.getHeight());
-			
-			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(width-72, height-72, .7f), 
-					Actions.moveTo(width-80, height-80, .7f))));
-		
+					Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width - 72, height - 72, .7f),
+					Actions.moveTo(width - 80, height - 80, .7f))));
+
 			s.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setX(width - star.getWidth() + star.getWidth() * .44f);
 			la.setY(height - star.getHeight() + star.getHeight() * .36f);
 
 			la.setColor(Color.BLACK);
@@ -154,26 +160,27 @@ public class NoteMenu extends ScreenAdapter {
 	}
 
 	@Override
-	public void show(){
-		//drawScreen();
-		//s.addActor(t);
+	public void show() {
+		// drawScreen();
+		// s.addActor(t);
 		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 	}
 
-	@Override 
-	public void render(float delta){
+	@Override
+	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//s.act();
+		// s.act();
 		batch.begin();
-		
+
 		batch.end();
 		s.draw();
 		s.act();
 	}
+
 	@Override
-	public void hide(){
+	public void hide() {
 		s.dispose();
 	}
 }

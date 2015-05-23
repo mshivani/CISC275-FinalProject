@@ -26,8 +26,8 @@ public class AddDropScreen extends ScreenAdapter {
 	BitmapFont font;
 	Texture banner;
 	Texture registration;
-	SelectBox sb;
-	SelectBox sb2;
+	SelectBox<String> sb;
+	SelectBox<String> sb2;
 	Skin uiskin;  
 	Stage s;
 	float height;
@@ -35,9 +35,9 @@ public class AddDropScreen extends ScreenAdapter {
 	TextButton add;
 	TextButton drop;
 	Image btnB;
-	ArrayList currentList;
-	Array newItems;
-	Array dropItems;
+	ArrayList<String> currentList;
+	Array<String> newItems;
+	Array<String> dropItems;
 	Label AddL;
 	Label DropL;
 	
@@ -55,8 +55,8 @@ public class AddDropScreen extends ScreenAdapter {
 	public AddDropScreen(MyGdxGame g) {
 		
 		// Create a list of items that stores the possible classes that the user can take
-		currentList = new ArrayList();
-		newItems  = new Array();
+		currentList = new ArrayList<String>();
+		newItems  = new Array<String>();
 		newItems.add("");
 		newItems.add("ANTH 101");
 		newItems.add("CHEM 103");
@@ -75,7 +75,7 @@ public class AddDropScreen extends ScreenAdapter {
 		newItems.add("WOMS 205");
 		
 		//initializes a drop items list for the possible classes that the user can drop 
-		dropItems = new Array();
+		dropItems = new Array<String>();
 		dropItems.add("");
 		
 		this.game = g;
@@ -85,7 +85,7 @@ public class AddDropScreen extends ScreenAdapter {
 
 	// creates a drop down for the classes the user is able to add
 	public void createDropDown(){
-		sb = new SelectBox(uiskin);
+		sb = new SelectBox<String>(uiskin);
 		sb.setWidth(width/2);
 		sb.setItems(newItems);
 		sb.setPosition(width/4, height/1.8f);
@@ -94,7 +94,7 @@ public class AddDropScreen extends ScreenAdapter {
 	
 	// creates a drop down for the classes the user is able to drop
 	public void createDropDown2(){
-		sb2 = new SelectBox(uiskin);
+		sb2 = new SelectBox<String>(uiskin);
 		sb2.setWidth(width/2);
 		sb2.setItems(dropItems);
 		sb2.setPosition(width/4, height/3.5f);
