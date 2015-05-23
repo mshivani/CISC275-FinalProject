@@ -38,14 +38,13 @@ public class EmailListScreen extends ScreenAdapter {
 	Texture starT;
 	Image star;
 	Label la;
-	
+	int timeViewed;
+
 	Texture indicArrow;
 	Image arrow;
 	Texture warning;
 	Image warn;
-	
-	
-	
+
 	int num;
 
 	public EmailListScreen(MyGdxGame g) {
@@ -58,6 +57,7 @@ public class EmailListScreen extends ScreenAdapter {
 		this.taskList = g.taskList;
 		Texture starT = new Texture("star.png");
 		star = new Image(starT);
+		timeViewed = 0;
 	}
 
 	@Override
@@ -86,13 +86,13 @@ public class EmailListScreen extends ScreenAdapter {
 		createTitle();
 		createBackButton();
 		createEmail();
-		
+
 		createIndicatorArrow();
 		createAchieveStar();
 		Gdx.input.setInputProcessor(stage);
 	}
 
-public void createAchieveStar() {
+	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
 		num = 0;
@@ -103,7 +103,7 @@ public void createAchieveStar() {
 				num++;
 			}
 		}
-		
+
 		if (create) {
 			star.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -116,15 +116,16 @@ public void createAchieveStar() {
 			star.setHeight(80);
 			star.setX(screenWidth - star.getWidth());
 			star.setY(screenHeight - star.getHeight());
-			
-			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(screenWidth-72, screenHeight-72, .7f), 
-					Actions.moveTo(screenWidth-80, screenHeight-80, .7f))));
-		
+					Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(screenWidth - 72, screenHeight - 72, .7f),
+					Actions.moveTo(screenWidth - 80, screenHeight - 80, .7f))));
+
 			stage.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(screenWidth - star.getWidth()+ star.getWidth() * .44f);
+			la.setX(screenWidth - star.getWidth() + star.getWidth() * .44f);
 			la.setY(screenHeight - star.getHeight() + star.getHeight() * .36f);
 
 			la.setColor(Color.BLACK);
@@ -138,23 +139,35 @@ public void createAchieveStar() {
 			stage.addActor(la);
 		}
 
-	}	
+	}
+
 	public void createIndicatorArrow() {
-		if (game.currentTask == 0) {
+		if (timeViewed == 0) {
 			indicArrow = new Texture("arrow.png");
 			arrow = new Image(indicArrow);
-			warning = new Texture("warning-icon-sm.png");
-			warn = new Image(warning);
-			if (game.currentTask == 0) {
-				arrow.setX(screenWidth - inbox.getWidth());
-				arrow.setY(screenHeight / 2);
-				warn.setX(arrow.getX() + 21);
-				warn.setY(arrow.getY() - 5);
-				stage.addActor(arrow);
-				stage.addActor(warn);
-			}
+			arrow.setX(emailLabelMargin + email.getWidth() / 2);
+			arrow.setY(screenHeight - btnB.getHeight() - email.getHeight()
+					- MyGdxGame.btnBackMargin * 2 - emailLabelMargin * 2);
+			stage.addActor(arrow);
 		}
 	}
+
+	// public void createIndicatorArrow() {
+	// if (game.currentTask == 0) {
+	// indicArrow = new Texture("arrow.png");
+	// arrow = new Image(indicArrow);
+	// warning = new Texture("warning-icon-sm.png");
+	// warn = new Image(warning);
+	// if (game.currentTask == 0) {
+	// arrow.setX(screenWidth - inbox.getWidth());
+	// arrow.setY(screenHeight / 2);
+	// warn.setX(arrow.getX() + 21);
+	// warn.setY(arrow.getY() - 5);
+	// stage.addActor(arrow);
+	// stage.addActor(warn);
+	// }
+	// }
+	// }
 
 	private void createTitle() {
 		inbox = new Label("Inbox", uiskin);
@@ -211,6 +224,10 @@ public void createAchieveStar() {
 			break;
 		case 8:
 			emailShown = 4;
+			break;
+		case 9:
+			emailShown = 5;
+			break;
 		default:
 			emailShown = 0;
 			break;
@@ -221,28 +238,27 @@ public void createAchieveStar() {
 				+ wrapString(em.getContent(), 90) + "\n" + em.getClosing()
 				+ "\n" + em.getSignature(), uiskin);
 		email.setX(emailLabelMargin);
-		email.setY(emailLocationFactor
-				+ (screenHeight - btnB.getHeight() - email.getHeight()
-						- MyGdxGame.btnBackMargin - emailLabelMargin));
+		email.setY(emailLocationFactor + (screenHeight - btnB.getHeight() - email.getHeight() - MyGdxGame.btnBackMargin - emailLabelMargin));
 		email.setColor(Color.BLACK);
 		email.setWidth(screenWidth - 20);
 		email.setWrap(true);
 		LabelStyle labelStyle = new LabelStyle();
 		labelStyle.font = new BitmapFont();
-		labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f, 0.8f,
-				0.2f);
+		labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f, 0.8f, 0.2f);
 		email.setStyle(labelStyle);
 
 		email.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent ev, float x, float y,
 					int pointer, int button) {
+				timeViewed = 1;
 				if (!taskList.get(0).isCompleted()) {
 					taskList.get(0).setCompleted();
 				}
-				game.setScreenHelp(game.email2, em);
+				if (game.currentTask == 1) {
+					game.currentTask = 2;
+				}
 				if (game.currentTask == 4) {
 					game.currentTask2 = 100;
-//					game.currentTask = 4;
 				}
 				if (game.currentTask == 5) {
 					game.currentTask2 = 103;
@@ -253,29 +269,13 @@ public void createAchieveStar() {
 				if (game.currentTask == 8) {
 					game.currentTask2 = 108;
 				}
-//				if (game.currentTask == 2) {
-//					game.currentTask2 = 101;
-//					game.currentTask = 3;
-//				}
-				if (game.currentTask == 1) {
-					game.currentTask = 2;
-				}
-
-				// System.out.println(game.textCount);
-				// game.currText++;
-				// }
-				//
-				// if (!taskList.get(0).isCompleted()) {
-				// taskList.get(0).setCompleted();
-				// game.setScreen(game.help);
-				// }
+				game.setScreenHelp(game.email2, em);
 				return true;
 			}
 		});
 		stage.addActor(email);
 		emailLocationFactor -= email.getHeight() + emailLabelMargin;
 		emailLabelWidth = email.getWidth();
-
 	}
 
 	public static String wrapString(String string, int charWrap) {
@@ -295,5 +295,4 @@ public void createAchieveStar() {
 			return string;
 		}
 	}
-
 }

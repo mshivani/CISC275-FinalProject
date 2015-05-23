@@ -39,20 +39,16 @@ public class HomeScreen extends ScreenAdapter {
 	Image btnE;
 	Label emailL;
 	Texture btnHelp;
-	// <<<<<<< Updated upstream
 	Image btnH;
 	Texture indicArrow;
 	Image arrow;
 	Label helpL;
-	// =======
 	ArrayList<Task> taskList;
 	Image star;
 	Texture starT;
 	Label la;
 	int num;
-	// Texture blueHen;
 	boolean input;
-	// >>>>>>> Stashed changes
 	float height;
 	float width;
 	Texture bg;
@@ -66,21 +62,8 @@ public class HomeScreen extends ScreenAdapter {
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		this.taskList = g.taskList;
 		timeViewingScreen = 0;
-		//
-		// batch = new SpriteBatch();
-		// font = new BitmapFont();
-		// font.setColor(0, 0, 0, 1);
-		// bg = new Texture("homescreen.png");
-		// btnBack = new Texture("btn_back.png");
-		// btnNotes = new Texture("btn_notes.png");
-		// btnWeb = new Texture("btn_web.png");
-		// btnText = new Texture("btn_text.png");
-		// btnEmail = new Texture("btn_email.png");
-		// btnHelp = new Texture("btn_help.png");
-		// blueHen = new Texture("blueHen.png");
-		// input = false;
-		// height = Gdx.graphics.getHeight();
-		// width = Gdx.graphics.getWidth();
+		game.email = new EmailListScreen(game);
+		game.notemenu = new NoteMenu(game);
 	}
 
 	@Override
@@ -91,12 +74,9 @@ public class HomeScreen extends ScreenAdapter {
 		Image bgI = new Image(bg);
 		s.addActor(bgI);
 		batch = new SpriteBatch();
-		font = new BitmapFont();
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
 		bgI.setBounds(0, 0, width, height);
-		font.setColor(0, 0, 0, 1);
-		// createBackButton();
 		createNotesButton();
 		createWebButton();
 		createTextButton();
@@ -107,7 +87,12 @@ public class HomeScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(s);
 		n = new Texture("warning-icon.png");
 		notification = new Image(n);
-		System.out.println("currentTask: " + game.currentTask + "     currentTask2: " + game.currentTask2);
+		
+		
+		System.out.println("currentTask: " + game.currentTask
+				+ "     currentTask2: " + game.currentTask2);
+		
+		
 		if (game.currentTask2 == 100 && game.currentTask == 4) {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
@@ -155,7 +140,6 @@ public class HomeScreen extends ScreenAdapter {
 		} else {
 			switch (game.currentTask) {
 			case 0:
-				System.out.println("Time viewing screen: " + timeViewingScreen);
 				if (timeViewingScreen != 0) {
 					setNotificationImage(btnT, false);
 					setNotificationImage(btnE, false);
@@ -207,15 +191,12 @@ public class HomeScreen extends ScreenAdapter {
 				setNotificationImage(btnT, true);
 				break;
 			default:
-				// setNotificationImage(btnE, false);
-				// setNotificationImage(btnW, false);
-				// setNotificationImage(btnT, false);
 				break;
 			}
 		}
 	}
 
-public void createAchieveStar() {
+	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
 		num = 0;
@@ -226,7 +207,7 @@ public void createAchieveStar() {
 				num++;
 			}
 		}
-		
+
 		if (create) {
 			star.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -239,15 +220,16 @@ public void createAchieveStar() {
 			star.setHeight(80);
 			star.setX(width - star.getWidth());
 			star.setY(height - star.getHeight());
-			
-			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(width-72, height-72, .7f), 
-					Actions.moveTo(width-80, height-80, .7f))));
-		
+					Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width - 72, height - 72, .7f),
+					Actions.moveTo(width - 80, height - 80, .7f))));
+
 			s.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setX(width - star.getWidth() + star.getWidth() * .44f);
 			la.setY(height - star.getHeight() + star.getHeight() * .36f);
 
 			la.setColor(Color.BLACK);
@@ -262,6 +244,7 @@ public void createAchieveStar() {
 		}
 
 	}
+
 	public void createHelpButton() {
 		helpL = new Label("Trophies", uiskin);
 		btnHelp = new Texture("trophy-widget.png");
@@ -291,7 +274,7 @@ public void createAchieveStar() {
 		btnE.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
-				game.setScreen(new EmailListScreen(game));
+				game.setScreen(game.email);
 				return true;
 			}
 		});
@@ -316,8 +299,7 @@ public void createAchieveStar() {
 					if (!taskList.get(2).isCompleted()) {
 						taskList.get(2).setCompleted();
 					}
-					game.setScreen(new TextScreen(game, game.questionList
-							.get(game.currText)));
+					game.setScreen(new TextScreen(game, game.questionList.get(game.currText)));
 				}
 				return true;
 			}
@@ -361,7 +343,7 @@ public void createAchieveStar() {
 		btnN.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
-				game.setScreen(new NoteMenu(game));
+				game.setScreen(game.notemenu);
 				return true;
 			}
 		});
@@ -387,66 +369,16 @@ public void createAchieveStar() {
 
 	@Override
 	public void render(float delta) {
-		// if(Gdx.input.isTouched()){
-		// homeScreenClick();
-		// }
 		GL20 gl = Gdx.gl;
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		// batch.begin();
 		s.draw();
 		s.act();
-
-		// // batch.draw(blueHen, 150, 25, 340, 275);
-		// batch.draw(bg, 0, 0, width, height);
-		// // batch.draw(btnBack, 25, 425);
-		// batch.draw(btnNotes, 75, 350);
-		// batch.draw(btnWeb, 175, 350);
-		// batch.draw(btnText, 275, 350);
-		// batch.draw(btnEmail, 375, 350);
-		// batch.draw(btnHelp, 475, 350);
-		//
-		// font.draw(batch, "Notes", 95, 325);
-		// font.draw(batch, "Web", 195, 325);
-		// font.draw(batch, "Texts", 295, 325);
-		// font.draw(batch, "Email", 395, 325);
-		// font.draw(batch, "Help", 495, 325);
-
-		// batch.end();
 	}
 
 	@Override
 	public void resize(int x, int y) {
 		this.show();
-	}
-
-	public void homeScreenClick() {
-		// stack.add(currentScreen);
-		// System.out.println("X: " + Gdx.input.getX() + ", Y: "+
-		// Gdx.input.getY());
-		int clickX = Gdx.input.getX();
-		int clickY = Gdx.input.getY();
-		if (clickX >= 70 && clickX <= 150 && clickY >= 50 && clickY <= 180) {
-			game.setScreen(new NoteMenu(game));
-		} else if (clickX >= 170 && clickX <= 250 && clickY >= 50
-				&& clickY <= 180) {
-			game.setScreen(game.web);
-
-		} else if (clickX >= 270 && clickX <= 350 && clickY >= 50
-				&& clickY <= 180) {
-			// Random x = new Random();
-			System.out.println(game.questionList.size());
-			game.setScreen(new TextScreen(game, game.questionList.get(1)));
-
-		} else if (clickX >= 370 && clickX <= 450 && clickY >= 50
-				&& clickY <= 180) {
-			game.setScreen(game.email);
-			// dispose();
-		} else if (clickX >= 470 && clickX <= 550 && clickY >= 50
-				&& clickY <= 180) {
-			game.setScreen(game.helpFromMain);
-		}
-
 	}
 
 	public void setNotificationImage(Image appIcon, boolean setOn) {
