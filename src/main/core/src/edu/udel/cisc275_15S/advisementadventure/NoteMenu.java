@@ -68,8 +68,8 @@ public class NoteMenu extends ScreenAdapter {
 		l.setFontScale(2);
 		btnBack = new Texture("btn_back.png");
 		bb = new Image(btnBack);
-		bb.setX(0);
-		bb.setY(Gdx.graphics.getHeight() - bb.getHeight());
+		bb.setX(MyGdxGame.btnBackMargin);
+		bb.setY(height - bb.getHeight() - MyGdxGame.btnBackMargin);
 		bb.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
@@ -77,19 +77,14 @@ public class NoteMenu extends ScreenAdapter {
 				return true;
 			}
 		});
-		// t.setBounds(0, 0, width, height-bb.getHeight());
 		s.addActor(createNote);
-		// t.row();
 		s.addActor(l);
 		s.addActor(bb);
-		// s.addActor(t);
 		drawScreen();
 	}
 
 	public void drawScreen() {
-		// System.out.println(
 		float heightcounter = height - createNote.getHeight();
-		// int widthcounter;
 		for (int i = 0; i < game.notesList.size(); i++) {
 			final int index = i;
 			TextButton x = new TextButton(game.notesList.get(i).getName(),
@@ -101,7 +96,6 @@ public class NoteMenu extends ScreenAdapter {
 						int pointer, int button) {
 					game.setScreen(new NotesScreen(game, game.notesList
 							.get(index)));
-					System.out.println("pressed extras");
 					return true;
 				}
 			});
@@ -161,8 +155,6 @@ public class NoteMenu extends ScreenAdapter {
 
 	@Override
 	public void show() {
-		// drawScreen();
-		// s.addActor(t);
 		createAchieveStar();
 		Gdx.input.setInputProcessor(s);
 	}
@@ -171,7 +163,6 @@ public class NoteMenu extends ScreenAdapter {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		// s.act();
 		batch.begin();
 
 		batch.end();

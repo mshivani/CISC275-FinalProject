@@ -24,8 +24,6 @@ public class HomeScreen extends ScreenAdapter {
 	Stage s;
 	SpriteBatch batch;
 	BitmapFont font;
-	Texture btnBack;
-	Image btnB;
 	Texture btnNotes;
 	Image btnN;
 	Label notesL;
@@ -85,10 +83,6 @@ public class HomeScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(s);
 		n = new Texture("warning-icon.png");
 		notification = new Image(n);
-
-		System.out.println("currentTask: " + game.currentTask
-				+ "     currentTask2: " + game.currentTask2);
-
 		if (game.currentTask2 == 100 && game.currentTask == 4) {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
@@ -129,7 +123,11 @@ public class HomeScreen extends ScreenAdapter {
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnW, true);
-		} else if (game.currentTask2 == 110) {
+		} else if (game.currentTask2 == 110 && game.currentTask != 8) {
+			setNotificationImage(btnE, false);
+			setNotificationImage(btnT, false);
+			setNotificationImage(btnW, true);
+		} else if (game.currentTask2 == 111 && game.currentTask != 9) {
 			setNotificationImage(btnE, false);
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnW, true);
@@ -183,10 +181,18 @@ public class HomeScreen extends ScreenAdapter {
 				break;
 			case 8:
 				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
+				setNotificationImage(btnE, true);
+				break;
+			case 9: // all tasks completed
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnT, false);
 				setNotificationImage(btnE, false);
-				setNotificationImage(btnT, true);
 				break;
 			default:
+				setNotificationImage(btnW, false);
+				setNotificationImage(btnE, false);
+				setNotificationImage(btnT, false);
 				break;
 			}
 		}
@@ -319,7 +325,6 @@ public class HomeScreen extends ScreenAdapter {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
 				game.setScreen(game.web);
-				System.out.println("web");
 				return true;
 			}
 		});
@@ -340,7 +345,7 @@ public class HomeScreen extends ScreenAdapter {
 		btnN.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
-				game.setScreen(game.notemenu);
+				game.setScreen(new NoteMenu(game));
 				return true;
 			}
 		});
@@ -356,11 +361,9 @@ public class HomeScreen extends ScreenAdapter {
 		if (timeViewingScreen == 0) {
 			indicArrow = new Texture("arrow.png");
 			arrow = new Image(indicArrow);
-			if (game.currText == -1 && game.currentTask == 0) {
-				arrow.setX(emailL.getX() + emailL.getWidth());
-				arrow.setY(emailL.getY());
-				s.addActor(arrow);
-			}
+			arrow.setX(emailL.getX() + emailL.getWidth());
+			arrow.setY(emailL.getY());
+			s.addActor(arrow);
 		}
 	}
 

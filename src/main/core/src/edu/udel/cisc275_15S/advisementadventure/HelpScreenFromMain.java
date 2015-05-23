@@ -9,11 +9,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class HelpScreenFromMain extends ScreenAdapter {
 	MyGdxGame game;
@@ -64,8 +66,6 @@ public class HelpScreenFromMain extends ScreenAdapter {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
 		font.setColor(0, 0, 0, 1);
-		btnBack = new Texture("btn_Back.png");
-		btnB = new Image(btnBack);
 
 		// add to every page
 		this.tasklist = g.taskList;
@@ -85,6 +85,7 @@ public class HelpScreenFromMain extends ScreenAdapter {
 
 		createStar();
 		createText();
+		createBackButton();
 		Gdx.input.setInputProcessor(s);
 	}
 
@@ -262,13 +263,19 @@ public class HelpScreenFromMain extends ScreenAdapter {
 		this.show();
 	}
 
-	public void helpFromMainClick() {
-		// int clickX = Gdx.input.getX();
-		// int clickY = Gdx.input.getY();
-		// if (clickX >= width/25 && clickX <= (width/25 + btnBack.getWidth())
-		// && clickY <= height-(height*.9) && clickY >=
-		// height-(height*.9)-btnBack.getHeight()) {
-		// game.setScreen(game.welcome);
-		// }
+	private void createBackButton() {
+		btnBack = new Texture("btn_back.png");
+		btnB = new Image(btnBack);
+		btnB.setX(MyGdxGame.btnBackMargin);
+		btnB.setY(height - btnB.getHeight() - MyGdxGame.btnBackMargin);
+		btnB.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnB);
 	}
 }

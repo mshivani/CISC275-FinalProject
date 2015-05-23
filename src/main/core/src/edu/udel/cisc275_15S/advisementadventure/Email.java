@@ -10,7 +10,8 @@ public class Email {
 	String closing;
 	String signature;
 
-	public Email(int numberInList, String sender, String date, String subject, String salutation, String content, String closing, String signature) {
+	public Email(int numberInList, String sender, String date, String subject,
+			String salutation, String content, String closing, String signature) {
 		this.numberInList = numberInList;
 		this.sender = sender;
 		this.date = date;
@@ -23,9 +24,10 @@ public class Email {
 
 	@Override
 	public String toString() {
-		return sender + "\n" + date + "\n" + subject + "\n" + salutation + "\n" + content + "\n" + closing + "\n" + signature;
+		return sender + "\n" + date + "\n" + subject + "\n" + salutation + "\n"
+				+ content + "\n" + closing + "\n" + signature;
 	}
-	
+
 	public String getSender() {
 		return sender;
 	}
@@ -57,10 +59,9 @@ public class Email {
 	public int getNumberInList() {
 		return numberInList;
 	}
-	
+
 	public void setContent(String content) {
 		this.content = content;
 	}
 
 }
-

@@ -108,21 +108,6 @@ public class HelpScreen extends ScreenAdapter {
 
 	}
 
-	// Prototype assumes no current task. Final implementation will retrieve
-	// current task
-	// from MyGdxGame and display as string. Help suggestions will be tied to
-	// "type" of task.
-	// Game will have a list of tasks. Tasks will be marked as completed as they
-	// are finished.
-
-	public String taskSelector(MyGdxGame g) {
-		// if (g.getCurrentTask()) {
-		// return currentTask;
-		// } else {
-		return "No current task.";
-		// }
-	}
-
 	@Override
 	public void render(float delta) {
 
@@ -239,8 +224,6 @@ public class HelpScreen extends ScreenAdapter {
 			exp4.y -= speed * Gdx.graphics.getDeltaTime();
 		} else {
 			explosion = false;
-
-			// returnScreen[index] = true;
 			sawComp[index] = true;
 			if (index == 7) {
 				game.setScreen(game.helpFromMain);
@@ -262,7 +245,6 @@ public class HelpScreen extends ScreenAdapter {
 		s = new Stage();
 
 		createBackButton();
-		s.addActor(btnB);
 
 		Gdx.input.setInputProcessor(s);
 	}
@@ -270,17 +252,17 @@ public class HelpScreen extends ScreenAdapter {
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
-		// System.out.println(btnB.getHeight());
+		btnB.setX(MyGdxGame.btnBackMargin);
+		btnB.setY(height - btnB.getHeight() - MyGdxGame.btnBackMargin);
 		btnB.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
 				game.setScreen(game.previousScreen);
-				System.out.println("back");
 				return true;
 			}
 		});
-		btnB.setX(0);
-		btnB.setY(height * .9f);
+		s.addActor(btnB);
 	}
 
 }

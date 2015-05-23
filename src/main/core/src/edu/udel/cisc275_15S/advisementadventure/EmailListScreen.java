@@ -28,6 +28,7 @@ public class EmailListScreen extends ScreenAdapter {
 	BitmapFont titleFont;
 	Label inbox;
 	Label email;
+	Texture btnBack;
 	Image btnB;
 	Skin uiskin;
 	float screenWidth;
@@ -152,23 +153,6 @@ public class EmailListScreen extends ScreenAdapter {
 		}
 	}
 
-	// public void createIndicatorArrow() {
-	// if (game.currentTask == 0) {
-	// indicArrow = new Texture("arrow.png");
-	// arrow = new Image(indicArrow);
-	// warning = new Texture("warning-icon-sm.png");
-	// warn = new Image(warning);
-	// if (game.currentTask == 0) {
-	// arrow.setX(screenWidth - inbox.getWidth());
-	// arrow.setY(screenHeight / 2);
-	// warn.setX(arrow.getX() + 21);
-	// warn.setY(arrow.getY() - 5);
-	// stage.addActor(arrow);
-	// stage.addActor(warn);
-	// }
-	// }
-	// }
-
 	private void createTitle() {
 		inbox = new Label("Inbox", uiskin);
 		inbox.setX(screenWidth / 2 - inbox.getWidth());
@@ -179,7 +163,7 @@ public class EmailListScreen extends ScreenAdapter {
 	}
 
 	private void createBackButton() {
-		Texture btnBack = new Texture("btn_back.png");
+		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
 		btnB.setX(MyGdxGame.btnBackMargin);
 		btnB.setY(screenHeight - btnB.getHeight() - MyGdxGame.btnBackMargin);
@@ -238,13 +222,16 @@ public class EmailListScreen extends ScreenAdapter {
 				+ wrapString(em.getContent(), 90) + "\n" + em.getClosing()
 				+ "\n" + em.getSignature(), uiskin);
 		email.setX(emailLabelMargin);
-		email.setY(emailLocationFactor + (screenHeight - btnB.getHeight() - email.getHeight() - MyGdxGame.btnBackMargin - emailLabelMargin));
+		email.setY(emailLocationFactor
+				+ (screenHeight - btnB.getHeight() - email.getHeight()
+						- MyGdxGame.btnBackMargin - emailLabelMargin));
 		email.setColor(Color.BLACK);
 		email.setWidth(screenWidth - 20);
 		email.setWrap(true);
 		LabelStyle labelStyle = new LabelStyle();
 		labelStyle.font = new BitmapFont();
-		labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f, 0.8f, 0.2f);
+		labelStyle.background = uiskin.newDrawable("white", 0.8f, 0.8f, 0.8f,
+				0.2f);
 		email.setStyle(labelStyle);
 
 		email.addListener(new ClickListener() {
@@ -267,7 +254,7 @@ public class EmailListScreen extends ScreenAdapter {
 					game.currentTask2 = 105;
 				}
 				if (game.currentTask == 8) {
-					game.currentTask2 = 108;
+					game.currentTask2 = 111;
 				}
 				game.setScreenHelp(game.email2, em);
 				return true;

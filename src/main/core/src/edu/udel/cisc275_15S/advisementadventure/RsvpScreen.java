@@ -35,10 +35,6 @@ public class RsvpScreen extends ScreenAdapter {
 
 	Texture home;
 	Image btnHome;
-	// <<<<<<< Updated upstream
-
-	// =======
-	// <<<<<<< HEAD
 	ArrayList<Task> taskList;
 	Image star;
 	Texture starT;
@@ -67,10 +63,12 @@ public class RsvpScreen extends ScreenAdapter {
 		btnB.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
 				game.setScreen(game.web);
 				return true;
 			}
 		});
+		s.addActor(btnB);
 	}
 
 	public void createDropDown() {
@@ -117,6 +115,7 @@ public class RsvpScreen extends ScreenAdapter {
 					}
 					if (sb.getSelected().equals("Flu shot appointment")
 							&& game.currentTask == 8) {
+						game.currentTask = 9;
 						boolean remove = false;
 						for (int i = 0; i < taskList.size(); i++) {
 							if (taskList.get(i).isCompleted()
@@ -213,7 +212,6 @@ public class RsvpScreen extends ScreenAdapter {
 
 		rsvpL = new Label(" ", uiskin);
 
-		createBackButton();
 		createDropDown();
 		createAdd();
 
@@ -222,12 +220,11 @@ public class RsvpScreen extends ScreenAdapter {
 
 		s = new Stage();
 		Gdx.input.setInputProcessor(s);
-		s.addActor(btnB);
 		s.addActor(sb);
 		s.addActor(add);
 		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-
+		createBackButton();
 	}
 
 	@Override

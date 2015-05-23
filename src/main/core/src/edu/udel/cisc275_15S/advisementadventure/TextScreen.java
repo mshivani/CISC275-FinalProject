@@ -151,7 +151,6 @@ public class TextScreen extends ScreenAdapter {
 						createReply(currentQuestion.getCorrectResponse().response);
 						game.data.writeString(currentQuestion.updateFile(),
 								true);
-						System.out.println(game.data.readString());
 					} else {
 						createWrong();
 						currentQuestion.updateWrong(resp.get(0));
@@ -286,8 +285,8 @@ public class TextScreen extends ScreenAdapter {
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
-		btnB.setX(0);
-		btnB.setY(height - btnB.getHeight());
+		btnB.setX(MyGdxGame.btnBackMargin);
+		btnB.setY(height - btnB.getHeight() - MyGdxGame.btnBackMargin);
 		btnB.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
@@ -298,7 +297,6 @@ public class TextScreen extends ScreenAdapter {
 				return true;
 			}
 		});
-
 		s.addActor(btnB);
 	}
 

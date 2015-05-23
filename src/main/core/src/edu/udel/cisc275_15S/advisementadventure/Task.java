@@ -11,7 +11,7 @@ public class Task {
 	boolean completed;
 	boolean seen;
 	String description;
-	
+
 	public Task(int num, String comPic, String uncomPic, String des) {
 		tasknum = num;
 		this.display = "";
@@ -21,32 +21,32 @@ public class Task {
 		uncompletedPic = new Texture(uncomPic);
 		description = des;
 	}
-	
-	public Texture getCompletedPic(){
+
+	public Texture getCompletedPic() {
 		return completedPic;
 	}
-	
-	public Texture getUncompletedPic(){
+
+	public Texture getUncompletedPic() {
 		return uncompletedPic;
 	}
-	
-	public boolean isCompleted(){
+
+	public boolean isCompleted() {
 		return completed;
 	}
-	
-	public void setCompleted(){
+
+	public void setCompleted() {
 		completed = true;
 	}
-	
-	public void setSeen(){
+
+	public void setSeen() {
 		seen = true;
 	}
-	
-	public boolean isSeen(){
+
+	public boolean isSeen() {
 		return seen;
 	}
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return description;
 	}
 }

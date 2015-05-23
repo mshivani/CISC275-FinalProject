@@ -25,75 +25,74 @@ public class DegreeAuditScreen extends ScreenAdapter {
 	Texture btnBack;
 	Image btnB;
 	Texture bg;
-	//Texture activeCourses;
 	Skin uiskin;
 	ArrayList<Task> taskList;
 	Image star;
 	Texture starT;
 	Label la;
 	int num;
-	
+
 	Texture home;
 	Image btnHome;
-	
-	public DegreeAuditScreen(MyGdxGame g){
+
+	public DegreeAuditScreen(MyGdxGame g) {
 		this.game = g;
 		this.taskList = g.taskList;
 	}
-	
+
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
 		btnB.setX(MyGdxGame.btnBackMargin);
 		btnB.setY(height - btnB.getHeight() - MyGdxGame.btnBackMargin);
 		btnB.addListener(new ClickListener() {
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button) {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
 				game.setScreen(game.udsis);
 				return true;
 			}
 		});
+		s.addActor(btnB);
 	}
-	
+
 	private void createHomeButton() {
 		home = new Texture("home-icon.png");
 		btnHome = new Image(home);
-		btnHome.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
+		btnHome.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
 				game.setScreen(game.welcome);
 				return true;
 			}
 		});
 		s.addActor(btnHome);
 	}
-	
+
 	@Override
 	public void show() {
 		game.previousScreen = this;
-		if(game.currentTask==5 || game.currentTask==4){
+		if (game.currentTask == 5 || game.currentTask == 4) {
 			game.currentTask2 = -1;
-			game.currText=2;
-			game.currentTask=5;
-			// System.out.println("hit it audit");
+			game.currText = 2;
+			game.currentTask = 5;
 		}
 		bg = new Texture("univReq.png");
-		//activeCourses = new Texture("activeCourses.png");
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
-		
-		createBackButton();
-		
+
+
 		batch = new SpriteBatch();
-		
+
 		s = new Stage();
 		Gdx.input.setInputProcessor(s);
-		s.addActor(btnB);
 		createAchieveStar();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		createHomeButton();
-		
+		createBackButton();
 	}
-	
+
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -105,7 +104,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 				num++;
 			}
 		}
-		
+
 		if (create) {
 			star.addListener(new ClickListener() {
 				public boolean touchDown(InputEvent e, float x, float y,
@@ -118,15 +117,16 @@ public class DegreeAuditScreen extends ScreenAdapter {
 			star.setHeight(80);
 			star.setX(width - star.getWidth());
 			star.setY(height - star.getHeight());
-			
-			star.addAction(Actions.forever(Actions.sequence(Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+
 			star.addAction(Actions.forever(Actions.sequence(
-					Actions.moveTo(width-72, height-72, .7f), 
-					Actions.moveTo(width-80, height-80, .7f))));
-		
+					Actions.sizeTo(65, 65, .7f), Actions.sizeTo(80, 80, .7f))));
+			star.addAction(Actions.forever(Actions.sequence(
+					Actions.moveTo(width - 72, height - 72, .7f),
+					Actions.moveTo(width - 80, height - 80, .7f))));
+
 			s.addActor(star);
 			la = new Label(num + "", uiskin);
-			la.setX(width - star.getWidth()+ star.getWidth() * .44f);
+			la.setX(width - star.getWidth() + star.getWidth() * .44f);
 			la.setY(height - star.getHeight() + star.getHeight() * .36f);
 
 			la.setColor(Color.BLACK);
@@ -141,27 +141,24 @@ public class DegreeAuditScreen extends ScreenAdapter {
 			game.currentTask = 6;
 		}
 
-	}	
-	
+	}
+
 	@Override
 	public void render(float delta) {
 		GL20 gl = Gdx.gl;
 		batch.begin();
 		gl.glClearColor(1, 1, 1, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.draw(bg, btnB.getWidth()+10, 0, width, height);
-		//batch.draw(activeCourses, 0, btnB.getWidth()+10+bg.getWidth());
-		
+		batch.draw(bg, btnB.getWidth() + 10, 0, width, height);
 		batch.end();
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
 		s.draw();
 	}
-	
+
 	@Override
-	public void hide(){
+	public void hide() {
 		batch.dispose();
 		s.dispose();
 	}
-	
-}
 
+}

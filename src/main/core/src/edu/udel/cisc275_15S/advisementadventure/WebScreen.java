@@ -98,20 +98,8 @@ public class WebScreen extends ScreenAdapter{
 	public void show(){
 		game.previousScreen = this;
 		s = new Stage();
-		//Label rsvpL = new Label("RSVP", uiskin);
-		//Label udL = new Label("UDSIS", uiskin);
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
-		btnBack = new Texture("btn_back.png");
-		btnB = new Image(btnBack);
-		btnB.addListener(new ClickListener(){
-			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
-				game.setScreen(game.welcome);
-				return true;
-			}
-		});
-		btnB.setX(0);
-		btnB.setY(height - btnB.getHeight());
 		rsvp = new Texture("web-rsvp.png");
 		btnRSVP = new Image(rsvp);
 		btnRSVP.addListener(new ClickListener(){
@@ -124,7 +112,6 @@ public class WebScreen extends ScreenAdapter{
 		});
 		btnRSVP.setX(width/16);
 		btnRSVP.setY((height/4) - (btnRSVP.getHeight()/10));
-		// btnRSVP.setBounds(width/8, height/4,  width/2.6f, height/1.6f);
 		btnUDSIS = new Texture("udsis-page.png");
 		btnUD = new Image(btnUDSIS);
 		btnUD.addListener(new ClickListener(){
@@ -136,21 +123,29 @@ public class WebScreen extends ScreenAdapter{
 		});
 		btnUD.setX(width/14 + btnUD.getWidth() + 5);
 		btnUD.setY((height/4) - (btnUD.getHeight()/10));
-		// btnUD.setBounds(width/1.8f, height/4,  width/2.6f, height/1.6f);
-//		rsvpL.setX(btnRSVP.getX()+ btnRSVP.getWidth()/2 - rsvpL.getWidth());
-//		rsvpL.setY(btnRSVP.getY() - rsvpL.getHeight());
-//		udL.setX(btnUD.getX()+ btnUD.getWidth()/2 - udL.getWidth());
-//		udL.setY(btnUD.getY() - udL.getHeight());
-//		rsvpL.setColor(Color.BLACK);
-//		udL.setColor(Color.BLACK);
-//		s.addActor(udL);
-//		s.addActor(rsvpL);
 		s.addActor(btnUD);
 		s.addActor(btnRSVP);
-		s.addActor(btnB);
 		createAchieveStar();
+		createBackButton();
 		Gdx.input.setInputProcessor(s);
 	}
+	
+	private void createBackButton() {
+		btnBack = new Texture("btn_back.png");
+		btnB = new Image(btnBack);
+		btnB.setX(MyGdxGame.btnBackMargin);
+		btnB.setY(height - btnB.getHeight() - MyGdxGame.btnBackMargin);
+		btnB.addListener(new ClickListener() {
+			public boolean touchDown(InputEvent e, float x, float y,
+					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
+				game.setScreen(game.welcome);
+				return true;
+			}
+		});
+		s.addActor(btnB);
+	}
+	
 	@Override
 	public void render(float delta){
 		GL20 gl = Gdx.gl;

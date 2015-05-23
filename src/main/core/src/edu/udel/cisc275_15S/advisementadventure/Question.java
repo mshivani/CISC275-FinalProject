@@ -41,7 +41,6 @@ public class Question {
 				+ wrongCount2 + "\n" + "Response 3: " + wrongCount3 + "\n"
 				+ "Response 4: " + wrongCount4 + "\n" + "Response 5: "
 				+ wrongCount5 + "\n" + "I don't know: " + idkCount + "\n";
-		// System.out.println(temp);
 		return temp;
 	}
 
@@ -64,7 +63,6 @@ public class Question {
 		ArrayList<String> x = new ArrayList<String>();
 		ArrayList<Integer> y = new ArrayList<Integer>();
 		Random rand = new Random();
-		// System.out.println(response1.response);
 		if (!this.response1.response.equals("empty")) {
 
 			x.add(this.response1.response);
@@ -94,7 +92,6 @@ public class Question {
 			}
 
 		} else {
-			// System.out.println("else statement hit");
 			for (int i = 0; i < 5; i++) {
 				x.add("empty");
 			}

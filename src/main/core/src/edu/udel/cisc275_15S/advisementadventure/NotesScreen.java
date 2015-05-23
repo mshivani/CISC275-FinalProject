@@ -43,7 +43,6 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	int untitledCount;
 	float height;
 	float width;
-	//boolean alreadyCreated;
 	Note temp;
 	Image btnB;
 	ArrayList<Task> taskList;
@@ -53,7 +52,6 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	int num;
 
 	public NotesScreen(MyGdxGame g, Note note) {
-		//notes = note;
 		temp = new Note();
 		temp.setText(note.getText());
 		temp.setName(note.getName());
@@ -67,8 +65,8 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 		font.setColor(0, 0, 0, 1);
 		btnBack = new Texture("btn_back.png");
 		backButton = new Image(btnBack);
-		backButton.setX(0);
-		backButton.setY(Gdx.graphics.getHeight()-backButton.getHeight());
+		backButton.setX(MyGdxGame.btnBackMargin);
+		backButton.setY(height - backButton.getHeight() - MyGdxGame.btnBackMargin);
 		backButton.addListener(new ClickListener(){
 			public boolean touchDown(InputEvent e, float x, float y, int pointer, int button){
 				game.setScreen(new NoteMenu(game));
@@ -88,15 +86,9 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 				if(code == Keys.BACKSPACE && temp.getText().length()!=0){
 
 					temp.setText(temp.getText().substring(0, (temp.getText()).length()-1));
-					System.out.println(1);
-					System.out.println(notes);
-					System.out.println(ta.getLines());
 				}
 				else if(code == Keys.ENTER){
 					ta.moveCursorLine(ta.getLines());
-					System.out.println(2);
-					System.out.println(notes);
-					System.out.println(ta.getLines());
 					temp.setText(temp.getText() + "\n");
 				}
 
@@ -137,15 +129,8 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	}
 	@Override
 	public void render(float delta){
-		//batch.begin();
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//font.draw(batch, notes, 150, 150);
-
-		//batch.draw(btnBack, 25, 425);
-		//batch.end();
-		//ta.setText(notes);
-
 		s.draw();
 		s.act();
 	}
@@ -244,7 +229,6 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	}
 	@Override
 	public boolean keyTyped(char character) {
-		//System.out.println(character);
 		return false;
 	}
 	@Override
@@ -253,25 +237,18 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 	}
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		//		if (screenX >= 0 && screenX <= 100 && screenY >= 0 && screenY <= 100) {
-		//			game.setScreen(game.welcome);
-		//			return true;
-		//		}
 		return false;
 	}
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

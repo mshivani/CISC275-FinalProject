@@ -76,10 +76,12 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		btnB.addListener(new ClickListener() {
 			public boolean touchDown(InputEvent e, float x, float y,
 					int pointer, int button) {
+				game.welcome.timeViewingScreen++;
 				game.setScreen(game.udsis);
 				return true;
 			}
 		});
+		s.addActor(btnB);
 	}
 
 	public void createDropDown() {
@@ -107,7 +109,6 @@ public class DeclareMajorScreen extends ScreenAdapter {
 					majorDeclaredL.setX(sb.getX());
 					majorDeclaredL.setY(sb.getY() - sb.getHeight());
 					sb.clearItems();
-					System.out.println(game.currentTask);
 					if (game.currentTask == 2) {
 						game.currText = 0;
 						// questionList initialized in Login, currText
@@ -186,24 +187,17 @@ public class DeclareMajorScreen extends ScreenAdapter {
 	public void show() {
 		game.previousScreen = this;
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
-
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
-
-		createBackButton();
 		createDropDown();
 		createAdd();
-
 		batch = new SpriteBatch();
 		banner = new Texture("schLogo.png");
-
 		s = new Stage();
-
-		s.addActor(btnB);
 		s.addActor(sb);
 		s.addActor(add);
+		Gdx.input.setInputProcessor(s);
 		createAchieveStar();
-
 		home = new Texture("home-icon.png");
 		btnHome = new Image(home);
 		btnHome.addListener(new ClickListener() {
@@ -214,9 +208,8 @@ public class DeclareMajorScreen extends ScreenAdapter {
 			}
 		});
 		s.addActor(btnHome);
-
 		s.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
-		Gdx.input.setInputProcessor(s);
+		createBackButton();
 	}
 
 	@Override
