@@ -28,7 +28,7 @@ public class TextScreen extends ScreenAdapter{
 	Label roommate;
 	Label wrong;
 	Question currentQuestion;
-	final ArrayList<String> resp;
+	ArrayList<String> resp;
 	//Texture dropAddText;
 	Texture textReply;
 	//Texture textOptions;
@@ -368,6 +368,11 @@ public class TextScreen extends ScreenAdapter{
 	public void dispose(){
 		s.dispose();
 		batch.dispose();
+	}
+	
+	public void setQuestion(Question q) {
+		this.currentQuestion = q;
+		this.resp = q.getResponses();
 	}
 
 }

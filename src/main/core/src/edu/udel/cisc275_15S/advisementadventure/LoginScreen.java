@@ -33,7 +33,6 @@ public class LoginScreen extends ScreenAdapter {
 
 	public LoginScreen(MyGdxGame g) {
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
-
 		height = Gdx.graphics.getHeight();
 		width = Gdx.graphics.getWidth();
 		this.game = g;
@@ -42,13 +41,12 @@ public class LoginScreen extends ScreenAdapter {
 		createWelcome();
 		batch = new SpriteBatch();
 		bg = new Texture("login-bg.png");
-		// font = new BitmapFont();
 		s = new Stage();
 		s.addActor(tf);
 		s.addActor(enter);
 		s.addActor(welcome);
 	}
-	
+
 	@Override
 	public void show() {
 		parseQuestions();
@@ -71,11 +69,9 @@ public class LoginScreen extends ScreenAdapter {
 		batch.dispose();
 		s.dispose();
 	}
-	
+
 	public void parseQuestions() {
 		FileHandle quest = Gdx.files.internal("Questions.txt");
-		// game.questionList = new ArrayList<Question>();
-		// System.out.println(quest.exists());
 		BufferedReader reader = new BufferedReader(quest.reader());
 		String line;
 		try {
@@ -84,25 +80,17 @@ public class LoginScreen extends ScreenAdapter {
 			for (int i = 0; i < count; i++) {
 				String quest2 = reader.readLine();
 				String quest3 = reader.readLine();
-			//	System.out.println(quest3);
 				Question x;
 				if (quest3.equals("No responses")) {
 					x = new Question(quest2, "empty", "empty", "empty",
 							"empty", "empty");
-					// line =reader.readLine();
-					// line =reader.readLine();
-					// line = reader.readLine();
-					// line = reader.readLine();
-				//	System.out.println(x);
 					game.questionList.add(x);
 				} else {
 					x = new Question(quest2, quest3, line = reader.readLine(),
 							line = reader.readLine(), line = reader.readLine(),
 							line = reader.readLine());
-					//System.out.println(x);
 					game.questionList.add(x);
 				}
-				// System.out.println(x);
 
 			}
 			reader.close();
@@ -131,11 +119,7 @@ public class LoginScreen extends ScreenAdapter {
 				 */
 				if (tf.getText().matches("\\d\\d\\d\\d\\d\\d\\d\\d\\d")) {
 
-					
-					 game.data.writeString(tf.getText() + "\n", false);
-					// System.out.println(game.data.readString());
-					// System.out.println("tf text " + tf.getText());
-
+					game.data.writeString(tf.getText() + "\n", false);
 					game.setScreen(new HomeScreen(game));
 				} else {
 					Label enterAgain = new Label(

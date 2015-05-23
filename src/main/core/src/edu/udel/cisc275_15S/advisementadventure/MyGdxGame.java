@@ -53,12 +53,10 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		currentTask2 = -1;
 		currText=-1;
 		data= Gdx.files.local("list of students.txt");
-		//parseQuestions();
 		questionList = new ArrayList<Question>();
 		notesList= new ArrayList<Note>();
 		batch = new SpriteBatch();
 		taskList = new ArrayList<Task>();
-		//currentScreen = Screen.HOME;
 		welcome = new HomeScreen(this);
 		login = new LoginScreen(this);
 		email = new EmailListScreen(this);
@@ -67,14 +65,12 @@ public class MyGdxGame extends Game implements ApplicationListener{
 		helpFromMain = new HelpScreenFromMain(this);
 		major = new DeclareMajorScreen(this);
 		degreeAudit = new DegreeAuditScreen(this);
-		//notes = new NotesScreen(this, null);
-		//text = new TextScreen(this);
 		web = new WebScreen(this);
 		udsis = new UDSIS_Screen(this);
 		schedule = new ScheduleScreen(this);
 		addDrop = new AddDropScreen(this);
 		rsvp = new RsvpScreen(this);
-		//notemenu = new NoteMenu(this);
+		notemenu = new NoteMenu(this);
 		createTasks();
 		this.setScreen(login);
 		parseEmails();
@@ -114,25 +110,17 @@ public class MyGdxGame extends Game implements ApplicationListener{
 	}
 	
 	private void createTasks() {
-		Task t1 = new Task(1, "mailbox-color.png", "mailbox-gray.png", "Open your first email in the email app.");
-		Task t2 = new Task(2, "major-color.png", "major-gray.png", "Declare your major.");
-		Task t3 = new Task(1, "roommate-color.png", "roommate-gray.png", "Introduce yourself to your roommate.");
-		Task t4 = new Task(2, "register-color.png", "register-gray.png", "Register for five classes.");
-		Task t5 = new Task(1, "audit-color.png", "audit-gray.png", "Look at your degree audit.");
-		Task t6 = new Task(2, "drop-color.png", "drop-gray.png", "Drop a class.");
-		Task t7 = new Task(1, "writing-color.png", "writing-gray.png", "Sign up for a slot at the writing center.");
-		Task t8 = new Task(2, "shot-color.png", "shot-gray.png", "Sign up to get a flu shot.");
-		// Task t9 = new Task(1, "btn_notes.png", "btn_help.png", "Close out of the game.");
-		// Task t10 = new Task(2, "btn_notes.png", "btn_help.png", "Nothing for the last one.");
-		taskList.add(t1);
-		taskList.add(t2);
-		taskList.add(t3);
-		taskList.add(t4);
-		taskList.add(t5);
-		taskList.add(t6);
-		taskList.add(t7);
-		taskList.add(t8);
-		// taskList.add(t9);
-		// taskList.add(t10);
+		makeTask(1, "mailbox-color.png", "mailbox-gray.png", "Open your first email in the email app.");
+		makeTask(2, "major-color.png", "major-gray.png", "Declare your major.");
+		makeTask(1, "roommate-color.png", "roommate-gray.png", "Introduce yourself to your roommate.");
+		makeTask(2, "register-color.png", "register-gray.png", "Register for five classes.");
+		makeTask(1, "audit-color.png", "audit-gray.png", "Look at your degree audit.");
+		makeTask(2, "drop-color.png", "drop-gray.png", "Drop a class.");
+		makeTask(1, "writing-color.png", "writing-gray.png", "Sign up for a slot at the writing center.");
+		makeTask(2, "shot-color.png", "shot-gray.png", "Sign up to get a flu shot.");
+	}
+	
+	private void makeTask(int type, String icon1, String icon2, String title) {
+		taskList.add(new Task(type, icon1, icon2, title));
 	}
 }

@@ -62,8 +62,6 @@ public class HomeScreen extends ScreenAdapter {
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 		this.taskList = g.taskList;
 		timeViewingScreen = 0;
-		game.email = new EmailListScreen(game);
-		game.notemenu = new NoteMenu(game);
 	}
 
 	@Override
@@ -87,12 +85,10 @@ public class HomeScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(s);
 		n = new Texture("warning-icon.png");
 		notification = new Image(n);
-		
-		
+
 		System.out.println("currentTask: " + game.currentTask
 				+ "     currentTask2: " + game.currentTask2);
-		
-		
+
 		if (game.currentTask2 == 100 && game.currentTask == 4) {
 			setNotificationImage(btnT, false);
 			setNotificationImage(btnE, false);
@@ -299,7 +295,8 @@ public class HomeScreen extends ScreenAdapter {
 					if (!taskList.get(2).isCompleted()) {
 						taskList.get(2).setCompleted();
 					}
-					game.setScreen(new TextScreen(game, game.questionList.get(game.currText)));
+					game.text.setQuestion(game.questionList.get(game.currText));
+					game.setScreen(game.text);
 				}
 				return true;
 			}
