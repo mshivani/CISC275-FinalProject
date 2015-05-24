@@ -333,6 +333,7 @@ public class TextScreen extends ScreenAdapter {
 	public void dispose() {
 		s.dispose();
 		batch.dispose();
+		this.dispose();
 	}
 
 	public void setQuestion(Question q) {
