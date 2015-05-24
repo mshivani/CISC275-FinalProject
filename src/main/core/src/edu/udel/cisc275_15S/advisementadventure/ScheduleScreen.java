@@ -19,26 +19,26 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class ScheduleScreen extends ScreenAdapter {
 
-	MyGdxGame game;
-	SpriteBatch batch;
-	Texture btnBack;
-	Image btnB;
-	Texture Schedule;
-	Texture SchTitle;
-	BitmapFont font;
-	BitmapFont font2;
-	float width = Gdx.graphics.getWidth();
-	float height = Gdx.graphics.getHeight();
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
-	Skin uiskin;
-	Stage s;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Texture btnBack;
+	private Image btnB;
+	private Texture Schedule;
+	private Texture SchTitle;
+	private BitmapFont font;
+	private BitmapFont font2;
+	private float width = Gdx.graphics.getWidth();
+	private float height = Gdx.graphics.getHeight();
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
+	private Skin uiskin;
+	private Stage s;
 
-	Texture home;
-	Image btnHome;
+	private Texture home;
+	private Image btnHome;
 
 	public ScheduleScreen(MyGdxGame g) {
 		this.game = g;
@@ -52,6 +52,7 @@ public class ScheduleScreen extends ScreenAdapter {
 		SchTitle = new Texture("schTitle.png");
 	}
 
+	//displays the users currently selected classes
 	@Override
 	public void render(float delta) {
 		if (Gdx.input.isTouched()) {
@@ -99,6 +100,7 @@ public class ScheduleScreen extends ScreenAdapter {
 		Gdx.input.setInputProcessor(s);
 	}
 	
+	//creates a back button 
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
@@ -115,6 +117,7 @@ public class ScheduleScreen extends ScreenAdapter {
 		s.addActor(btnB);
 	}
 
+	//displays an achieve star on the page if a task is accomplished 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);

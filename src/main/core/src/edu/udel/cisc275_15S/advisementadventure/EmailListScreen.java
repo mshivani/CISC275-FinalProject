@@ -23,30 +23,28 @@ public class EmailListScreen extends ScreenAdapter {
 	public static final int emailLabelMargin = 10;
 	public static float emailLabelWidth;
 
-	MyGdxGame game;
-	BitmapFont textFont;
-	BitmapFont titleFont;
-	Label inbox;
-	Label email;
-	Texture btnBack;
-	Image btnB;
-	Skin uiskin;
-	float screenWidth;
-	float screenHeight;
-	ArrayList<Task> taskList;
-	Stage stage;
-	ArrayList<Email> emailList;
-	Texture starT;
-	Image star;
-	Label la;
-	int timeViewed;
+	private MyGdxGame game;
+	private BitmapFont textFont;
+	private BitmapFont titleFont;
+	private Label inbox;
+	private Label email;
+	private Texture btnBack;
+	private  Image btnB;
+	private Skin uiskin;
+	private float screenWidth;
+	private float screenHeight;
+	private ArrayList<Task> taskList;
+	private Stage stage;
+	private ArrayList<Email> emailList;
+	private Texture starT;
+	private Image star;
+	private Label la;
+	private int timeViewed;
 
-	Texture indicArrow;
-	Image arrow;
-	Texture warning;
-	Image warn;
+	private Texture indicArrow;
+	private Image arrow;
 
-	int num;
+	private int num;
 
 	public EmailListScreen(MyGdxGame g) {
 		this.game = g;
@@ -142,6 +140,7 @@ public class EmailListScreen extends ScreenAdapter {
 
 	}
 
+	//creates an indicator arrow to show that an email should be clicked for a full view
 	public void createIndicatorArrow() {
 		if (timeViewed == 0) {
 			indicArrow = new Texture("arrow.png");
@@ -162,6 +161,7 @@ public class EmailListScreen extends ScreenAdapter {
 		stage.addActor(inbox);
 	}
 
+	//creates a back button
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
@@ -178,6 +178,7 @@ public class EmailListScreen extends ScreenAdapter {
 		stage.addActor(btnB);
 	}
 
+	//logic to show the appropriate email as the game progresses 
 	private void createEmail() {
 		int emailLocationFactor = 0;
 		int emailShown = 0;

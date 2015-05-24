@@ -17,29 +17,30 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class DegreeAuditScreen extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
-	float height;
-	float width;
-	Stage s;
-	Texture btnBack;
-	Image btnB;
-	Texture bg;
-	Skin uiskin;
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private float height;
+	private float width;
+	private Stage s;
+	private Texture btnBack;
+	private Image btnB;
+	private Texture bg;
+	private Skin uiskin;
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
 
-	Texture home;
-	Image btnHome;
+	private Texture home;
+	private Image btnHome;
 
 	public DegreeAuditScreen(MyGdxGame g) {
 		this.game = g;
 		this.taskList = g.taskList;
 	}
 
+	//creates back button
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
@@ -56,6 +57,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		s.addActor(btnB);
 	}
 
+	//creates home button 
 	private void createHomeButton() {
 		home = new Texture("home-icon.png");
 		btnHome = new Image(home);
@@ -93,6 +95,7 @@ public class DegreeAuditScreen extends ScreenAdapter {
 		createBackButton();
 	}
 
+	//creates an achieve star on the page when a task is completed
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);

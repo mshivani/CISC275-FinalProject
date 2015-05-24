@@ -17,25 +17,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class HelpScreen extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
+	private MyGdxGame game;
+	private SpriteBatch batch;
 
-	Texture btnBack;
-	Texture trans;
-	Texture glass;
-	Image btnB;
+	private Texture btnBack;
+	private Image btnB;
 
-	BitmapFont font;
-	float width = Gdx.graphics.getWidth();
-	float height = Gdx.graphics.getHeight();
-	String helpDisplay;
-	ArrayList<Task> tasklist;
-	Texture star;
-	Image starI;
-	ArrayList<Vector2> vecArr;
-	float speedx;
-	float speedy;
-	Stage s;
+	private BitmapFont font;
+	private float width = Gdx.graphics.getWidth();
+	private float height = Gdx.graphics.getHeight();
+	private ArrayList<Task> tasklist;
+	private Texture star;
+	private ArrayList<Vector2> vecArr;
+	private float speedx;
+	private float speedy;
+	private Stage s;
 	private Vector2 pos0;
 	private Vector2 pos1;
 	private Vector2 pos2;
@@ -56,6 +52,8 @@ public class HelpScreen extends ScreenAdapter {
 	private boolean explosion;
 	Sound chime;
 	Sound awesome;;
+	Texture trans;
+	Texture glass;
 
 	public HelpScreen(MyGdxGame g) {
 		this.game = g;

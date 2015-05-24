@@ -1,8 +1,8 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
 public class Note {
-	String name;
-	String text;
+	private String name;
+	private String text;
 
 	public Note() {
 		text = "";

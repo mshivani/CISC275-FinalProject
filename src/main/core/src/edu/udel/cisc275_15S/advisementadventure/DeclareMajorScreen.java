@@ -20,32 +20,33 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 public class DeclareMajorScreen extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
-	Skin uiskin;
-	Texture banner;
-	TextButton add;
-	SelectBox<String> sb;
-	float height;
-	float width;
-	Array<String> majorChoices;
-	String yourMajor;
-	Stage s;
-	Texture btnBack;
-	Image btnB;
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Skin uiskin;
+	private Texture banner;
+	private TextButton add;
+	private SelectBox<String> sb;
+	private float height;
+	private float width;
+	private Array<String> majorChoices;
+	private Stage s;
+	private Texture btnBack;
+	private Image btnB;
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
 
-	Texture home;
-	Image btnHome;
+	private Texture home;
+	private Image btnHome;
+	
+    String yourMajor;
 
 	public DeclareMajorScreen(MyGdxGame g) {
-
 		this.game = g;
 		this.taskList = g.taskList;
+		// creates an array with a list of possible majors the students can choose from 
 		majorChoices = new Array<String>();
 		majorChoices.add("Undeclared");
 		majorChoices.add("Agricultural and Natural Resources");
@@ -65,9 +66,9 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		majorChoices.add("Music");
 		majorChoices.add("Nursing");
 		majorChoices.add("Womens Studies");
-
 	}
 
+	//creates a back button
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
@@ -84,6 +85,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		s.addActor(btnB);
 	}
 
+	//creates a drop down menu with major choices
 	public void createDropDown() {
 		sb = new SelectBox<String>(uiskin);
 		sb.setWidth(width / 2);
@@ -92,6 +94,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 		sb.setMaxListCount(6);
 	}
 
+	//creates an add button
 	public void createAdd() {
 		add = new TextButton("Add", uiskin);
 		add.setPosition(sb.getX() + sb.getWidth(), sb.getY());
@@ -134,6 +137,7 @@ public class DeclareMajorScreen extends ScreenAdapter {
 
 	}
 
+	//determines the task that causes the achieve star to show up on the screen
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);

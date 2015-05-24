@@ -7,7 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,41 +18,40 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class HomeScreen extends ScreenAdapter {
 
-	MyGdxGame game;
-	Skin uiskin;
-	Stage s;
-	SpriteBatch batch;
-	BitmapFont font;
-	Texture btnNotes;
-	Image btnN;
-	Label notesL;
-	Texture btnWeb;
-	Image btnW;
-	Label webL;
-	Texture btnText;
-	Image btnT;
-	Label textL;
-	Texture btnEmail;
-	Image btnE;
-	Label emailL;
-	Texture btnHelp;
-	Image btnH;
-	Texture indicArrow;
-	Image arrow;
-	Label helpL;
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
-	boolean input;
-	float height;
-	float width;
-	Texture bg;
-
+	private MyGdxGame game;
+	private Skin uiskin;
+	private Stage s;
+	private Texture btnNotes;
+	private Image btnN;
+	private Label notesL;
+	private Texture btnWeb;
+	private Image btnW;
+	private Label webL;
+	private Texture btnText;
+	private Image btnT;
+	private Label textL;
+	private Texture btnEmail;
+	private Image btnE;
+	private Label emailL;
+	private Texture btnHelp;
+	private Image btnH;
+	private Texture indicArrow;
+	private Image arrow;
+	private Label helpL;
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
+	private float height;
+	private float width;
+	private Texture bg;
+	
+	private Texture n;
+	private Image notification;
+	
 	int timeViewingScreen;
-	Texture n;
-	Image notification;
+	SpriteBatch batch;
 
 	public HomeScreen(MyGdxGame g) {
 		this.game = g;
@@ -62,6 +60,7 @@ public class HomeScreen extends ScreenAdapter {
 		timeViewingScreen = 0;
 	}
 
+	//creates home screen and contains logic for notifications
 	@Override
 	public void show() {
 		game.previousScreen = this;
@@ -198,6 +197,7 @@ public class HomeScreen extends ScreenAdapter {
 		}
 	}
 
+	//creates an achieve star on the page when a task hass been completed 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -247,6 +247,7 @@ public class HomeScreen extends ScreenAdapter {
 
 	}
 
+	//creates the help app
 	public void createHelpButton() {
 		helpL = new Label("Trophies", uiskin);
 		btnHelp = new Texture("trophy-widget.png");
@@ -267,6 +268,7 @@ public class HomeScreen extends ScreenAdapter {
 		s.addActor(btnH);
 	}
 
+	//creates the email app
 	public void createEmailButton() {
 		emailL = new Label("Email", uiskin);
 		btnEmail = new Texture("email-widget.png");
@@ -288,6 +290,7 @@ public class HomeScreen extends ScreenAdapter {
 		s.addActor(emailL);
 	}
 
+	//creates the text app
 	public void createTextButton() {
 		textL = new Label("Text", uiskin);
 		btnText = new Texture("text-widget.png");
@@ -315,6 +318,7 @@ public class HomeScreen extends ScreenAdapter {
 		s.addActor(textL);
 	}
 
+	//creates the web app
 	public void createWebButton() {
 		webL = new Label("Web", uiskin);
 		btnWeb = new Texture("web-widget.png");
@@ -336,6 +340,7 @@ public class HomeScreen extends ScreenAdapter {
 		s.addActor(webL);
 	}
 
+	//creates the notes app
 	public void createNotesButton() {
 		notesL = new Label("Notes", uiskin);
 		btnNotes = new Texture("notes-widget.png");
@@ -357,6 +362,7 @@ public class HomeScreen extends ScreenAdapter {
 		s.addActor(notesL);
 	}
 
+	//creates an indicator arrow for guidance 
 	public void createIndicatorArrow() {
 		if (timeViewingScreen == 0) {
 			indicArrow = new Texture("arrow.png");

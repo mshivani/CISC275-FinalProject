@@ -7,7 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,36 +20,35 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 public class AddDropScreen extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
-	Label welcome;
-	BitmapFont font;
-	Texture banner;
-	Texture registration;
-	SelectBox<String> sb;
-	SelectBox<String> sb2;
-	Skin uiskin;
-	Stage s;
-	float height;
-	float width;
-	TextButton add;
-	TextButton drop;
-	Texture btnBack;
-	Image btnB;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Texture banner;
+	private Texture registration;
+	private SelectBox<String> sb;
+	private SelectBox<String> sb2;
+	private Skin uiskin;
+	private Stage s;
+	private float height;
+	private float width;
+	private TextButton add;
+	private TextButton drop;
+	private Texture btnBack;
+	private Image btnB;
+	private Array<String> newItems;
+	private Array<String> dropItems;
+	private Label AddL;
+	private Label DropL;
+
+	private Texture home;
+	private Image btnHome;
+
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
+	
 	ArrayList<String> currentList;
-	Array<String> newItems;
-	Array<String> dropItems;
-	Label AddL;
-	Label DropL;
-
-	Texture home;
-	Image btnHome;
-
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
 
 	public AddDropScreen(MyGdxGame g) {
 

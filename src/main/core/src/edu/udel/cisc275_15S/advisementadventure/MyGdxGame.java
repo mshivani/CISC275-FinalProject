@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MyGdxGame extends Game implements ApplicationListener {
 	public static final int btnBackMargin = 10;
 	public ScreenAdapter previousScreen;
+	
 	FileHandle data;
 	ArrayList<Question> questionList;
 	SpriteBatch batch;

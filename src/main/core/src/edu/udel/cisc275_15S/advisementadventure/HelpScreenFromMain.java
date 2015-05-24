@@ -18,26 +18,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class HelpScreenFromMain extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
+	private MyGdxGame game;
 
-	Texture btnBack;
-	Texture trans;
-	Texture glass;
-	Image btnB;
-	Image star;
-	Skin uiskin;
-	Stage s;
+	private Texture btnBack;
+	private Image btnB;
+	private Image star;
+	private Skin uiskin;
+	private Stage s;
 
-	BitmapFont font;
-	float width;
-	float height;
-	String helpDisplay;
-	ArrayList<Task> tasklist;
-	ArrayList<Image> compImg;
-	ArrayList<Image> unCompImg;
-	ArrayList<Label> taskLabel;
-	Texture starT;
+	private BitmapFont font;
+	private float width;
+	private float height;
+	private Texture starT;
 	float speedx;
 	float speedy;
 
@@ -59,6 +51,9 @@ public class HelpScreenFromMain extends ScreenAdapter {
 	private Label e1;
 	private Label e2;
 	private Label e3;
+	
+	SpriteBatch batch;
+	ArrayList<Task> tasklist;
 
 	public HelpScreenFromMain(MyGdxGame g) {
 		this.game = g;
@@ -263,6 +258,7 @@ public class HelpScreenFromMain extends ScreenAdapter {
 		this.show();
 	}
 
+	//creates a back button
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);

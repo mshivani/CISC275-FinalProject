@@ -4,18 +4,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Question {
-	String question;
+	
 	private Response response1;
 
 	private Response response2;
-	int wrongCount2;
+	private int wrongCount2;
 	private Response response3;
-	int wrongCount3;
+	private int wrongCount3;
 	private Response response4;
-	int wrongCount4;
+	private int wrongCount4;
 	private Response response5;
-	int wrongCount5;
+	private int wrongCount5;
 	private int idkCount;
+	
+	String question;
 
 	public Question(String a, String b, String c, String d, String e, String f) {
 		this.question = a;

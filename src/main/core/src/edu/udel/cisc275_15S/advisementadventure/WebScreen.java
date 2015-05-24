@@ -7,9 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -19,26 +16,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class WebScreen extends ScreenAdapter{
-	MyGdxGame game;
-	SpriteBatch batch;
-	Skin uiskin;
-	Texture btnBack;
-	Image btnB;
-	Texture btnUDSIS;
-	Image btnUD;
-	Texture rsvp;
-	Image btnRSVP;
-	BitmapFont font;
-	Stage s;   
-	float width;
-	float height;
-	TextureRegion temp1 = new TextureRegion();
+	private MyGdxGame game;
+	private Skin uiskin;
+	private Texture btnBack;
+	private Image btnB;
+	private Texture btnUDSIS;
+	private Image btnUD;
+	private Texture rsvp;
+	private Image btnRSVP;
+	private Stage s;   
+	private float width;
+	private float height;
 	
-	Image star;
-	Texture starT;
-	ArrayList<Task> taskList;
-	Label la;
-	int num;
+	private Image star;
+	private Texture starT;
+	private ArrayList<Task> taskList;
+	private Label la;
+	private int num;
 
 
 	public WebScreen(MyGdxGame g) {
@@ -47,6 +41,7 @@ public class WebScreen extends ScreenAdapter{
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 	}
 	
+	//creates an achieve star when a task has been completed 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -130,6 +125,7 @@ public class WebScreen extends ScreenAdapter{
 		Gdx.input.setInputProcessor(s);
 	}
 	
+	//creates a back button
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);

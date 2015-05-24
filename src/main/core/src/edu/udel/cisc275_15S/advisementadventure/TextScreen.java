@@ -18,31 +18,31 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class TextScreen extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
-	Skin uiskin;
-	Texture btnBack;
-	Texture textComp;
-	Image textC;
-	Image btnB;
-	Label roommate;
-	Label wrong;
-	Question currentQuestion;
-	ArrayList<String> resp;
-	Texture textReply;
-	Stage s;
-	TextButton r1, r2, r3, r4;
-	float width;
-	float height;
-	Image textR;
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
-	int r1W;
-	int r2W;
-	int r3W;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Skin uiskin;
+	private Texture btnBack;
+	private Texture textComp;
+	private Image textC;
+	private Image btnB;
+	private Label roommate;
+	private Label wrong;
+	private Question currentQuestion;
+	private ArrayList<String> resp;
+	private Texture textReply;
+	private Stage s;
+	private TextButton r1, r2, r3, r4;
+	private float width;
+	private float height;
+	private Image textR;
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
+    int r1W;
+    int r2W;
+    int r3W;
 	int r4W;
 	int r5W;
 	int idk;
@@ -73,6 +73,7 @@ public class TextScreen extends ScreenAdapter {
 
 	}
 
+	//displays an acieve star on the page when a task has been completed 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -137,6 +138,7 @@ public class TextScreen extends ScreenAdapter {
 		wrong.setColor(Color.BLACK);
 	}
 
+	//creates and randomizes responses for the text messages 
 	public void createResponses() {
 		if (!(resp.get(0).equals("empty"))) {
 			r1 = new TextButton(resp.get(0), uiskin);
@@ -230,6 +232,7 @@ public class TextScreen extends ScreenAdapter {
 
 	}
 
+	//creates a chat bubble
 	public void createChatBubble() {
 		textComp = new Texture("chatBubble_computer.png");
 		textC = new Image(textComp);
@@ -248,7 +251,8 @@ public class TextScreen extends ScreenAdapter {
 		s.addActor(textC);
 		s.addActor(message);
 	}
-
+	
+	//creates a reply to the text depending on the users response 
 	public void createReply(String x) {
 		textReply = new Texture("chatBubble_reply.png");
 		textR = new Image(textReply);
@@ -282,6 +286,7 @@ public class TextScreen extends ScreenAdapter {
 		}
 	}
 
+	//creates a back button 
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);

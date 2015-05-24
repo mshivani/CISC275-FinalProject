@@ -7,7 +7,6 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,45 +18,44 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class UDSIS_Screen extends ScreenAdapter {
 
-	MyGdxGame game;
-	SpriteBatch batch;
-	Skin uiskin;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Skin uiskin;
 
-	Texture btnBack;
-	Image btnB;
+	private Texture btnBack;
+	private Image btnB;
 
-	Texture udBanner;
-	Texture academicsHeader;
-	Texture academicsBar;
-	Texture advisorBox;
+	private Texture udBanner;
+	private Texture academicsHeader;
+	private Texture academicsBar;
+	private Texture advisorBox;
 
-	Texture ClassSch;
-	Image btnClassSch;
+	private Texture ClassSch;
+	private Image btnClassSch;
 
-	Texture addDrop;
-	Image btnAddDrop;
+	private Texture addDrop;
+	private Image btnAddDrop;
 
-	Texture major;
-	Image btnMajor;
+	private Texture major;
+	private Image btnMajor;
 
-	Texture audit;
-	Image btnAudit;
+	private Texture audit;
+	private Image btnAudit;
 
-	Texture home;
-	Image btnHome;
+	private Texture home;
+	private Image btnHome;
 
-	Image star;
-	Texture starT;
-	ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private ArrayList<Task> taskList;
 
-	BitmapFont font;
-	Stage s;
-	int num;
-	Label la;
+	private Stage s;
+	private int num;
+	private Label la;
 
 	// width and height in pixels
-	float width;
-	float height;
+	private float width;
+	private float height;
 
 	public UDSIS_Screen(MyGdxGame g) {
 		this.game = g;
@@ -65,6 +63,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		uiskin = new Skin(Gdx.files.internal("uiskin.json"));
 	}
 
+	//cretaes a achieve star on the page when a task has been accomplished
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -212,6 +211,7 @@ public class UDSIS_Screen extends ScreenAdapter {
 		createBackButton();
 	}
 
+	//creates a back button 
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);

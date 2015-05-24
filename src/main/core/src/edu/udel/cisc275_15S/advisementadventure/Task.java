@@ -3,14 +3,15 @@ package edu.udel.cisc275_15S.advisementadventure;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Task {
-	TaskType type;
+
+	private Texture completedPic;
+	private Texture uncompletedPic;
+	private boolean completed;
+	private boolean seen;
+	private String description;
+	
 	String display;
 	int tasknum;
-	Texture completedPic;
-	Texture uncompletedPic;
-	boolean completed;
-	boolean seen;
-	String description;
 
 	public Task(int num, String comPic, String uncomPic, String des) {
 		tasknum = num;

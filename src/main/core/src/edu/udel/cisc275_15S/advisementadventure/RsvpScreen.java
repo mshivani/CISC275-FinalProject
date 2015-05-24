@@ -20,27 +20,27 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 
 public class RsvpScreen extends ScreenAdapter {
-	MyGdxGame game;
-	SpriteBatch batch;
-	Skin uiskin;
-	Texture banner;
-	TextButton add;
-	SelectBox<String> sb;
-	float height;
-	float width;
-	Array<String> rsvpChoices;
-	Stage s;
-	Texture btnBack;
-	Image btnB;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Skin uiskin;
+	private Texture banner;
+	private TextButton add;
+	private SelectBox<String> sb;
+	private float height;
+	private float width;
+	private Array<String> rsvpChoices;
+	private Stage s;
+	private Texture btnBack;
+	private Image btnB;
 
-	Texture home;
-	Image btnHome;
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
-	Label rsvpL;
+	private Texture home;
+	private Image btnHome;
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
+	private Label rsvpL;
 
 	public RsvpScreen(MyGdxGame g) {
 		this.game = g;
@@ -55,6 +55,7 @@ public class RsvpScreen extends ScreenAdapter {
 		rsvpChoices.add("Law School Fair");
 	}
 
+	//creates a back button 
 	private void createBackButton() {
 		btnBack = new Texture("btn_back.png");
 		btnB = new Image(btnBack);
@@ -71,6 +72,7 @@ public class RsvpScreen extends ScreenAdapter {
 		s.addActor(btnB);
 	}
 
+	//creates a drop down list with RSVP events 
 	public void createDropDown() {
 		sb = new SelectBox<String>(uiskin);
 		sb.setWidth(width / 2);
@@ -79,6 +81,7 @@ public class RsvpScreen extends ScreenAdapter {
 		sb.setMaxListCount(6);
 	}
 
+	//creates an add button 
 	public void createAdd() {
 		add = new TextButton("Register", uiskin);
 		add.setPosition(sb.getX() + sb.getWidth(), sb.getY());
@@ -140,6 +143,7 @@ public class RsvpScreen extends ScreenAdapter {
 		});
 	}
 
+	//displays an achieve star when a task is completed 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
@@ -189,6 +193,7 @@ public class RsvpScreen extends ScreenAdapter {
 
 	}
 
+	//creates a home button 
 	public void createHomeButton() {
 		home = new Texture("home-icon.png");
 		btnHome = new Image(home);

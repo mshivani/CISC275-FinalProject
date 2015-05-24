@@ -28,28 +28,26 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class NotesScreen extends ScreenAdapter implements InputProcessor {
-	MyGdxGame game;
-	SpriteBatch batch;
-	Texture btnBack;
-	BitmapFont font;
-	Note notes;
-	TextArea ta;
-	Skin uiskin;
-	Stage s;
-	InputMultiplexer m;
-	Image backButton;
-	boolean backspace;
-	int code;
-	int untitledCount;
-	float height;
-	float width;
-	Note temp;
-	Image btnB;
-	ArrayList<Task> taskList;
-	Texture starT;
-	Image star;
-	Label la;
-	int num;
+	private MyGdxGame game;
+	private SpriteBatch batch;
+	private Texture btnBack;
+	private BitmapFont font;
+	private Note notes;
+	private TextArea ta;
+	private Skin uiskin;
+	private Stage s;
+	private InputMultiplexer m;
+	private Image backButton;
+	private int code;
+	private int untitledCount;
+	private float height;
+	private float width;
+	private Note temp;
+	private ArrayList<Task> taskList;
+	private Texture starT;
+	private Image star;
+	private Label la;
+	private int num;
 
 	public NotesScreen(MyGdxGame g, Note note) {
 		temp = new Note();
@@ -169,6 +167,7 @@ public class NotesScreen extends ScreenAdapter implements InputProcessor {
 		Gdx.input.setOnscreenKeyboardVisible(true);
 	}
 	
+	//creates a star on the screen when a task has been accomplished 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);

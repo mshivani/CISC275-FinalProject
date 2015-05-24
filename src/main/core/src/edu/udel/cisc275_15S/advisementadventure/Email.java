@@ -1,14 +1,14 @@
 package edu.udel.cisc275_15S.advisementadventure;
 
 public class Email {
-	int numberInList;
-	String sender;
-	String date;
-	String subject;
-	String salutation;
-	String content;
-	String closing;
-	String signature;
+	private int numberInList;
+	private String sender;
+	private String date;
+	private String subject;
+	private String salutation;
+	private String content;
+	private String closing;
+	private String signature;
 
 	public Email(int numberInList, String sender, String date, String subject,
 			String salutation, String content, String closing, String signature) {

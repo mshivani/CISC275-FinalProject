@@ -18,27 +18,26 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class EmailFullScreen extends ScreenAdapter {
 
-	MyGdxGame game;
-	BitmapFont textFont;
-	BitmapFont titleFont;
-	float screenWidth;
-	float screenHeight;
-	Skin uiskin;
-	ArrayList<Task> taskList;
-	Stage stage;
-	ArrayList<Email> emailList;
-	Email currentEmail;
-	Texture btnBack;
-	Image btnB;
-	Texture starT;
-	Image star;
-	Label la;
-	int num;
+	private MyGdxGame game;
+	private BitmapFont textFont;
+	private float screenWidth;
+	private float screenHeight;
+	private Skin uiskin;
+	private ArrayList<Task> taskList;
+	private Stage stage;
+	private ArrayList<Email> emailList;
+	private Email currentEmail;
+	private Texture btnBack;
+	private Image btnB;
+	private Texture starT;
+	private Image star;
+	private Label la;
+	private int num;
 
 	boolean shrink;
 
-	Texture home;
-	Image btnHome;
+	private Texture home;
+	private Image btnHome;
 
 	public EmailFullScreen(MyGdxGame g, Email e) {
 		this.game = g;

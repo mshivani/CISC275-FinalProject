@@ -19,24 +19,23 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class NoteMenu extends ScreenAdapter {
-	Texture btnBack;
-	Texture createNew;
-	Image createNote;
-	Image bb;
-	Table t;
-	MyGdxGame game;
-	float width;
-	float height;
-	Stage s;
-	Label l;
-	Skin uiskin;
-	TextButton newNote;
+	private Texture btnBack;
+	private Texture createNew;
+	private Image createNote;
+	private Image bb;
+	private Table t;
+	private MyGdxGame game;
+	private float width;
+	private float height;
+	private Stage s;
+	private Label l;
+	private Skin uiskin;
 	private SpriteBatch batch;
-	ArrayList<Task> taskList;
-	Image star;
-	Texture starT;
-	Label la;
-	int num;
+	private ArrayList<Task> taskList;
+	private Image star;
+	private Texture starT;
+	private Label la;
+	private int num;
 
 	public NoteMenu(MyGdxGame g) {
 		batch = new SpriteBatch();
@@ -104,6 +103,7 @@ public class NoteMenu extends ScreenAdapter {
 		}
 	}
 
+	//creates a star on the screen when a task has been accomplished 
 	public void createAchieveStar() {
 		starT = new Texture("star.png");
 		star = new Image(starT);
